@@ -20,9 +20,16 @@ public class Interface extends Application {
 
     // Largeur et hauteur de la fenêtre
     public static final int WIDTH = 350, HEIGHT = 480;
+    
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        launch(args);
+    }
 
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage) throws Exception {
 
         // nombre de points initialisé à 0
         int points = 0;
@@ -67,6 +74,24 @@ public class Interface extends Application {
         // initialiser les bulles
         initBulles();
 
+
+        // Inialiser les plateformes
+        Plateforme[] plateformes = new Plateforme[5];
+        for (int i = 0; i < plateformes.length; i++) {
+            plateformes[i] = new Plateforme((double) i / plateformes.length * WIDTH, Math.random() * HEIGHT);
+        }
+
+        // Initialiser Jellyfish
+        Jellyfish jellyfish = new Jellyfish(WIDTH/2 - 25, HEIGHT);
+
+
+
+      
+
+
+
+
+
         // Création de l'animation
         AnimationTimer timer = new AnimationTimer() {
             // Classe anonyme
@@ -78,7 +103,6 @@ public class Interface extends Application {
             // fonction appelée à chaque frame
             @Override
             public void handle(long now) {
-
 
                 // Si dernier temps = 0
                 if (lastTime == 0) {
@@ -93,8 +117,6 @@ public class Interface extends Application {
                       firstTime = now;
                       initBulles();
                   }
-
-
 
 
                 // temps = (temps now - dernier temps) converti en seconde
@@ -126,13 +148,47 @@ public class Interface extends Application {
                         // dessiner la bulle
                         context.fillOval(bulle.getX(), bulle.getY(), bulle.getRayon()*2, bulle.getRayon()*2);
                     }
-
                 }
+
+
+
+                 // À chaque tour, on recalcule si le personnage se trouve parterre ou non
+
+                jellyfish.setParterre(false);
+
+                for (Plateforme p : plateformes) {
+                    p.update(deltaTime);
+                    // Si le personnage se trouve sur une plateforme, ça sera défini ici
+                    jellyfish.testCollision(p);
+                }
+
+
+
+                jellyfish.update(deltaTime);
+
+               
+                jellyfish.draw(context);
+                
+
+                for (Plateforme p : plateformes) {
+                    p.draw(context);
+                }
+
+
+
+
+
+
+
+
                 // mettre a jour le dernier temps
                 lastTime = now;
             }
         };
         timer.start();
+
+
+
 
 
 
@@ -142,6 +198,22 @@ public class Interface extends Application {
             if (event.getCode() == KeyCode.ESCAPE) {
                 Platform.exit();
             }
+
+            if (event.getCode() == KeyCode.SPACE) {
+                jellyfish.jump();
+            }
+
+            if (event.getCode() == KeyCode.LEFT) {
+                jellyfish.left();
+                jellyfish.stay();
+            }
+
+            if (event.getCode() == KeyCode.RIGHT) {
+                jellyfish.right();
+                jellyfish.stay();
+            }
+
+
         });
 
         // titre de la fenetre
@@ -201,6 +273,14 @@ public class Interface extends Application {
             }
         }
     }
+
+
+
+
+
+
+
+
 
 
 
