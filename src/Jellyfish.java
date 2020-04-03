@@ -89,23 +89,36 @@ public class Jellyfish extends Entity {
      * plateforme
      */
     public void jump() {
-        //if (parterre) {
+        if (parterre) {
             vy = -600;
 
-        //}
+        }
     }
 
     public void left() {
-        ax = -1200;
+        if (parterre) {
+            setAX(-1200);
+
+        }
     }
 
     public void right() {
-        ax = 1200;
+        if (parterre) {
+            setAX(1200);
+
+        }
     }
 
-    public void stay() {
-        ax = 0;
+
+
+    public void setAX(double ax) {
+        this.ax = ax;
     }
+
+    public void setVX(double vx) {
+        this.vx = vx;
+    }
+
 
 
 

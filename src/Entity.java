@@ -19,7 +19,7 @@ public abstract class Entity {
     public void update(double dt) {
         vx += dt * ax;
         vy += dt * ay;
-        x += dt * vx;
+        x += dt * vx ;
         y += dt * vy;
 
         // Force à rester dans les bornes de l'écran

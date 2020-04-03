@@ -18,6 +18,8 @@ import java.util.Random;
 
 public class Interface extends Application {
 
+    long pressDebut;
+
     // Largeur et hauteur de la fenêtre
     public static final int WIDTH = 350, HEIGHT = 480;
     
@@ -61,11 +63,6 @@ public class Interface extends Application {
         // Contexte graphique du canvas
         GraphicsContext context = canvas.getGraphicsContext2D();
 
-        // Ajouter le score au contexte graphique
-        context.setTextAlign(TextAlignment.CENTER);
-        context.setFont(Font.font(25));
-        context.setFill(Color.WHITE);
-        context.fillText(score, 175, 60);
 
         // Couleur pour les bulles
         context.setFill(Color.rgb(0, 0, 255, 0.4));
@@ -80,9 +77,16 @@ public class Interface extends Application {
         for (int i = 0; i < plateformes.length; i++) {
             plateformes[i] = new Plateforme((double) i / plateformes.length * WIDTH, Math.random() * HEIGHT);
         }
+        for (Plateforme p : plateformes) {
+            p.draw(context);
+        }
 
         // Initialiser Jellyfish
         Jellyfish jellyfish = new Jellyfish(WIDTH/2 - 25, HEIGHT);
+        jellyfish.update(0);
+        jellyfish.draw(context);
+        jellyfish.setParterre(true);
+        
 
 
 
@@ -125,12 +129,6 @@ public class Interface extends Application {
                 // Efface tout le canvas et redessine le canvas
                 context.clearRect(0, 0, WIDTH, HEIGHT);
 
-                // Mettre la couleur du texte a blanc
-                context.setFill(Color.WHITE);
-
-                // remettre le score
-                context.fillText(score, 175, 60);
-
                 // remettre la couleur des bulles à bleu
                 context.setFill(Color.rgb(0, 0, 255, 0.4));
 
@@ -148,7 +146,7 @@ public class Interface extends Application {
                         // dessiner la bulle
                         context.fillOval(bulle.getX(), bulle.getY(), bulle.getRayon()*2, bulle.getRayon()*2);
                     }
-                }
+                }                                       
 
 
 
@@ -175,7 +173,11 @@ public class Interface extends Application {
                 }
 
 
+                // Mettre la couleur du texte a blanc
+                context.setFill(Color.WHITE);
 
+                // remettre le score
+                context.fillText(score, 175, 60);
 
 
 
@@ -185,7 +187,9 @@ public class Interface extends Application {
                 lastTime = now;
             }
         };
-        timer.start();
+
+
+
 
 
 
@@ -200,21 +204,58 @@ public class Interface extends Application {
             }
 
             if (event.getCode() == KeyCode.SPACE) {
+                timer.start();
                 jellyfish.jump();
             }
 
+
+
             if (event.getCode() == KeyCode.LEFT) {
+
+                timer.start();
                 jellyfish.left();
-                jellyfish.stay();
+
+            
             }
 
             if (event.getCode() == KeyCode.RIGHT) {
+
+                timer.start();
                 jellyfish.right();
-                jellyfish.stay();
+
+
             }
 
 
         });
+
+        scene.setOnKeyReleased((event) -> {
+
+
+            if (event.getCode() == KeyCode.LEFT) {
+
+
+                jellyfish.setAX(0);
+                jellyfish.setVX(0);
+
+
+            }
+            if (event.getCode() == KeyCode.RIGHT) {
+                jellyfish.setAX(0);
+                jellyfish.setVX(0);
+            }
+
+                });
+
+
+        // Ajouter le score au contexte graphique
+        context.setTextAlign(TextAlignment.CENTER);
+        context.setFont(Font.font(25));
+        context.setFill(Color.WHITE);
+        context.fillText(score, 175, 60);
+
+
+
 
         // titre de la fenetre
         primaryStage.setTitle("High Sea Tower");
