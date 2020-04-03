@@ -8,15 +8,25 @@ public class Jellyfish extends Entity {
     private double frameRate = 8; // 8 frame par sec
     private double tempsTotal = 0;
 
+
     private boolean parterre;
 
+
+    /**
+     * Constructeur de Jellyfish
+     * @param x position x
+     * @param y position y
+     */
     public Jellyfish(double x, double y) {
         this.x = x;
         this.y = y;
         this.largeur = 50;
         this.hauteur = 50;
+        this.vx = 0;
+        this.vy = 0;
+        this.ax = 0;
         this.ay = 1200;
-
+        this.parterre = true;
 
         // Chargement des images
         frames = new Image[]{
@@ -30,13 +40,22 @@ public class Jellyfish extends Entity {
         image = frames[0];
     }
 
+    // Getters & Setters
+    public boolean getParterre() {
+        return this.parterre;
+    }
+
+    public void setParterre(boolean parterre) {
+        this.parterre = parterre;
+    }
+
     @Override
-    public void update(double dt) {
+    public void update(double deltaTime) {
         // Physique du personnage
-        super.update(dt);
+        super.update(deltaTime);
 
         // Mise à jour de l'image affichée
-        tempsTotal += dt;
+        tempsTotal += deltaTime;
         int frame = (int) (tempsTotal * frameRate);
 
         image = frames[frame % frames.length];
@@ -80,12 +99,9 @@ public class Jellyfish extends Entity {
         this.y -= deltaY;
     }
 
-    public void setParterre(boolean parterre) {
-        this.parterre = parterre;
-    }
 
     /**
-     * Le personnage peut seulement sauter s'il se trouve sur une
+     * Jellyfish peut seulement sauter s'il se trouve sur une
      * plateforme
      */
     public void jump() {
@@ -95,6 +111,10 @@ public class Jellyfish extends Entity {
         }
     }
 
+    /**
+     * Jellyfish peut seulement aller a gauche s'il se trouve sur une
+     * plateforme
+     */
     public void left() {
         if (parterre) {
             setAX(-1200);
@@ -102,6 +122,10 @@ public class Jellyfish extends Entity {
         }
     }
 
+    /**
+     * Jellyfish peut seulement aller a droite s'il se trouve sur une
+     * plateforme
+     */
     public void right() {
         if (parterre) {
             setAX(1200);
@@ -109,25 +133,22 @@ public class Jellyfish extends Entity {
         }
     }
 
-
-
-    public void setAX(double ax) {
-        this.ax = ax;
+    /**
+     * Jellyfish arrete de se deplacer
+     *
+     */
+    public void stop() {
+        setAX(0);
+        setVX(0);
     }
-
-    public void setVX(double vx) {
-        this.vx = vx;
-    }
-
-
-
-
-
 
     @Override
     public void draw(GraphicsContext context) {
         context.drawImage(image, x, y, largeur, hauteur);
     }
+
+
+
+
+
 }
-
-

@@ -7,22 +7,17 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
-
-import java.util.Random;
-
 
 
 public class Interface extends Application {
 
-    long pressDebut;
+
 
     // Largeur et hauteur de la fenêtre
     public static final int WIDTH = 350, HEIGHT = 480;
-    
+
+
     /**
      * @param args the command line arguments
      */
@@ -30,14 +25,9 @@ public class Interface extends Application {
         launch(args);
     }
 
+
     @Override
     public void start(Stage primaryStage) throws Exception {
-
-        // nombre de points initialisé à 0
-        int points = 0;
-
-        // m designe le nombre de metres montés
-        String score = points + "m";
 
 
         // icone de la barre de tache
@@ -51,54 +41,24 @@ public class Interface extends Application {
         Scene scene = new Scene(root, WIDTH, HEIGHT);
 
 
-        // Node qui contient notre background bleu
-        StackPane background = new StackPane();
-        root.getChildren().add(background);
-        background.setStyle("-fx-background-color: #00008b");
 
         // Fenêtre de jeu
         Canvas canvas = new Canvas(WIDTH, HEIGHT);
-        background.getChildren().add(canvas);
+        root.getChildren().add(canvas);
 
         // Contexte graphique du canvas
         GraphicsContext context = canvas.getGraphicsContext2D();
 
-
-        // Couleur pour les bulles
-        context.setFill(Color.rgb(0, 0, 255, 0.4));
-
-
-        // initialiser les bulles
-        initBulles();
-
-
-        // Inialiser les plateformes
-        Plateforme[] plateformes = new Plateforme[5];
-        for (int i = 0; i < plateformes.length; i++) {
-            plateformes[i] = new Plateforme((double) i / plateformes.length * WIDTH, Math.random() * HEIGHT);
-        }
-        for (Plateforme p : plateformes) {
-            p.draw(context);
-        }
-
-        // Initialiser Jellyfish
-        Jellyfish jellyfish = new Jellyfish(WIDTH/2 - 25, HEIGHT);
-        jellyfish.update(0);
-        jellyfish.draw(context);
-        jellyfish.setParterre(true);
-        
-
-
-
-      
-
-
+        // Debut du jeu
+        Controleur controleur = new Controleur();
+        controleur.update(0);
+        controleur.draw(context);
 
 
 
         // Création de l'animation
         AnimationTimer timer = new AnimationTimer() {
-            // Classe anonyme
+
 
             // Initialiser dernier temps et premier temps
             private long lastTime = 0;
@@ -112,6 +72,7 @@ public class Interface extends Application {
                 if (lastTime == 0) {
                     lastTime = now;
                     firstTime = now;
+                    controleur.groupBulles();
                     return;
                 }
 
@@ -119,68 +80,18 @@ public class Interface extends Application {
                   // Si 3 secondes se sont écoulés depuis le debut de l'animation
                   if ((now - firstTime) >= ((long)3e+9)) {
                       firstTime = now;
-                      initBulles();
+                      controleur.groupBulles();
                   }
 
 
                 // temps = (temps now - dernier temps) converti en seconde
                 double deltaTime = (now - lastTime) * 1e-9;
 
-                // Efface tout le canvas et redessine le canvas
-                context.clearRect(0, 0, WIDTH, HEIGHT);
+                // mettre a jour les nouvelles positions
+                controleur.update(deltaTime);
 
-                // remettre la couleur des bulles à bleu
-                context.setFill(Color.rgb(0, 0, 255, 0.4));
-
-
-                // Pour chaque groupe de bulle
-                for (int i = 0; i < bulles.length ; i++) {
-
-                    // Pour chaque bulles dans un groupe
-                    for (int j = 0; j < bulles[0].length; j++) {
-
-                        // mettre a jour la vitesse de la bulle
-                        Bulle bulle = bulles[i][j];
-                        bulle.update(deltaTime);
-
-                        // dessiner la bulle
-                        context.fillOval(bulle.getX(), bulle.getY(), bulle.getRayon()*2, bulle.getRayon()*2);
-                    }
-                }                                       
-
-
-
-                 // À chaque tour, on recalcule si le personnage se trouve parterre ou non
-
-                jellyfish.setParterre(false);
-
-                for (Plateforme p : plateformes) {
-                    p.update(deltaTime);
-                    // Si le personnage se trouve sur une plateforme, ça sera défini ici
-                    jellyfish.testCollision(p);
-                }
-
-
-
-                jellyfish.update(deltaTime);
-
-               
-                jellyfish.draw(context);
-                
-
-                for (Plateforme p : plateformes) {
-                    p.draw(context);
-                }
-
-
-                // Mettre la couleur du texte a blanc
-                context.setFill(Color.WHITE);
-
-                // remettre le score
-                context.fillText(score, 175, 60);
-
-
-
+                // dessiner le nouveau dessin
+                controleur.draw(context);
 
 
                 // mettre a jour le dernier temps
@@ -191,69 +102,75 @@ public class Interface extends Application {
 
 
 
-
-
-
-
-
-        // Quitter l'application si on appuie sur Echap
+        // Actions sur le clavier en appuyant sur la touche
         scene.setOnKeyPressed((event) -> {
 
+            // Quitter l'application si on appuie sur Echap
             if (event.getCode() == KeyCode.ESCAPE) {
                 Platform.exit();
             }
 
+            // Lancer le timer et faire saute jellyfish si on appuie sur Espace
             if (event.getCode() == KeyCode.SPACE) {
                 timer.start();
-                jellyfish.jump();
+                controleur.jump();
             }
 
 
-
+            // Lancer le timer et faire bouger lateralement vers la gauche jellyfish si on appuie sur Left
             if (event.getCode() == KeyCode.LEFT) {
 
                 timer.start();
-                jellyfish.left();
+                controleur.left();
 
-            
+
             }
 
+            // Lancer le timer et faire bouger lateralement vers la droite jellyfish si on appuie sur Right
             if (event.getCode() == KeyCode.RIGHT) {
 
                 timer.start();
-                jellyfish.right();
+                controleur.right();
 
+
+            }
+
+            // Lance le mode debug ou revient au mode normal
+            if (event.getCode() == KeyCode.T) {
+
+       /*         // Mettre la couleur du texte a blanc
+                context.setFill(Color.WHITE);
+                context.setFont(Font.font(25));
+                context.setTextAlign(TextAlignment.LEFT);
+                context.fillText("Position = (" + (int)jellyfish.x + "," + (int)jellyfish.y + ")\n"
+                                + "v = (" + (int)jellyfish.vx + "," + (int)jellyfish.vy + ")\n"
+                                + "a = (" + (int)jellyfish.ax + "," + (int)jellyfish.ay + ")\n"
+                                + "Touche le sol : "
+
+                        , 10, 20);*/
 
             }
 
 
         });
 
+        // Actions sur le clavier en relachant la touche
         scene.setOnKeyReleased((event) -> {
 
 
+            // arreter jellyfish de continuer d'aller a gauche si on relache Left
             if (event.getCode() == KeyCode.LEFT) {
 
-
-                jellyfish.setAX(0);
-                jellyfish.setVX(0);
-
+                controleur.stop();
 
             }
+
+            // arreter jellyfish de continuer d'aller a droite si on relache Right
             if (event.getCode() == KeyCode.RIGHT) {
-                jellyfish.setAX(0);
-                jellyfish.setVX(0);
+                controleur.stop();
             }
 
-                });
-
-
-        // Ajouter le score au contexte graphique
-        context.setTextAlign(TextAlignment.CENTER);
-        context.setFont(Font.font(25));
-        context.setFill(Color.WHITE);
-        context.fillText(score, 175, 60);
-
+        });
 
 
 
@@ -272,69 +189,6 @@ public class Interface extends Application {
         // afficher
         primaryStage.show();
     }
-
-
-
-    // Creation d'un tableau 2d pour contenir 3 groupes de 5 bulles
-    Bulle[][] bulles = new Bulle[3][5];
-    Random random= new Random();
-    double maxRayon = 40;
-    double minRayon = 10;
-
-
-    // Creer un tableau contenant les coordonnées suivant le nombre de groupe
-    double[] baseX = new double[bulles.length];
-
-    // Borne pour baseX
-    double borne = 20;
-
-
-    // Initialiser les bulles
-    public void initBulles() {
-        // Pour chaque groupe de bulle
-        for (int i = 0; i < bulles.length; i++) {
-
-            // generer aleatoirement une coordonnee baseX
-            baseX[i] = random.nextDouble() * (WIDTH + 1);
-
-            for (int j = 0; j < bulles[0].length; j++) {
-
-                // calculer rayon pour chaque bulle
-                double rayon = random.nextDouble() * (maxRayon + 1 - minRayon) + minRayon;
-
-                // calculer vitesse pour chaque bulle
-                double vitesseY = random.nextDouble() * (Bulle.vitesseMax + 1 - Bulle.vitesseMin) + Bulle.vitesseMin;
-
-                // calculer la position initiale X pour chaque bulle
-                double base = baseX[i];
-                double initX = random.nextDouble() * (base + borne + 1 - base + borne) + base - borne;
-
-                // mettre a jour les valeurs dans la bulle
-                bulles[i][j] = new Bulle(initX, HEIGHT, rayon, 0, vitesseY);
-            }
-        }
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }
