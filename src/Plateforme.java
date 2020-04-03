@@ -12,6 +12,8 @@ public class Plateforme extends Entity {
         this.color = Color.DARKORCHID;
     }
 
+
+
     @Override
     public void draw(GraphicsContext context) {
         context.setFill(color);

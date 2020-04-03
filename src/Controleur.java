@@ -30,6 +30,8 @@ import javafx.scene.canvas.GraphicsContext;
 
         void groupBulles() { jeu.groupBulles();}
 
+        void debug() { jeu.debug();}
+
     }
 
 

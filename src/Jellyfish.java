@@ -1,5 +1,6 @@
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
 
 public class Jellyfish extends Entity {
 
@@ -28,6 +29,7 @@ public class Jellyfish extends Entity {
         this.ay = 1200;
         this.parterre = true;
 
+
         // Chargement des images
         frames = new Image[]{
                 new Image("/jellyfish1.png"),
@@ -48,6 +50,15 @@ public class Jellyfish extends Entity {
     public void setParterre(boolean parterre) {
         this.parterre = parterre;
     }
+
+    public String getParterreFr() {
+        if (getParterre() == true){
+            return "oui";
+        } else {
+            return "non";
+        }
+    }
+
 
     @Override
     public void update(double deltaTime) {
@@ -146,6 +157,9 @@ public class Jellyfish extends Entity {
     public void draw(GraphicsContext context) {
         context.drawImage(image, x, y, largeur, hauteur);
     }
+
+
+
 
 
 

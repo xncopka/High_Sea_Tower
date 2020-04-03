@@ -11,6 +11,8 @@ public abstract class Entity {
 
     protected Color color;
 
+
+
     /**
      * Met à jour la position et la vitesse de la balle
      *
@@ -71,6 +73,10 @@ public abstract class Entity {
         return this.ay;
     }
 
+    public Color getColor() {
+        return this.color;
+    }
+
     public void setX(double x) {
         this.x = x;
     }
@@ -103,4 +109,9 @@ public abstract class Entity {
         this.ay = ay;
     }
 
+    public void setColor(Color color) {
+        this.color = color;
+    }
+
 }
+

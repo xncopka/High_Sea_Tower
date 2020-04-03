@@ -1,3 +1,4 @@
+import javafx.animation.Animation;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -119,7 +120,6 @@ public class Interface extends Application {
 
             // Lancer le timer et faire bouger lateralement vers la gauche jellyfish si on appuie sur Left
             if (event.getCode() == KeyCode.LEFT) {
-
                 timer.start();
                 controleur.left();
 
@@ -137,17 +137,8 @@ public class Interface extends Application {
 
             // Lance le mode debug ou revient au mode normal
             if (event.getCode() == KeyCode.T) {
-
-       /*         // Mettre la couleur du texte a blanc
-                context.setFill(Color.WHITE);
-                context.setFont(Font.font(25));
-                context.setTextAlign(TextAlignment.LEFT);
-                context.fillText("Position = (" + (int)jellyfish.x + "," + (int)jellyfish.y + ")\n"
-                                + "v = (" + (int)jellyfish.vx + "," + (int)jellyfish.vy + ")\n"
-                                + "a = (" + (int)jellyfish.ax + "," + (int)jellyfish.ay + ")\n"
-                                + "Touche le sol : "
-
-                        , 10, 20);*/
+                controleur.debug();
+                controleur.draw(context);  // permet d'utiliser le mode debug en debut de partie
 
             }
 

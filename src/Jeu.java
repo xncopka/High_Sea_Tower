@@ -26,6 +26,8 @@ public class Jeu {
     private int points = 0;
     private String score = points + "m";
 
+    private boolean modeDebug;
+
     public Jeu() {
         plateformes = new Plateforme[5];
         for (int i = 0; i < plateformes.length; i++) {
@@ -37,8 +39,6 @@ public class Jeu {
         bulles = new Bulle[0][0]; // pas de bulles au debut du jeu
 
             }
-
-
 
 
 
@@ -63,10 +63,13 @@ public class Jeu {
         Bulle.groupBulles(bulles, width, height);
     }
 
-
-
-
-
+    public void debug() {
+        if (modeDebug) {
+            modeDebug = false;
+        } else {
+            modeDebug = true;
+        }
+    }
 
 
     public void update(double dt) {
@@ -83,9 +86,7 @@ public class Jeu {
                     Bulle bulle = bulles[i][j];
                     bulle.update(dt);
                 }
-                ;
             }
-
 
             /**
              * À chaque tour, on recalcule si le personnage se trouve parterre ou
@@ -100,8 +101,10 @@ public class Jeu {
             // Si le personnage se trouve sur une plateforme, ça sera défini ici
             jellyfish.testCollision(p);
         }
+
         jellyfish.update(dt);
     }
+
 
     public void draw(GraphicsContext context) {
 
@@ -120,10 +123,38 @@ public class Jeu {
             }
         }
 
+
         jellyfish.draw(context);
 
         for (Plateforme p : plateformes) {
             p.draw(context);
+
+            if (modeDebug == true) {
+                if  (jellyfish.intersects(p) && Math.abs(jellyfish.y + jellyfish.hauteur - p.y) < 10
+                        && jellyfish.vy > 0) {
+                    Color temp = p.getColor();
+                    p.setColor(Color.YELLOW);
+                    p.draw(context);
+                    p.setColor(temp);
+
+                }
+
+            }
+        }
+
+        if (modeDebug == true) {
+            context.setFill(Color.rgb(255, 0, 0, 0.4));
+            context.fillRect(jellyfish.x, jellyfish.y, jellyfish.largeur, jellyfish.hauteur);
+
+            context.setFont(Font.font(12));
+            context.setFill(Color.WHITE);
+            context.setTextAlign(TextAlignment.LEFT);
+            context.fillText("Position = (" + (int)jellyfish.x + "," + (int)jellyfish.y + ")\n"
+                    + "v = (" + (int)jellyfish.vx + "," + (int)jellyfish.vy + ")\n"
+                    + "a = (" + (int)jellyfish.ax + "," + (int)jellyfish.ay + ")\n"
+                    + "Touche le sol : " + jellyfish.getParterreFr(), 10, 20);
+
+
         }
 
 
