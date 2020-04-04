@@ -77,7 +77,7 @@ public class Interface extends Application {
                     return;
                 }
 
-
+                                                   
                   // Si 3 secondes se sont écoulés depuis le debut de l'animation
                   if ((now - firstTime) >= ((long)3e+9)) {
                       firstTime = now;
@@ -115,6 +115,7 @@ public class Interface extends Application {
             if (event.getCode() == KeyCode.SPACE) {
                 timer.start();
                 controleur.jump();
+                controleur.plancher();
             }
 
 

@@ -33,7 +33,9 @@ public abstract class Entity {
         }*/
         x = Math.min(x, Interface.WIDTH - largeur);
         x = Math.max(x, 0);
-        y = Math.min(y, Interface.HEIGHT - hauteur);
+        if (dt == 0) {
+            y = Math.min(y, Interface.HEIGHT - hauteur);
+        }
         y = Math.max(y, 0);
     }
 

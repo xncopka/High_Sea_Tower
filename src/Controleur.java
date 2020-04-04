@@ -32,6 +32,10 @@ import javafx.scene.canvas.GraphicsContext;
 
         void debug() { jeu.debug();}
 
+        void plancher() {
+            jeu.plancher();
+        }
+
     }
 
 

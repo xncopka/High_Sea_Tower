@@ -12,6 +12,12 @@ public class Plateforme extends Entity {
         this.color = Color.DARKORCHID;
     }
 
+    public void setLargeur(double largeur) {
+        this.largeur = largeur;
+    }
+
+
+
 
 
     @Override

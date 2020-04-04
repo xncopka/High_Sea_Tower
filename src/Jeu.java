@@ -21,6 +21,7 @@ public class Jeu {
     private Jellyfish jellyfish;
     private Bulle[][] bulles;
     private  Plateforme[] plateformes;
+    private Plateforme plancher;
 
     // Score du jeu
     private int points = 0;
@@ -29,6 +30,9 @@ public class Jeu {
     private boolean modeDebug;
 
     public Jeu() {
+
+        plancher = new Plateforme(0, Interface.HEIGHT);
+        plancher.setLargeur(Interface.WIDTH);
         plateformes = new Plateforme[5];
         for (int i = 0; i < plateformes.length; i++) {
             plateformes[i] = new Plateforme((double) i / plateformes.length * width, Math.random() * height);
@@ -71,6 +75,10 @@ public class Jeu {
         }
     }
 
+    public void plancher() {
+        plancher.setLargeur(0);
+    }
+
 
     public void update(double dt) {
 
@@ -95,6 +103,8 @@ public class Jeu {
 
             jellyfish.setParterre(false);
         }
+
+        jellyfish.testCollision(plancher);
 
         for (Plateforme p : plateformes) {
             p.update(dt);
