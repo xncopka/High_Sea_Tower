@@ -35,5 +35,6 @@ public abstract class Entity {
         y = Math.max(y, 0);
     }
 
+
     public abstract void draw(GraphicsContext context);
 }

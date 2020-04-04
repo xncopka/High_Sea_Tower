@@ -11,7 +11,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
-
+import java.util.ArrayList;
 import java.util.Random;
 
 
@@ -20,7 +20,7 @@ public class Interface extends Application {
 
     // Largeur et hauteur de la fenêtre
     public static final int WIDTH = 350, HEIGHT = 480;
-    
+    public static ArrayList<Plateforme> plateformes;
     /**
      * @param args the command line arguments
      */
@@ -75,11 +75,49 @@ public class Interface extends Application {
         initBulles();
 
 
-        // Inialiser les plateformes
-        Plateforme[] plateformes = new Plateforme[5];
-        for (int i = 0; i < plateformes.length; i++) {
-            plateformes[i] = new Plateforme((double) i / plateformes.length * WIDTH, Math.random() * HEIGHT);
+        // Initialiser les plateformes
+        ArrayList<Plateforme> plateformes= new ArrayList<Plateforme>();
+        var counter = 0;
+        boolean prevCheck = true;
+        while(plateformes.size() < 10000){
+            double random = Math.random() * 100;
+                    if(random <= 5) {
+                        if(prevCheck) {
+                            Plateforme plateformeSolide = new Plateforme(counter);
+                            plateformeSolide.setColor(Color.rgb(184, 15, 36));
+                            plateformeSolide.setId("plateformeSolide");
+                            plateformes.add(plateformeSolide);
+                            prevCheck = false;
+                        }
+
+                    }else if( 5< random && random<= 15 ){
+                        Plateforme plateformeAcc = new Plateforme(counter);
+                        plateformeAcc.setColor(Color.rgb(230, 221, 58));
+                        plateformeAcc.setId("plateformeAcc");
+                        plateformes.add(plateformeAcc);
+                        prevCheck = true;
+
+                    }else if(15< random && random<= 35 ) {
+                        Plateforme plateformeRebon = new Plateforme(counter);
+                        plateformeRebon.setColor(Color.rgb(0, 255, 51);
+                        plateformeRebon.setId("plateformeRebon");
+                        plateformes.add(plateformeRebon);
+                        prevCheck = true;
+
+                    }else if(35 <random && random <=100) {
+                        Plateforme plateformeSimple = new Plateforme(counter);
+                        plateformeSimple.setColor(Color.rgb(230, 134, 58);
+                        plateformeSimple.setId("plateformeSimple");
+                        plateformes.add(plateformeSimple);
+                        prevCheck = true;
+                    }
+            counter++;
+            }
         }
+
+
+
+
 
         // Initialiser Jellyfish
         Jellyfish jellyfish = new Jellyfish(WIDTH/2 - 25, HEIGHT);
@@ -157,9 +195,21 @@ public class Interface extends Application {
                 jellyfish.setParterre(false);
 
                 for (Plateforme p : plateformes) {
+
                     p.update(deltaTime);
                     // Si le personnage se trouve sur une plateforme, ça sera défini ici
                     jellyfish.testCollision(p);
+                    if(p.getId() == "plateformAcc") {
+                    } else if(p.getId() == "plateformRebon") {
+                        double oldViteY = jellyfish.getVitesVer();
+                        double newViteY = oldViteY*1.5;
+                        if(Math. abs(newViteY) < 100) {
+                            newViteY = -100;
+                        }
+                        jellyfish.setVitesVer(newViteY);
+
+                    } else if(p.getId() == "plateformSolide") {
+                    };
                 }
 
 
