@@ -71,6 +71,7 @@ public class Jellyfish extends Entity {
                         || other.y + other.hauteur < this.y);
     }
 
+
     /**
      * Repousse le personnage vers le haut (sans déplacer la
      * plateforme)
