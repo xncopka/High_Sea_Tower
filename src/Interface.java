@@ -77,9 +77,9 @@ public class Interface extends Application {
 
         // Initialiser les plateformes
         ArrayList<Plateforme> plateformes= new ArrayList<Plateforme>();
-        var counter = 0;
+        var counter = 1;
         boolean prevCheck = true;
-        while(plateformes.size() < 10000){
+        while(plateformes.size() < 5){
             double random = Math.random() * 100;
                     if(random <= 5) {
                         if(prevCheck) {
@@ -88,32 +88,36 @@ public class Interface extends Application {
                             plateformeSolide.setId("plateformeSolide");
                             plateformes.add(plateformeSolide);
                             prevCheck = false;
+
                         }
 
-                    }else if( 5< random && random<= 15 ){
+                    }else if( 5 < random && random<= 15 ){
                         Plateforme plateformeAcc = new Plateforme(counter);
                         plateformeAcc.setColor(Color.rgb(230, 221, 58));
                         plateformeAcc.setId("plateformeAcc");
                         plateformes.add(plateformeAcc);
                         prevCheck = true;
 
+
                     }else if(15< random && random<= 35 ) {
                         Plateforme plateformeRebon = new Plateforme(counter);
-                        plateformeRebon.setColor(Color.rgb(0, 255, 51);
+                        plateformeRebon.setColor(Color.rgb(0, 255, 51));
                         plateformeRebon.setId("plateformeRebon");
                         plateformes.add(plateformeRebon);
                         prevCheck = true;
 
+
                     }else if(35 <random && random <=100) {
                         Plateforme plateformeSimple = new Plateforme(counter);
-                        plateformeSimple.setColor(Color.rgb(230, 134, 58);
+                        plateformeSimple.setColor(Color.rgb(230, 134, 58));
                         plateformeSimple.setId("plateformeSimple");
                         plateformes.add(plateformeSimple);
                         prevCheck = true;
+
                     }
             counter++;
             }
-        }
+
 
 
 
@@ -124,7 +128,7 @@ public class Interface extends Application {
 
 
 
-      
+
 
 
 
@@ -209,6 +213,9 @@ public class Interface extends Application {
                         jellyfish.setVitesVer(newViteY);
 
                     } else if(p.getId() == "plateformSolide") {
+                        double oldViteY = jellyfish.getVitesVer();
+                        double newViteY = oldViteY*-1;
+                        jellyfish.setVitesVer(newViteY);
                     };
                 }
 
@@ -216,9 +223,9 @@ public class Interface extends Application {
 
                 jellyfish.update(deltaTime);
 
-               
+
                 jellyfish.draw(context);
-                
+
 
                 for (Plateforme p : plateformes) {
                     p.draw(context);
@@ -236,6 +243,7 @@ public class Interface extends Application {
             }
         };
         timer.start();
+
 
 
 
@@ -323,28 +331,6 @@ public class Interface extends Application {
             }
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }
 

@@ -108,6 +108,13 @@ public class Jellyfish extends Entity {
         ax = 0;
     }
 
+    public double getVitesVer() {
+        return vy;
+    }
+
+    public void setVitesVer (double vy){
+        this.vy = vy;
+    }
 
 
 
