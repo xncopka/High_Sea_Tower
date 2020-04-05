@@ -152,8 +152,7 @@ public class Jeu {
                 double newViteY = oldViteY*-1;
                 jellyfish.setVitesVer(newViteY);
             };
-            // Si le personnage se trouve sur une plateforme, ça sera défini ici
-            jellyfish.testCollision(p);
+
         }
 
 
