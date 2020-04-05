@@ -148,6 +148,20 @@ public class Jeu {
             p.update(dt);
             // Si le personnage se trouve sur une plateforme, ça sera défini ici
             jellyfish.testCollision(p);
+            if(p.getId() == "plateformAcc") {
+            } else if(p.getId() == "plateformRebon") {
+                double oldViteY = jellyfish.getVitesVer();
+                double newViteY = oldViteY*1.5;
+                if(Math. abs(newViteY) < 100) {
+                    newViteY = -100;
+                }
+                jellyfish.setVitesVer(newViteY);
+
+            } else if(p.getId() == "plateformSolide") {
+                double oldViteY = jellyfish.getVitesVer();
+                double newViteY = oldViteY*-1;
+                jellyfish.setVitesVer(newViteY);
+            };
         }
 
         jellyfish.update(dt);
