@@ -1,28 +1,40 @@
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
+import java.util.Random;
+
 
 public class Plateforme extends Entity {
+    /**
+     * Constructeur de plateforme
+     */
+    private Color color;
+    private String id;
 
-    public Plateforme(double x, double y) {
-        this.x = x;
-        this.y = y;
-        this.largeur = 100;
+    public Plateforme(int counter) {
+        Random rand = new Random();
+        this.largeur =  rand.nextInt((175 - 80) + 1) + 80;
         this.hauteur = 10;
+        this.y = counter * 100;
+        this.x = rand.nextInt((Interface.WIDTH - 0) + 1);
 
-        this.color = Color.DARKORCHID;
-    }
-
-    public void setLargeur(double largeur) {
-        this.largeur = largeur;
     }
 
 
+    public void setColor(Color color) {
+        this.color = color;
+    }
+    public void setId(String typePlateforme) {
+        this.id = typePlateforme;
+    }
+    public String getId() {
+        return id;
+    }
 
 
-
-    @Override
-    public void draw(GraphicsContext context) {
+    public  void draw(GraphicsContext context){
         context.setFill(color);
         context.fillRect(x, y, largeur, hauteur);
     }
 }
+
+
