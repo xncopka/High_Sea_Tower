@@ -20,15 +20,15 @@ public class Jeu {
     // Entités dans le jeu
     private Jellyfish jellyfish;
     private Bulle[][] bulles;
-    private  ArrayList<Plateforme> plateformes;
+    ArrayList<Plateforme> plateformes= new ArrayList<Plateforme>();
 
     // Score du jeu
     private int points = 0;
     private String score = points + "m";
+    // Initialiser les plateformes
 
     public Jeu() {
-        // Initialiser les plateformes
-        ArrayList<Plateforme> plateformes= new ArrayList<Plateforme>();
+
         var counter = 1;
         boolean prevCheck = true;
         while(plateformes.size() < 5){
