@@ -31,7 +31,9 @@ public class Jeu {
 
     public Jeu() {
 
-        plancher = new Plateforme(0, Interface.HEIGHT);
+        plancher = new Plateforme(0);
+        plancher.setX(0);
+        plancher.setY(Interface.HEIGHT);
         plancher.setLargeur(Interface.WIDTH);
 
         var counter = 1;
