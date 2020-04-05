@@ -10,7 +10,7 @@ import javafx.scene.text.TextAlignment;
  *
  */
 public class Jeu {
-    public static ArrayList<Plateforme> plateformes;
+
     // Largeur, hauteur du niveau
     private double width = 350, height = 480;
 
@@ -20,7 +20,7 @@ public class Jeu {
     // Entités dans le jeu
     private Jellyfish jellyfish;
     private Bulle[][] bulles;
-    private  Plateforme[] plateformes;
+    private  ArrayList<Plateforme> plateformes;
 
     // Score du jeu
     private int points = 0;
@@ -133,9 +133,27 @@ public class Jeu {
 
             jellyfish.setParterre(false);
         }
-
         for (Plateforme p : plateformes) {
+
             p.update(dt);
+            // Si le personnage se trouve sur une plateforme, ça sera défini ici
+            jellyfish.testCollision(p);
+            if(p.getId() == "plateformAcc") {
+            } else if(p.getId() == "plateformRebon") {
+                double oldViteY = jellyfish.getVitesVer();
+                double newViteY = oldViteY*1.5;
+                if(Math. abs(newViteY) < 100) {
+                    newViteY = -100;
+                }
+                jellyfish.setVitesVer(newViteY);
+
+            } else if(p.getId() == "plateformSolide") {
+                double oldViteY = jellyfish.getVitesVer();
+                double newViteY = oldViteY*-1;
+                jellyfish.setVitesVer(newViteY);
+            };
+        }
+
             // Si le personnage se trouve sur une plateforme, ça sera défini ici
             jellyfish.testCollision(p);
         }
