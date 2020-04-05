@@ -27,10 +27,49 @@ public class Jeu {
     private String score = points + "m";
 
     public Jeu() {
-        plateformes = new Plateforme[5];
-        for (int i = 0; i < plateformes.length; i++) {
-            plateformes[i] = new Plateforme((double) i / plateformes.length * width, Math.random() * height);
+        // Initialiser les plateformes
+        ArrayList<Plateforme> plateformes= new ArrayList<Plateforme>();
+        var counter = 1;
+        boolean prevCheck = true;
+        while(plateformes.size() < 5){
+            double random = Math.random() * 100;
+            if(random <= 5) {
+                if(prevCheck) {
+                    Plateforme plateformeSolide = new Plateforme(counter);
+                    plateformeSolide.setColor(Color.rgb(184, 15, 36));
+                    plateformeSolide.setId("plateformeSolide");
+                    plateformes.add(plateformeSolide);
+                    prevCheck = false;
+
+                }
+
+            }else if( 5 < random && random<= 15 ){
+                Plateforme plateformeAcc = new Plateforme(counter);
+                plateformeAcc.setColor(Color.rgb(230, 221, 58));
+                plateformeAcc.setId("plateformeAcc");
+                plateformes.add(plateformeAcc);
+                prevCheck = true;
+
+
+            }else if(15< random && random<= 35 ) {
+                Plateforme plateformeRebon = new Plateforme(counter);
+                plateformeRebon.setColor(Color.rgb(0, 255, 51));
+                plateformeRebon.setId("plateformeRebon");
+                plateformes.add(plateformeRebon);
+                prevCheck = true;
+
+
+            }else if(35 <random && random <=100) {
+                Plateforme plateformeSimple = new Plateforme(counter);
+                plateformeSimple.setColor(Color.rgb(230, 134, 58));
+                plateformeSimple.setId("plateformeSimple");
+                plateformes.add(plateformeSimple);
+                prevCheck = true;
+
+            }
+            counter++;
         }
+
 
         jellyfish = new Jellyfish(width/2 - 25, height);
 
