@@ -20,7 +20,7 @@ public class Jeu {
     // Entités dans le jeu
     private Jellyfish jellyfish;
     private Bulle[][] bulles;
-    private  Plateforme[] plateformes;
+    ArrayList<Plateforme> plateformes= new ArrayList<Plateforme>();
     private Plateforme plancher;
 
     // Score du jeu
@@ -33,10 +33,7 @@ public class Jeu {
 
         plancher = new Plateforme(0, Interface.HEIGHT);
         plancher.setLargeur(Interface.WIDTH);
-        plateformes = new Plateforme[5];
-        for (int i = 0; i < plateformes.length; i++) {
-            plateformes[i] = new Plateforme((double) i / plateformes.length * width, Math.random() * height);
-        }
+
         var counter = 1;
         boolean prevCheck = true;
         while(plateformes.size() < 5){
