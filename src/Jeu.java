@@ -10,7 +10,7 @@ import javafx.scene.text.TextAlignment;
  *
  */
 public class Jeu {
-
+    public static ArrayList<Plateforme> plateformes;
     // Largeur, hauteur du niveau
     private double width = 350, height = 480;
 
