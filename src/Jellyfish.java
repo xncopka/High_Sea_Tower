@@ -141,6 +141,13 @@ public class Jellyfish extends Entity {
         setAX(0);
         setVX(0);
     }
+    public double getVitesVer() {
+        return vy;
+    }
+
+    public void setVitesVer (double vy){
+        this.vy = vy;
+    }
 
     @Override
     public void draw(GraphicsContext context) {
