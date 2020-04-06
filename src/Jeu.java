@@ -29,6 +29,8 @@ public class Jeu {
 
     private boolean modeDebug;
 
+    private boolean gameOver;
+
     public Jeu() {
 
         plancher = new Plateforme(0, Interface.HEIGHT);
@@ -41,6 +43,8 @@ public class Jeu {
         jellyfish = new Jellyfish(width/2 - 25, height);
 
         bulles = new Bulle[0][0]; // pas de bulles au debut du jeu
+
+        gameOver = false;
 
             }
 
@@ -80,7 +84,22 @@ public class Jeu {
     }
 
 
+    public boolean getGameOver() {
+        return this.gameOver;
+    }
+
+    public void getInfos(){
+        System.out.println("infos");
+    }
+
+
+
+
     public void update(double dt) {
+
+        if (jellyfish.y > Interface.HEIGHT) {
+            gameOver = true;
+        }
 
 
 

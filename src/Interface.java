@@ -18,6 +18,9 @@ public class Interface extends Application {
     // Largeur et hauteur de la fenêtre
     public static final int WIDTH = 350, HEIGHT = 480;
 
+    // Contrôleur de l'application
+    private Controleur controleur;
+    private GraphicsContext context;
 
     /**
      * @param args the command line arguments
@@ -48,13 +51,10 @@ public class Interface extends Application {
         root.getChildren().add(canvas);
 
         // Contexte graphique du canvas
-        GraphicsContext context = canvas.getGraphicsContext2D();
+         context = canvas.getGraphicsContext2D();
 
         // Debut du jeu
-        Controleur controleur = new Controleur();
-        controleur.update(0);
-        controleur.draw(context);
-
+        startGame();
 
 
         // Création de l'animation
@@ -75,6 +75,11 @@ public class Interface extends Application {
                     firstTime = now;
                     controleur.groupBulles();
                     return;
+                }
+
+                // redemarre une partie si la partie est terminée
+                if (getGameOver()) {
+                    startGame();
                 }
 
                                                    
@@ -181,6 +186,27 @@ public class Interface extends Application {
         // afficher
         primaryStage.show();
     }
+
+    /**
+     * savoir si la partie est terminée
+     * @return un boolean
+     */
+    public boolean getGameOver() {
+        return controleur.getGameOver();
+    }
+
+    /**
+     *  Reinitialise les valeurs du jeu au debut
+     */
+    public void startGame() {
+        controleur = new Controleur();
+        controleur.update(0);
+        controleur.draw(context);
+    }
+
+
+
+
 
 
 }

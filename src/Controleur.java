@@ -36,6 +36,14 @@ import javafx.scene.canvas.GraphicsContext;
             jeu.plancher();
         }
 
+        boolean getGameOver() {
+            return jeu.getGameOver();
+        }
+
+        void getInfos() {
+            jeu.getInfos();
+        }
+
     }
 
 
