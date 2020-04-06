@@ -88,9 +88,7 @@ public class Jeu {
         return this.gameOver;
     }
 
-    public void getInfos(){
-        System.out.println("infos");
-    }
+
 
 
 

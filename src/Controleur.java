@@ -40,9 +40,6 @@ import javafx.scene.canvas.GraphicsContext;
             return jeu.getGameOver();
         }
 
-        void getInfos() {
-            jeu.getInfos();
-        }
 
     }
 
