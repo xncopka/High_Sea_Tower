@@ -121,8 +121,7 @@ public class Jeu {
     public void update(double dt) {
 
 
-
-        if(dt != 0) {
+        if (dt != 0) {
 
             // Pour chaque groupe de bulle
             for (int i = 0; i < bulles.length; i++) {
@@ -146,26 +145,22 @@ public class Jeu {
 
         for (Plateforme p : plateformes) {
             p.update(dt);
+            if(p.getId().equals("plateformeSolide")){
+                if (jellyfish.intersectsVert(p)&&!(jellyfish.getParterre())) {
+                    double vy = jellyfish.getVY();
+                    jellyfish.setVY(vy*-1);
+                } else if (jellyfish.intersectsVert(p)&&(jellyfish.getParterre())){
+                    jellyfish.setVY(0);
+                }
+            }
             // Si le personnage se trouve sur une plateforme, ça sera défini ici
             jellyfish.testCollision(p);
-            if(p.getId() == "plateformAcc") {
-            } else if(p.getId() == "plateformRebon") {
-                double oldViteY = jellyfish.getVitesVer();
-                double newViteY = oldViteY*1.5;
-                if(Math. abs(newViteY) < 100) {
-                    newViteY = -100;
-                }
-                jellyfish.setVitesVer(newViteY);
-
-            } else if(p.getId() == "plateformSolide") {
-                double oldViteY = jellyfish.getVitesVer();
-                double newViteY = oldViteY*-1;
-                jellyfish.setVitesVer(newViteY);
-            };
         }
 
-        jellyfish.update(dt);
+            jellyfish.update(dt);
+
     }
+
 
 
     public void draw(GraphicsContext context) {

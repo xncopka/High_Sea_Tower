@@ -8,6 +8,7 @@ public class Jellyfish extends Entity {
     private Image image;
     private double frameRate = 8; // 8 frame par sec
     private double tempsTotal = 0;
+    private double factor;
 
 
     private boolean parterre;
@@ -28,6 +29,8 @@ public class Jellyfish extends Entity {
         this.ax = 0;
         this.ay = 1200;
         this.parterre = true;
+        this.factor = 1;
+
 
 
         // Chargement des images
@@ -84,12 +87,23 @@ public class Jellyfish extends Entity {
          * - La vitesse va vers le bas (le personnage est en train de tomber,
          * pas en train de sauter)
          */
-        if (intersects(other) && Math.abs(this.y + hauteur - other.y) < 10
+     if (intersects(other) && Math.abs(this.y + hauteur - other.y) < 10
                 && vy > 0) {
             pushOut(other);
             this.vy = 0;
             this.parterre = true;
+            if (other.getId().equals("plateformeRebon")) {
+                this.factor = 1.5;
+            } else {
+                this.factor = 1;
+            }
         }
+
+    }
+
+    public boolean intersectsVert(Plateforme other) {
+        return !(y + hauteur < other.y
+                || other.y + other.hauteur < this.y) && !( x + largeur < other.x);
     }
 
     public boolean intersects(Plateforme other) {
@@ -108,7 +122,10 @@ public class Jellyfish extends Entity {
     public void pushOut(Plateforme other) {
         double deltaY = this.y + this.hauteur - other.y;
         this.y -= deltaY;
+
     }
+
+
 
 
     /**
@@ -117,9 +134,10 @@ public class Jellyfish extends Entity {
      */
     public void jump() {
         if (parterre) {
-            vy = -600;
+            this.vy = -600 * factor;
 
         }
+
     }
 
     /**
@@ -153,22 +171,11 @@ public class Jellyfish extends Entity {
         setVX(0);
     }
 
-    public double getVitesVer() {
-        return vy;
-    }
-
-    public void setVitesVer (double vy){
-        this.vy = vy;
-    }
 
     @Override
     public void draw(GraphicsContext context) {
         context.drawImage(image, x, y, largeur, hauteur);
     }
-
-
-
-
 
 
 
