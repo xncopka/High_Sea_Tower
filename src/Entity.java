@@ -9,7 +9,7 @@ public abstract class Entity {
     protected double vx, vy;
     protected double ax, ay;
 
-    protected Color color;
+
 
 
 
@@ -75,10 +75,6 @@ public abstract class Entity {
         return this.ay;
     }
 
-    public Color getColor() {
-        return this.color;
-    }
-
     public void setX(double x) {
         this.x = x;
     }
@@ -109,10 +105,6 @@ public abstract class Entity {
 
     public void setAY(double ay) {
         this.ay = ay;
-    }
-
-    public void setColor(Color color) {
-        this.color = color;
     }
 
 }

@@ -87,10 +87,21 @@ public class Jellyfish extends Entity {
         if (intersects(other) && Math.abs(this.y + hauteur - other.y) < 10
                 && vy > 0) {
             pushOut(other);
-            this.vy = 0;
-            this.parterre = true;
+            System.out.println(other.getId());
+           if (other.getId().equals("plateformeRebon")) {
+                this.vy *= -1.5;
+            } else {
+               this.vy = 0;
+           }
+           this.parterre = true;
         }
     }
+
+    public boolean intersectsVert(Plateforme other) {
+        return !(y + hauteur < other.y
+                || other.y + other.hauteur < this.y) && !( x + largeur < other.x || other.x + other.largeur < this.x);
+    }
+
 
     public boolean intersects(Plateforme other) {
         return !( // Un des carrés est à gauche de l’autre
