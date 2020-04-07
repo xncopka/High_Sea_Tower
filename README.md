@@ -1,6 +1,6 @@
-CHOSES A CODER:
-
 Derniere branche à date: "Plateformes"
+
+CHOSES A CODER:
 
 1) ~Bug vitesse de la plateforme rebondissante~ 
 2) Plateforme accélerante 
@@ -8,7 +8,7 @@ Derniere branche à date: "Plateformes"
 4) Bug Atterissage où Jellyfish traverse la plateforme au lieu d'atterir dessus
 5) ~Ajouter Plateformes au dessus~ 
 6) ~Images de Jellyfish quand elle se deplace/saute par la gauche~ 
-7) ~Score actualisé en temps réel~ (voir branche Plateformes)
+7) ~Score actualisé en temps réel~ 
 8) Scrolling automatique a 75%
 9) Arret du Scrolling automatique a 75% pendant le mode debug
 10) ~Coordonnée (x,y) du mode debug~ 
