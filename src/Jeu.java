@@ -36,7 +36,7 @@ public class Jeu {
         plancher.setY(Interface.HEIGHT);
         plancher.setLargeur(Interface.WIDTH);
 
-        var counter = 1;
+        var counter = 0;
         boolean prevCheck = true;
         while(plateformes.size() < 5){
             double random = Math.random() * 100;

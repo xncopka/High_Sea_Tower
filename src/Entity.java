@@ -75,9 +75,7 @@ public abstract class Entity {
         return this.ay;
     }
 
-    public Color getColor() {
-        return this.color;
-    }
+
 
     public void setX(double x) {
         this.x = x;
@@ -111,9 +109,6 @@ public abstract class Entity {
         this.ay = ay;
     }
 
-    public void setColor(Color color) {
-        this.color = color;
-    }
 
 }
 

@@ -34,6 +34,9 @@ public class Plateforme extends Entity {
     public String getId() {
         return id;
     }
+    public Color getColor() {
+        return this.color;
+    }
 
 
     public  void draw(GraphicsContext context){

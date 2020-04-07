@@ -103,7 +103,7 @@ public class Jellyfish extends Entity {
 
     public boolean intersectsVert(Plateforme other) {
         return !(y + hauteur < other.y
-                || other.y + other.hauteur < this.y) && !( x + largeur < other.x);
+                || other.y + other.hauteur < this.y) && !( x + largeur < other.x || other.x + other.largeur < this.x);
     }
 
     public boolean intersects(Plateforme other) {
