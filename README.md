@@ -14,8 +14,9 @@ CHOSES A CODER:
 10) Optimiser memoire utilisée (bulles, plateformes)
 11) Dans de rare cas, certaines plateformes ne sont pas creés ou sont creées juste a code l'une de l'autre
 12) bug plateforme solide quand on rebondit de la plateforme rebondissante à la plateforme solide
+13) vitesse en y de Jellyfish positive au lieu d'etre nul quand immobile
 
 
 
 
-13) Optionnel : bonus (nouvelles fonctionalités)
+14) Optionnel : bonus (nouvelles fonctionalités)
