@@ -7,9 +7,8 @@ CHOSES A CODER:
 5) Ajouter Plateformes au dessus
 6) Images de Jellyfish quand elle se deplace/saute par la gauche
 7) Score actualisé en temps réel
-8) Permettre a Jellyfish de sauter au dela de l'axe des x. 
-9) Scrolling automatique a 75%
-10) Arret du Scrolling automatique a 75% pendant le mode debug
-11) Coordonnée (x,y) du mode debug
-12) Optimiser memoire utilisée (bulles, plateformes)
-13) Optionnel : bonus (nouvelles fonctionalités)
+8) Scrolling automatique a 75%
+9) Arret du Scrolling automatique a 75% pendant le mode debug
+10) Coordonnée (x,y) du mode debug
+11) Optimiser memoire utilisée (bulles, plateformes)
+12) Optionnel : bonus (nouvelles fonctionalités)

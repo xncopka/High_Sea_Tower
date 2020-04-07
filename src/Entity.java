@@ -36,7 +36,7 @@ public abstract class Entity {
         if (dt == 0) {
             y = Math.min(y, Interface.HEIGHT - hauteur);
         }
-        y = Math.max(y, 0);
+        /*y = Math.max(y, 0);*/
     }
 
     public abstract void draw(GraphicsContext context, double fenetreY);
