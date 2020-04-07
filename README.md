@@ -20,6 +20,7 @@ CHOSES A CODER:
 16) Difficulté à sauter a gaucher ou droite quand on rencontre une plateforme rebondissante
 17) Quand on restart une partie, la partie redemarre automatiquement au lieu de manuellement
 18) Bulles qui ne defilent pas en mode debug
+19) jeu impossible si la plateforme suivante est solide de même largeur ou plus que la plateforme actuelle et qu'elle est positionnée juste au dessus de celle presente
 19) Bonus (nouvelles fonctionalités)
 
 
