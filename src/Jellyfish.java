@@ -13,6 +13,13 @@ public class Jellyfish extends Entity {
     private boolean parterre;
 
 
+
+
+
+
+
+
+
     /**
      * Constructeur de Jellyfish
      * @param x position x
@@ -30,7 +37,7 @@ public class Jellyfish extends Entity {
         this.parterre = true;
 
 
-        // Chargement des images
+       // Chargement des images
         frames = new Image[]{
                 new Image("/jellyfish1.png"),
                 new Image("/jellyfish2.png"),
@@ -41,6 +48,10 @@ public class Jellyfish extends Entity {
         };
         image = frames[0];
     }
+
+
+
+
 
     // Getters & Setters
     public boolean getParterre() {

@@ -25,8 +25,9 @@ public class Jeu {
     private Plateforme plancher;
 
     // Score du jeu
-    private int points = 0;
-    private String score = points + "m";
+    //private int points = 0;
+    private String score;
+    //= (int)fenetreY + "m";
 
     private boolean modeDebug;
 
@@ -253,6 +254,10 @@ public class Jeu {
 
         fenetreVY =  (50 + 2*dt);
         fenetreY -=  fenetreVY*dt;
+
+        score = -(int)fenetreY + "m";
+
+
     }
 
 
@@ -292,12 +297,12 @@ public class Jeu {
 
         if (modeDebug == true) {
             context.setFill(Color.rgb(255, 0, 0, 0.4));
-            context.fillRect(jellyfish.x, jellyfish.y, jellyfish.largeur, jellyfish.hauteur);
+            context.fillRect(jellyfish.x, jellyfish.y - fenetreY, jellyfish.largeur, jellyfish.hauteur);
 
             context.setFont(Font.font(12));
             context.setFill(Color.WHITE);
             context.setTextAlign(TextAlignment.LEFT);
-            context.fillText("Position = (" + (int)jellyfish.x + "," + (int)jellyfish.y + ")\n"
+            context.fillText("Position = (" + (int)jellyfish.x + "," + Math.abs((int)jellyfish.y-Interface.HEIGHT) + ")\n"
                     + "v = (" + (int)jellyfish.vx + "," + (int)jellyfish.vy + ")\n"
                     + "a = (" + (int)jellyfish.ax + "," + (int)jellyfish.ay + ")\n"
                     + "Touche le sol : " + jellyfish.getParterreFr(), 10, 20);
