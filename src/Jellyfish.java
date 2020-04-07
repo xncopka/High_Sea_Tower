@@ -94,6 +94,14 @@ public class Jellyfish extends Entity {
            }
            this.parterre = true;
         }
+        /*if (other.getId().equals("plateformeSolide")) {
+            if (intersects(other) && Math.abs(this.y + hauteur - other.y + other.getHauteur()) < 10
+                    && vy > 0) {
+                this.vy *= -1;
+
+            }
+        }*/
+
     }
 
     public boolean intersectsVert(Plateforme other) {
@@ -118,6 +126,11 @@ public class Jellyfish extends Entity {
     public void pushOut(Plateforme other) {
         double deltaY = this.y + this.hauteur - other.y;
         this.y -= deltaY;
+        /*if  (other.getId().equals("plateformeSolide")) {
+             deltaY = this.y + hauteur - other.y + other.getHauteur();
+            this.y += deltaY;
+        }*/
+
     }
 
 

@@ -32,6 +32,8 @@ public class Jeu {
 
     private boolean gameOver;
 
+
+
     public Jeu() {
 
         plancher = new Plateforme(0);
@@ -40,43 +42,34 @@ public class Jeu {
         plancher.setLargeur(Interface.WIDTH);
         plancher.setId("plancher");
 
-
-        var counter = 0;
-        boolean prevCheck = true;
-        while(plateformes.size() < 5){
+        var counter = 1;
+        boolean prevSolide = false;
+        while(plateformes.size() < 4) {
             double random = Math.random() * 100 + 1;
-            if(random <= 5) {
-                if(prevCheck) {
-                    Plateforme plateformeSolide = new Plateforme(counter);
-                    plateformeSolide.setColor(Color.rgb(184, 15, 36));
-                    plateformeSolide.setId("plateformeSolide");
-                    plateformes.add(plateformeSolide);
-                    prevCheck = false;
-
+            //if(random <= 5) {
+                  if(35 <random && random <=100) {
+                if(!prevSolide) {
+                    generateSolide(counter);
+                    prevSolide = false;
+                } else {
+                    continue;
                 }
 
+
             }else if( 5 < random && random<= 15 ){
-                Plateforme plateformeAcc = new Plateforme(counter);
-                plateformeAcc.setColor(Color.rgb(230, 221, 58));
-                plateformeAcc.setId("plateformeAcc");
-                plateformes.add(plateformeAcc);
-                prevCheck = true;
+                generateAcc(counter);
+                prevSolide = false;
 
 
             }else if(15< random && random<= 35 ) {
-                Plateforme plateformeRebon = new Plateforme(counter);
-                plateformeRebon.setColor(Color.LIGHTGREEN);
-                plateformeRebon.setId("plateformeRebon");
-                plateformes.add(plateformeRebon);
-                prevCheck = true;
+                generateReb(counter);
+                prevSolide = false;
 
 
-            }else if(35 <random && random <=100) {
-                Plateforme plateformeSimple = new Plateforme(counter);
-                plateformeSimple.setColor(Color.rgb(230, 134, 58));
-                plateformeSimple.setId("plateformeSimple");
-                plateformes.add(plateformeSimple);
-                prevCheck = true;
+            //}else if(35 <random && random <=100) {
+                 }else if(random <= 5) {
+                generateSimple(counter);
+                prevSolide = false;
 
             }
             counter++;
@@ -90,7 +83,42 @@ public class Jeu {
 
         gameOver = false;
 
-            }
+    }
+
+    public void generateSimple(int counter) {
+        Plateforme plateformeSimple = new Plateforme(counter);
+        plateformeSimple.setColor(Color.rgb(230, 134, 58));
+        plateformeSimple.setId("plateformeSimple");
+        plateformes.add(plateformeSimple);
+    }
+
+    public void generateAcc(int counter) {
+        Plateforme plateformeAcc = new Plateforme(counter);
+        plateformeAcc.setColor(Color.rgb(230, 221, 58));
+        plateformeAcc.setId("plateformeAcc");
+        plateformes.add(plateformeAcc);
+    }
+
+    public void generateReb(int counter) {
+        Plateforme plateformeRebon = new Plateforme(counter);
+        plateformeRebon.setColor(Color.LIGHTGREEN);
+        plateformeRebon.setId("plateformeRebon");
+        plateformes.add(plateformeRebon);
+    }
+
+    public void generateSolide(int counter) {
+        Plateforme plateformeSolide = new Plateforme(counter);
+        plateformeSolide.setColor(Color.rgb(184, 15, 36));
+        plateformeSolide.setId("plateformeSolide");
+        plateformes.add(plateformeSolide);
+    }
+
+
+
+
+
+
+
 
 
 
@@ -139,7 +167,7 @@ public class Jeu {
 
     public void update(double dt) {
 
-        if (jellyfish.y > Interface.HEIGHT) {
+        if (jellyfish.y > Interface.HEIGHT + fenetreY) {
             gameOver = true;
         }
 
@@ -167,6 +195,46 @@ public class Jeu {
 
         jellyfish.testCollision(plancher);
 
+        while (plateformes.get(plateformes.size()-1).getY() > fenetreY) {
+            boolean prevSolide;
+            int counter = plateformes.size()+1;
+            if(plateformes.get(plateformes.size()-1).getId()=="plateformeSolide") {
+                 prevSolide = true;
+            } else {
+                prevSolide = false;
+            }
+
+            double random = Math.random() * 100 + 1;
+
+            if(random <= 5) {
+                if (!prevSolide) {
+                    generateSolide(counter);
+                    prevSolide = true;
+                } else {
+                    continue;
+                }
+            }
+
+        else if( 5 < random && random<= 15 ){
+            generateAcc(counter);
+            prevSolide = false;
+
+
+        }else if(15< random && random<= 35 ) {
+            generateReb(counter);
+            prevSolide = false;
+
+
+        }else if(35 <random && random <=100) {
+            generateSimple(counter);
+            prevSolide = false;
+
+        }
+        counter++;
+    }
+
+
+
         for (Plateforme p : plateformes) {
             p.update(dt);
 
@@ -175,10 +243,13 @@ public class Jeu {
                 if (jellyfish.intersectsVert(p)&&!(jellyfish.getParterre())) {
                     double vy = jellyfish.getVY();
                     jellyfish.setVY(vy*-1);
-                } else if (jellyfish.intersectsVert(p)&&(jellyfish.getParterre())){
-                    jellyfish.setVY(0);
                 }
             }
+
+
+
+
+
 
 
             // Si le personnage se trouve sur une plateforme, ça sera défini ici

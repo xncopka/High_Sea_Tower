@@ -12,7 +12,7 @@ public class Plateforme extends Entity {
         Random rand = new Random();
         this.largeur =  rand.nextInt((175 - 80) + 1) + 80;
         this.hauteur = 10;
-        this.y = counter * 100;
+        this.y = Interface.HEIGHT - 100*counter ;
         this.x = rand.nextInt((Interface.WIDTH - 0) + 1);
 
     }
