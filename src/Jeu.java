@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Random;
 
 
 import javafx.scene.canvas.GraphicsContext;
@@ -46,11 +47,14 @@ public class Jeu {
         plancher.setLargeur(Interface.WIDTH);
         plancher.setId("plancher");
 
+
         var counter = 1;
         boolean prevSolide = false;
         while(plateformes.size() < 4) {
-            double random = Math.random() * 100 + 1;
-            if(random <= 5) {
+            Random random = new Random();
+            int pourcent = random.nextInt(101);
+            //if(35 <random && random <=100) {
+            if(pourcent <= 5) {
                 if(!prevSolide) {
                     generateSolide(counter);
                     prevSolide = true;
@@ -59,16 +63,18 @@ public class Jeu {
                 }
 
 
-            }else if( 5 < random && random<= 15 ){
+
+
+            }else if( 5 < pourcent && pourcent<= 15 ){
                 generateAcc(counter);
                 prevSolide = false;
 
 
-            }else if(15< random && random<= 35 ) {
+            }else if(15< pourcent && pourcent<= 35 ) {
                 generateReb(counter);
                 prevSolide = false;
 
-            }else if(35 <random && random <=100) {
+            }else if(35 <pourcent && pourcent <=100) {
                 generateSimple(counter);
                 prevSolide = false;
 
@@ -243,9 +249,10 @@ public class Jeu {
                 prevSolide = false;
             }
 
-            double random = Math.random() * 100 + 1;
+            Random random = new Random();
+            int pourcent = random.nextInt(101);
 
-            if(random <= 5) {
+            if(pourcent <= 5) {
                 if (!prevSolide) {
                     generateSolide(counter);
                     prevSolide = true;
@@ -254,17 +261,17 @@ public class Jeu {
                 }
             }
 
-        else if( 5 < random && random<= 15 ){
+        else if( 5 < pourcent && pourcent<= 15 ){
             generateAcc(counter);
             prevSolide = false;
 
 
-        }else if(15< random && random<= 35 ) {
+        }else if(15< pourcent && pourcent<= 35 ) {
             generateReb(counter);
             prevSolide = false;
 
 
-        }else if(35 <random && random <=100) {
+        }else if(35 <pourcent && pourcent <=100) {
             generateSimple(counter);
             prevSolide = false;
 
@@ -296,12 +303,27 @@ public class Jeu {
 
         jellyfish.update(dt);
 
+        if(modeDebug == false) {
 
-        fenetreVY =  (fenetreVY + 2*dt);
-        if (jellyfish.getParterreAcc() == true){
-            fenetreVY *= 3;
+            fenetreVY = (fenetreVY + 2 * dt);
+            fenetreY -= fenetreVY * dt;
         }
-        fenetreY -=  fenetreVY*dt;
+
+       /* double temp = fenetreVY;
+        jellyfish.atterissage();
+        if (jellyfish.getParterreAcc() == true && jellyfish.atterissage == false){
+            fenetreVY *= 3;
+        } else {
+            fenetreVY = temp;
+        }*/
+
+       // Scrolling 75%
+
+            if (jellyfish.y < fenetreY + 0.25 * Interface.HEIGHT) {
+                fenetreY -= Math.abs(jellyfish.y - (fenetreY + 0.25 * Interface.HEIGHT));
+            }
+        
+
 
         score = -(int)fenetreY + "m";
 

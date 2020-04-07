@@ -14,6 +14,8 @@ public class Jellyfish extends Entity {
 
     private boolean parterreAcc;
 
+    protected boolean atterissage=false;
+
 
 
 
@@ -137,6 +139,16 @@ public class Jellyfish extends Entity {
 
     public boolean getParterreAcc(){
         return this.parterreAcc;
+    }
+
+
+    public void atterissage(){
+                if (getParterre()==true && atterissage == false) {
+                    atterissage =true;
+                }
+                if(getParterre() == false){
+                    atterissage = false;
+                }
     }
 
 
