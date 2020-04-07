@@ -18,5 +18,6 @@ CHOSES A CODER:
 14) Vitesse en y de Jellyfish positive au lieu d'etre nul quand jellyfish est immobile
 15) ~Ecran qui monte plus vite a mesure qu'on avance dans le jeu~
 16) Difficulté à sauter a gaucher ou droite quand on rencontre une plateforme rebondissante
-17) bonus (nouvelles fonctionalités)
+17) quand on restart une partie, la partie redemarre automatiquement au lieu de manuellement
+18) bonus (nouvelles fonctionalités)
 
