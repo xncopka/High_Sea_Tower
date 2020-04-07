@@ -15,7 +15,8 @@ public class Jeu {
     private double width = 350, height = 480;
 
     // Origine de la fenêtre
-    private double fenetreX = 0, fenetreY = 0;
+    private double fenetreY = 0;
+    private double fenetreVY;
 
     // Entités dans le jeu
     private Jellyfish jellyfish;
@@ -130,6 +131,10 @@ public class Jeu {
         }
 
         jellyfish.update(dt);
+
+
+        fenetreVY =  (50 + 2*dt);
+        fenetreY -=  fenetreVY*dt;
     }
 
 
@@ -146,22 +151,22 @@ public class Jeu {
             for (int j = 0; j < bulles[0].length; j++) {
                 Bulle bulle = bulles[i][j];
         // dessiner la bulle
-                bulle.draw(context);
+                bulle.draw(context, fenetreY);
             }
         }
 
 
-        jellyfish.draw(context);
+        jellyfish.draw(context, fenetreY);
 
         for (Plateforme p : plateformes) {
-            p.draw(context);
+            p.draw(context, fenetreY);
 
             if (modeDebug == true) {
                 if  (jellyfish.intersects(p) && Math.abs(jellyfish.y + jellyfish.hauteur - p.y) < 10
                         && jellyfish.vy > 0) {
                     Color temp = p.getColor();
                     p.setColor(Color.YELLOW);
-                    p.draw(context);
+                    p.draw(context, fenetreY);
                     p.setColor(temp);
 
                 }

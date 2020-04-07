@@ -39,7 +39,7 @@ public abstract class Entity {
         y = Math.max(y, 0);
     }
 
-    public abstract void draw(GraphicsContext context);
+    public abstract void draw(GraphicsContext context, double fenetreY);
 
 
     // Getters & Setters

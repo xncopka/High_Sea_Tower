@@ -154,8 +154,13 @@ public class Jellyfish extends Entity {
     }
 
     @Override
-    public void draw(GraphicsContext context) {
-        context.drawImage(image, x, y, largeur, hauteur);
+    public void draw(GraphicsContext context, double fenetreY) {
+        
+        double yAffiche = y - fenetreY;
+
+
+        
+        context.drawImage(image, x, yAffiche, largeur, hauteur);
     }
 
 
