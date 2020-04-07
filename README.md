@@ -4,7 +4,7 @@ CHOSES A CODER:
 2) Plateforme accélerante 
 3) Platerforme solide (bug parterre)
 4) Bug Atterissage où Jellyfish traverse la plateforme au lieu d'atterir dessus
-5) Ajouter Plateformes au dessus
+5) Ajouter Plateformes au dessus Done (voir branche Plateformes)
 6) Images de Jellyfish quand elle se deplace/saute par la gauche
 7) Score actualisé en temps réel
 8) Scrolling automatique a 75%
