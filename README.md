@@ -16,5 +16,6 @@ CHOSES A CODER:
 12) bug plateforme solide quand on rebondit de la plateforme rebondissante à la plateforme solide
 13) vitesse en y de Jellyfish positive au lieu d'etre nul quand immobile
 14) ~écran qui monte plus vite a mesure qu'on avance dans le jeu~
-15) bonus (nouvelles fonctionalités)
+15) ne peut pas sauter a gaucher ou droite qiand on rencontre une plateforme rebondissante
+16) bonus (nouvelles fonctionalités)
 
