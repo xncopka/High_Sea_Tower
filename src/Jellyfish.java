@@ -89,6 +89,7 @@ public class Jellyfish extends Entity {
             pushOut(other);
            if (other.getId().equals("plateformeRebon")) {
                 this.vy *= -1.5;
+                vy = Math.min(vy, -100);
             } else {
                this.vy = 0;
            }

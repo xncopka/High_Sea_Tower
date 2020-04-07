@@ -46,8 +46,7 @@ public class Jeu {
         boolean prevSolide = false;
         while(plateformes.size() < 4) {
             double random = Math.random() * 100 + 1;
-            //if(random <= 5) {
-                  if(35 <random && random <=100) {
+            if(random <= 5) {
                 if(!prevSolide) {
                     generateSolide(counter);
                     prevSolide = true;
@@ -56,7 +55,7 @@ public class Jeu {
                 }
 
 
-           /* }else if( 5 < random && random<= 15 ){
+            }else if( 5 < random && random<= 15 ){
                 generateAcc(counter);
                 prevSolide = false;
 
@@ -64,10 +63,8 @@ public class Jeu {
             }else if(15< random && random<= 35 ) {
                 generateReb(counter);
                 prevSolide = false;
-*/
 
-            //}else if(35 <random && random <=100) {
-                 }else if(random <=35) {
+            }else if(35 <random && random <=100) {
                 generateSimple(counter);
                 prevSolide = false;
 
