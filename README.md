@@ -1,6 +1,6 @@
 CHOSES A CODER:
 
-1) Bug vitesse de la plateforme rebondissante (**je suis en train de le faire**)
+1) ~Bug vitesse de la plateforme rebondissante~ (voir branche Plateformes)
 2) Plateforme accélerante 
 3) ~Platerforme solide (bug parterre)~ (voir branche Plateformes)
 4) Bug Atterissage où Jellyfish traverse la plateforme au lieu d'atterir dessus
