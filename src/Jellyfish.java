@@ -47,6 +47,13 @@ public class Jellyfish extends Entity {
                 new Image("/jellyfish6.png")
         };
         image = frames[0];
+
+
+    }
+
+    public void setImage(Image[] images){
+        this.frames = images;
+
     }
 
 
@@ -79,6 +86,8 @@ public class Jellyfish extends Entity {
         // Mise à jour de l'image affichée
         tempsTotal += deltaTime;
         int frame = (int) (tempsTotal * frameRate);
+
+
 
         image = frames[frame % frames.length];
     }

@@ -2,6 +2,7 @@ import java.util.ArrayList;
 
 
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
@@ -32,6 +33,8 @@ public class Jeu {
     private boolean modeDebug;
 
     private boolean gameOver;
+
+    private boolean imageRight;
 
 
 
@@ -158,6 +161,14 @@ public class Jeu {
         return this.gameOver;
     }
 
+    public void imageRight() {
+        imageRight = true;
+    }
+
+    public void imageLeft() {
+        imageRight = false;
+    }
+
 
 
 
@@ -168,6 +179,32 @@ public class Jeu {
         if (jellyfish.y > Interface.HEIGHT + fenetreY) {
             gameOver = true;
         }
+
+        if(imageRight==false) {
+            jellyfish.setImage(new Image[]{
+                    new Image("/jellyfish1g.png"),
+                    new Image("/jellyfish2g.png"),
+                    new Image("/jellyfish3g.png"),
+                    new Image("/jellyfish4g.png"),
+                    new Image("/jellyfish5g.png"),
+                    new Image("/jellyfish6g.png")
+            });
+        }
+
+        if(imageRight==true) { jellyfish.setImage( new Image[]{
+                new Image("/jellyfish1.png"),
+                new Image("/jellyfish2.png"),
+                new Image("/jellyfish3.png"),
+                new Image("/jellyfish4.png"),
+                new Image("/jellyfish5.png"),
+                new Image("/jellyfish6.png")
+        });
+
+
+
+        }
+
+
 
 
 

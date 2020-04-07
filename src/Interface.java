@@ -127,6 +127,7 @@ public class Interface extends Application {
             if (event.getCode() == KeyCode.LEFT) {
                 timer.start();
                 controleur.left();
+                controleur.imageLeft();
 
 
             }
@@ -136,6 +137,7 @@ public class Interface extends Application {
 
                 timer.start();
                 controleur.right();
+                controleur.imageRight();
 
 
             }

@@ -24,7 +24,7 @@ import javafx.scene.canvas.GraphicsContext;
 
         void right() { jeu.right();}
 
-        void left() { jeu.left();}
+        void left() { jeu.left(); }
 
         void stop() { jeu.stop();}
 
@@ -38,6 +38,15 @@ import javafx.scene.canvas.GraphicsContext;
 
         boolean getGameOver() {
             return jeu.getGameOver();
+        }
+
+        void imageLeft() {
+            jeu.imageLeft();
+        }
+
+        void imageRight() {
+            jeu.imageRight();
+
         }
 
 
