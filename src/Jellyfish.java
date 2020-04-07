@@ -1,6 +1,6 @@
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import javafx.scene.paint.Color;
+
 
 public class Jellyfish extends Entity {
 
@@ -87,7 +87,6 @@ public class Jellyfish extends Entity {
         if (intersects(other) && Math.abs(this.y + hauteur - other.y) < 10
                 && vy > 0) {
             pushOut(other);
-            System.out.println(other.getId());
            if (other.getId().equals("plateformeRebon")) {
                 this.vy *= -1.5;
             } else {
