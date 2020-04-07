@@ -17,7 +17,7 @@ public class Jeu {
 
     // Origine de la fenêtre
     private double fenetreY = 0;
-    private double fenetreVY;
+    private double fenetreVY = 50;
 
     // Entités dans le jeu
     private Jellyfish jellyfish;
@@ -169,6 +169,10 @@ public class Jeu {
         imageRight = false;
     }
 
+    public void setFenetreVY(double fenetreVY) {
+        this.fenetreVY = fenetreVY;
+    }
+
 
 
 
@@ -274,6 +278,8 @@ public class Jeu {
             p.update(dt);
 
 
+
+
         
 
 
@@ -284,15 +290,22 @@ public class Jeu {
 
             // Si le personnage se trouve sur une plateforme, ça sera défini ici
             jellyfish.testCollision(p);
-        }
+
+            }
+
 
         jellyfish.update(dt);
 
 
-        fenetreVY =  (50 + 2*dt);
+        fenetreVY =  (fenetreVY + 2*dt);
+        if (jellyfish.getParterreAcc() == true){
+            fenetreVY *= 3;
+        }
         fenetreY -=  fenetreVY*dt;
 
         score = -(int)fenetreY + "m";
+
+
 
 
     }

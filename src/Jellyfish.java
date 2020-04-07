@@ -12,6 +12,8 @@ public class Jellyfish extends Entity {
 
     private boolean parterre;
 
+    private boolean parterreAcc;
+
 
 
 
@@ -114,6 +116,13 @@ public class Jellyfish extends Entity {
                this.vy = 0;
            }
            this.parterre = true;
+            parterreAcc = false;
+            if (other.getId().equals("plateformeAcc")) {
+                parterreAcc = true;
+            }
+
+
+            
         }
         if (other.getId().equals("plateformeSolide")) {
             if (intersects(other) && Math.abs( other.y - this.y) < 10
@@ -123,7 +132,16 @@ public class Jellyfish extends Entity {
             }
         }
 
+
     }
+
+    public boolean getParterreAcc(){
+        return this.parterreAcc;
+    }
+
+
+
+
 
 
 
