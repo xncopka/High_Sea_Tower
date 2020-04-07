@@ -9,7 +9,7 @@ CHOSES A CODER:
 5) ~Ajouter Plateformes au dessus~ 
 6) ~Images de Jellyfish quand elle se deplace/saute par la gauche~ 
 7) ~Score actualisé en temps réel~ 
-8) Scrolling automatique a 75%
+8) ~Scrolling automatique a 75%~
 9) ~Coordonnée (x,y) du mode debug~ 
 10) Optimiser memoire utilisée des plateformes (ie supprimer les plateformes du bas a mesure qu'on avance dans le jeu)
 11) Optimiser mémoire pour bulles
