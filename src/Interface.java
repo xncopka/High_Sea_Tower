@@ -120,6 +120,7 @@ public class Interface extends Application {
                 timer.start();
                 controleur.jump();
                 controleur.plancher();
+
             }
 
 

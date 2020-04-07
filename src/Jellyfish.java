@@ -14,7 +14,9 @@ public class Jellyfish extends Entity {
 
     private boolean parterreAcc;
 
-    protected boolean atterissage=false;
+
+
+
 
 
 
@@ -118,9 +120,8 @@ public class Jellyfish extends Entity {
                this.vy = 0;
            }
            this.parterre = true;
-            parterreAcc = false;
             if (other.getId().equals("plateformeAcc")) {
-                parterreAcc = true;
+                this.parterreAcc = true;
             }
 
 
@@ -137,19 +138,20 @@ public class Jellyfish extends Entity {
 
     }
 
+
     public boolean getParterreAcc(){
         return this.parterreAcc;
     }
 
-
-    public void atterissage(){
-                if (getParterre()==true && atterissage == false) {
-                    atterissage =true;
-                }
-                if(getParterre() == false){
-                    atterissage = false;
-                }
+    public void setParterreAcc(boolean parterreAcc){
+        this.parterreAcc = parterreAcc;
     }
+
+
+
+
+
+
 
 
 

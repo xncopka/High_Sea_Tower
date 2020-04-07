@@ -20,6 +20,7 @@ public class Jeu {
     private double fenetreY = 0;
     private double fenetreVY = 50;
 
+
     // Entités dans le jeu
     private Jellyfish jellyfish;
     private Bulle[][] bulles;
@@ -36,6 +37,10 @@ public class Jeu {
     private boolean gameOver;
 
     private boolean imageRight;
+
+    private boolean firstParterreAcc = true;
+
+
 
 
 
@@ -179,6 +184,8 @@ public class Jeu {
         this.fenetreVY = fenetreVY;
     }
 
+  
+
 
 
 
@@ -190,7 +197,7 @@ public class Jeu {
             gameOver = true;
         }
 
-        if(imageRight==false) {
+        if (imageRight == false) {
             jellyfish.setImage(new Image[]{
                     new Image("/jellyfish1g.png"),
                     new Image("/jellyfish2g.png"),
@@ -201,24 +208,21 @@ public class Jeu {
             });
         }
 
-        if(imageRight==true) { jellyfish.setImage( new Image[]{
-                new Image("/jellyfish1.png"),
-                new Image("/jellyfish2.png"),
-                new Image("/jellyfish3.png"),
-                new Image("/jellyfish4.png"),
-                new Image("/jellyfish5.png"),
-                new Image("/jellyfish6.png")
-        });
-
+        if (imageRight == true) {
+            jellyfish.setImage(new Image[]{
+                    new Image("/jellyfish1.png"),
+                    new Image("/jellyfish2.png"),
+                    new Image("/jellyfish3.png"),
+                    new Image("/jellyfish4.png"),
+                    new Image("/jellyfish5.png"),
+                    new Image("/jellyfish6.png")
+            });
 
 
         }
 
 
-
-
-
-        if(dt != 0) {
+        if (dt != 0) {
 
             // Pour chaque groupe de bulle
             for (int i = 0; i < bulles.length; i++) {
@@ -236,15 +240,16 @@ public class Jeu {
              */
 
             jellyfish.setParterre(false);
+            jellyfish.setParterreAcc(false);
         }
 
         jellyfish.testCollision(plancher);
 
-        while (plateformes.get(plateformes.size()-1).getY() > fenetreY) {
+        while (plateformes.get(plateformes.size() - 1).getY() > fenetreY) {
             boolean prevSolide;
-            int counter = plateformes.size()+1;
-            if(plateformes.get(plateformes.size()-1).getId()=="plateformeSolide") {
-                 prevSolide = true;
+            int counter = plateformes.size() + 1;
+            if (plateformes.get(plateformes.size() - 1).getId() == "plateformeSolide") {
+                prevSolide = true;
             } else {
                 prevSolide = false;
             }
@@ -252,86 +257,79 @@ public class Jeu {
             Random random = new Random();
             int pourcent = random.nextInt(101);
 
-            if(pourcent <= 5) {
+            if (pourcent <= 5) {
                 if (!prevSolide) {
                     generateSolide(counter);
                     prevSolide = true;
                 } else {
                     continue;
                 }
+            } else if (5 < pourcent && pourcent <= 15) {
+                generateAcc(counter);
+                prevSolide = false;
+
+
+            } else if (15 < pourcent && pourcent <= 35) {
+                generateReb(counter);
+                prevSolide = false;
+
+
+            } else if (35 < pourcent && pourcent <= 100) {
+                generateSimple(counter);
+                prevSolide = false;
+
             }
-
-        else if( 5 < pourcent && pourcent<= 15 ){
-            generateAcc(counter);
-            prevSolide = false;
-
-
-        }else if(15< pourcent && pourcent<= 35 ) {
-            generateReb(counter);
-            prevSolide = false;
-
-
-        }else if(35 <pourcent && pourcent <=100) {
-            generateSimple(counter);
-            prevSolide = false;
-
+            counter++;
         }
-        counter++;
-    }
-
 
 
         for (Plateforme p : plateformes) {
             p.update(dt);
 
 
-
-
-        
-
-
-
-
-
-
-
             // Si le personnage se trouve sur une plateforme, ça sera défini ici
             jellyfish.testCollision(p);
 
+            if (jellyfish.getParterreAcc() == true) {
+                if (firstParterreAcc) {
+                    firstParterreAcc = false;
+                    setFenetreVY(3 * fenetreVY);
+                }
+            }
+
+            if (jellyfish.getParterreAcc() == false) {
+                if (firstParterreAcc == false) {
+                    firstParterreAcc = true;
+                    setFenetreVY(fenetreVY/3);
+                }
             }
 
 
-        jellyfish.update(dt);
-
-        if(modeDebug == false) {
-
-            fenetreVY = (fenetreVY + 2 * dt);
-            fenetreY -= fenetreVY * dt;
         }
 
-       /* double temp = fenetreVY;
-        jellyfish.atterissage();
-        if (jellyfish.getParterreAcc() == true && jellyfish.atterissage == false){
-            fenetreVY *= 3;
-        } else {
-            fenetreVY = temp;
-        }*/
 
-       // Scrolling 75%
+            jellyfish.update(dt);
+
+            if (modeDebug == false) {
+
+                fenetreVY = (fenetreVY + 2 * dt);
+                fenetreY -= fenetreVY * dt;
+            }
+
+
+
+            // Scrolling 75%
 
             if (jellyfish.y < fenetreY + 0.25 * Interface.HEIGHT) {
                 fenetreY -= Math.abs(jellyfish.y - (fenetreY + 0.25 * Interface.HEIGHT));
             }
-        
 
 
-        score = -(int)fenetreY + "m";
+            score = -(int) fenetreY + "m";
 
 
-
-
-    }
-
+        }
+    
 
     public void draw(GraphicsContext context) {
 
