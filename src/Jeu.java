@@ -50,13 +50,13 @@ public class Jeu {
                   if(35 <random && random <=100) {
                 if(!prevSolide) {
                     generateSolide(counter);
-                    prevSolide = false;
+                    prevSolide = true;
                 } else {
                     continue;
                 }
 
 
-            }else if( 5 < random && random<= 15 ){
+           /* }else if( 5 < random && random<= 15 ){
                 generateAcc(counter);
                 prevSolide = false;
 
@@ -64,10 +64,10 @@ public class Jeu {
             }else if(15< random && random<= 35 ) {
                 generateReb(counter);
                 prevSolide = false;
-
+*/
 
             //}else if(35 <random && random <=100) {
-                 }else if(random <= 5) {
+                 }else if(random <=35) {
                 generateSimple(counter);
                 prevSolide = false;
 
@@ -239,12 +239,7 @@ public class Jeu {
             p.update(dt);
 
 
-            if(p.getId().equals("plateformeSolide")){
-                if (jellyfish.intersectsVert(p)&&!(jellyfish.getParterre())) {
-                    double vy = jellyfish.getVY();
-                    jellyfish.setVY(vy*-1);
-                }
-            }
+        
 
 
 

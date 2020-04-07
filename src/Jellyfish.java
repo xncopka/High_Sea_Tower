@@ -94,20 +94,16 @@ public class Jellyfish extends Entity {
            }
            this.parterre = true;
         }
-        /*if (other.getId().equals("plateformeSolide")) {
-            if (intersects(other) && Math.abs(this.y + hauteur - other.y + other.getHauteur()) < 10
-                    && vy > 0) {
+        if (other.getId().equals("plateformeSolide")) {
+            if (intersects(other) && Math.abs( other.y - this.y) < 10
+                    && vy < 0) {
                 this.vy *= -1;
 
             }
-        }*/
+        }
 
     }
 
-    public boolean intersectsVert(Plateforme other) {
-        return !(y + hauteur < other.y
-                || other.y + other.hauteur < this.y) && !( x + largeur < other.x || other.x + other.largeur < this.x);
-    }
 
 
     public boolean intersects(Plateforme other) {
@@ -119,6 +115,8 @@ public class Jellyfish extends Entity {
                         || other.y + other.hauteur < this.y);
     }
 
+
+
     /**
      * Repousse le personnage vers le haut (sans déplacer la
      * plateforme)
@@ -126,10 +124,6 @@ public class Jellyfish extends Entity {
     public void pushOut(Plateforme other) {
         double deltaY = this.y + this.hauteur - other.y;
         this.y -= deltaY;
-        /*if  (other.getId().equals("plateformeSolide")) {
-             deltaY = this.y + hauteur - other.y + other.getHauteur();
-            this.y += deltaY;
-        }*/
 
     }
 
