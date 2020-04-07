@@ -19,5 +19,7 @@ CHOSES A CODER:
 15) ~Ecran qui monte plus vite a mesure qu'on avance dans le jeu~
 16) Difficulté à sauter a gaucher ou droite quand on rencontre une plateforme rebondissante
 17) quand on restart une partie, la partie redemarre automatiquement au lieu de manuellement
-18) bonus (nouvelles fonctionalités)
+18) bulles qui ne defilent pas en mode debug
+19) bonus (nouvelles fonctionalités)
+
 
