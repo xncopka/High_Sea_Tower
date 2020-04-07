@@ -15,8 +15,6 @@ CHOSES A CODER:
 11) Dans de rare cas, certaines plateformes ne sont pas creés ou sont creées juste a code l'une de l'autre
 12) bug plateforme solide quand on rebondit de la plateforme rebondissante à la plateforme solide
 13) vitesse en y de Jellyfish positive au lieu d'etre nul quand immobile
+14) ecran qui monte plus vite a mresure qu'on avance dans le jeu
+15) bonus (nouvelles fonctionalités)
 
-
-
-
-14) Optionnel : bonus (nouvelles fonctionalités)
