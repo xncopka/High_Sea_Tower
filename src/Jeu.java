@@ -153,7 +153,7 @@ public class Jeu {
 
     public void groupBulles() {
         bulles = new Bulle[3][5];
-        Bulle.groupBulles(bulles, width, height);
+        Bulle.groupBulles(bulles, width, fenetreY + height);
     }
 
     public void debug() {
@@ -300,22 +300,26 @@ public class Jeu {
             // Si le personnage se trouve sur une plateforme, ça sera défini ici
             jellyfish.testCollision(p);
 
-            if (jellyfish.getParterreAcc() == true) {
-                if (firstParterreAcc) {
-                    firstParterreAcc = false;
-                    setFenetreVY(3 * fenetreVY);
+
+
+                if (jellyfish.getParterreAcc() == true) {
+                    if (firstParterreAcc) {
+                        firstParterreAcc = false;
+                        setFenetreVY(3 * fenetreVY);
+                    }
                 }
+
+                if (jellyfish.getParterreAcc() == false) {
+                    if (firstParterreAcc == false) {
+                        firstParterreAcc = true;
+                        setFenetreVY(fenetreVY / 3);
+                    }
+                }
+                
             }
 
-            if (jellyfish.getParterreAcc() == false) {
-                if (firstParterreAcc == false) {
-                    firstParterreAcc = true;
-                    setFenetreVY(fenetreVY/3);
-                }
-            }
 
 
-        }
 
 
             jellyfish.update(dt);
@@ -387,6 +391,7 @@ public class Jeu {
                     + "a = (" + (int)jellyfish.ax + "," + (int)jellyfish.ay + ")\n"
                     + "Touche le sol : " + jellyfish.getParterreFr() + "\n"
                     + "Nombre de plateformes : " + plateformes.size() +"\n"
+                    + "Mode debug :" + modeDebug
 
                     , 10, 20);
 
