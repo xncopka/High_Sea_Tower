@@ -17,7 +17,7 @@ CHOSES A CODER:
 13) Bug plateforme solide quand on rebondit de la plateforme rebondissante à la plateforme solide plusieurs fois (fait traverser la plateforme solide a cause de la vitesse vy qui s'amplifie a chaque fois qu'on rebondit)
 14) Vitesse en y de Jellyfish positive au lieu d'etre nul quand jellyfish est immobile
 15) ~Ecran qui monte plus vite a mesure qu'on avance dans le jeu~
-16) Difficulté à sauter a gaucher ou droite quand on rencontre une plateforme rebondissante
+16) ~Difficulté à sauter a gaucher ou droite quand on rencontre une plateforme rebondissante~
 17) Quand on restart une partie, la partie redemarre automatiquement au lieu de manuellement
 18) Bulles qui ne defilent pas en mode debug
 19) jeu impossible si la plateforme suivante est solide de même largeur ou plus que la plateforme actuelle et qu'elle est positionnée juste au dessus de celle presente
