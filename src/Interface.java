@@ -131,6 +131,7 @@ public class Interface extends Application {
                 controleur.imageLeft();
 
 
+
             }
 
             // Lancer le timer et faire bouger lateralement vers la droite jellyfish si on appuie sur Right

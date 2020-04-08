@@ -26,6 +26,8 @@ public class Jellyfish extends Entity {
 
 
 
+
+
     /**
      * Constructeur de Jellyfish
      * @param x position x
@@ -120,6 +122,8 @@ public class Jellyfish extends Entity {
                this.vy = 0;
            }
            this.parterre = true;
+
+
             if (other.getId().equals("plateformeAcc")) {
                 this.parterreAcc = true;
             }
@@ -197,10 +201,10 @@ public class Jellyfish extends Entity {
      * plateforme
      */
     public void left() {
-        if (parterre) {
+
             setAX(-1200);
 
-        }
+
     }
 
     /**
@@ -208,10 +212,10 @@ public class Jellyfish extends Entity {
      * plateforme
      */
     public void right() {
-        if (parterre) {
+
             setAX(1200);
 
-        }
+        
     }
 
     /**
