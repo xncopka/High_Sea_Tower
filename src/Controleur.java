@@ -7,9 +7,7 @@ public class Controleur {
 
         Jeu jeu;
 
-        public Controleur() {
-            jeu = new Jeu();
-        }
+        public Controleur() { jeu = new Jeu(); }
 
         void draw(GraphicsContext context) {
             jeu.draw(context);

@@ -50,6 +50,7 @@ public class Interface extends Application {
         GraphicsContext context = canvas.getGraphicsContext2D();
 
         // Debut du jeu
+
         Controleur controleur = new Controleur();
         controleur.update(0);
         controleur.draw(context);
