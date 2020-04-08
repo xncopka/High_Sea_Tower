@@ -7,7 +7,7 @@ public class Plateforme extends Entity {
 
     private Color color;
     private String id;
-    public static int counter = 0;
+    public static int counter = -5;
 
     public Plateforme() {
         Random rand = new Random();
@@ -32,6 +32,7 @@ public class Plateforme extends Entity {
     public void setId(String typePlateforme) {
         this.id = typePlateforme;
     }
+
 public boolean outsideLimite(double fenetreY){
     if(y > y-fenetreY){
         return true;

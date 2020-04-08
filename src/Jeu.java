@@ -45,7 +45,7 @@ public class Jeu {
 
 
 
-        while(plateformes.size()<4) {
+        while(plateformes.size()<5) {
             plateformes.add(newPlateforme());
         }
 
@@ -84,19 +84,13 @@ public class Jeu {
         return plateforme;
     };
 
-    public void removePlateformes(Queue plateformes){
-        Plateforme p = (Plateforme) plateformes.peek();
-            if(p.outsideLimite(fenetreY)){
-                System.out.print(1222);
-        }
+    public boolean outsideLimite(Plateforme p){
+            if( Math.abs(fenetreY - p.getY()) > 480){
+                return true;
+            } else {
+                return false;
+            }
     }
-
-            //if(fenetreY-p.getY()<fenetreY-480){
-
-
-            //}
-
-
 
 
     public void jump() {
@@ -171,8 +165,16 @@ public class Jeu {
 
         jellyfish.testCollision(plancher);
 
+        Plateforme head = this.plateformes.peek();
+        if (outsideLimite(head)){
+            plateformes.add(newPlateforme());
+            plateformes.remove();
+        };
+
+
         for (Plateforme p : plateformes) {
             p.update(dt);
+
 
 
             if (p.getId().equals("plateformeSolide")) {
@@ -188,16 +190,12 @@ public class Jeu {
             // Si le personnage se trouve sur une plateforme, ça sera défini ici
             jellyfish.testCollision(p);
 
-
-
-
         }
 
         jellyfish.update(dt);
 
         fenetreVY =  (50 + 2*dt);
         fenetreY -=  fenetreVY*dt;
-
 
 
 
@@ -232,12 +230,6 @@ public class Jeu {
 
 
             p.draw(context, fenetreY);
-
-
-
-
-
-
 
 
             if (modeDebug == true) {

@@ -15,10 +15,6 @@ public class Controleur {
             jeu.draw(context);
         }
 
-        void removePlateformes(Queue p){
-        jeu.removePlateformes(p);
-    }
-
         void update(double deltaTime) {
             jeu.update(deltaTime);
         }
