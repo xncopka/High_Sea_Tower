@@ -137,7 +137,7 @@ public class Jellyfish extends Entity {
             if (intersects(other) && Math.abs( other.y + other.hauteur - this.y) < 10
                     && vy < 0) {
                 pushOutBas(other);
-                this.vy *= -1;
+                this.vy *= -0.9;
 
             }
         }

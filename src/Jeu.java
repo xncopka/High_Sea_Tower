@@ -375,7 +375,7 @@ public class Jeu {
                     + "v = (" + (int)jellyfish.vx + "," + (int)jellyfish.vy + ")\n"
                     + "a = (" + (int)jellyfish.ax + "," + (int)jellyfish.ay + ")\n"
                     + "Touche le sol : " + jellyfish.getParterreFr() + "\n"
-                    + "Nombre de plateformes : " + plateformes.size()
+                    + "Nombre de plateformes : " + plateformes.size() +"\n"
 
                     , 10, 20);
 
@@ -388,5 +388,6 @@ public class Jeu {
         context.setFont(Font.font(25));
         context.setFill(Color.WHITE);
         context.fillText(score, 175, 60);
+
     }
 }
