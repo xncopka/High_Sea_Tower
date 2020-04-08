@@ -3,7 +3,7 @@ Derniere branche à date: "Plateformes"
 CHOSES A CODER:
 
 1) ~Bug vitesse de la plateforme rebondissante~ 
-2) Bug vitesse scrolling plateforme accélerante 
+2) ~Bug vitesse scrolling plateforme accélerante~ 
 3) ~Platerforme solide (bug parterre)~ 
 4) Bug atterissage où Jellyfish traverse la plateforme au lieu d'atterir dessus
 5) ~Ajouter Plateformes au dessus~ 
