@@ -5,7 +5,7 @@ CHOSES A CODER:
 1) ~Bug vitesse de la plateforme rebondissante~ 
 2) ~Bug vitesse scrolling plateforme accélerante~ 
 3) ~Platerforme solide (bug parterre)~ 
-4) Bug atterissage où Jellyfish traverse la plateforme au lieu d'atterir dessus (se produit quand la vitesse vers le bas est trop grande et fait traverser la plateforme)
+4) Bug atterissage où Jellyfish traverse la plateforme au lieu d'atterir dessus (se produit quand la vitesse vers le bas est trop grande au moment d'atterir sur une plateforme)
 5) ~Ajouter Plateformes au dessus~ 
 6) ~Images de Jellyfish quand elle se deplace/saute par la gauche~ 
 7) ~Score actualisé en temps réel~ 
