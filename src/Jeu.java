@@ -374,7 +374,10 @@ public class Jeu {
             context.fillText("Position = (" + (int)jellyfish.x + "," + Math.abs((int)jellyfish.y-Interface.HEIGHT) + ")\n"
                     + "v = (" + (int)jellyfish.vx + "," + (int)jellyfish.vy + ")\n"
                     + "a = (" + (int)jellyfish.ax + "," + (int)jellyfish.ay + ")\n"
-                    + "Touche le sol : " + jellyfish.getParterreFr(), 10, 20);
+                    + "Touche le sol : " + jellyfish.getParterreFr() + "\n"
+                    + "Nombre de plateformes : " + plateformes.size()
+
+                    , 10, 20);
 
         }
 
