@@ -85,18 +85,21 @@ public class Bulle extends Entity {
     }
 
 
+
     /**
      * Dessine la bulle
      * @param context contexte graphique du canvas
      */
     @Override
-    public void draw(GraphicsContext context) {
+    public void draw(GraphicsContext context, double fenetreY) {
+        double yAffiche = y - fenetreY;
         context.setFill(Color.rgb(0, 0, 255, 0.4));
-        context.fillOval(getX(), getY(), getRayon()*2, getRayon()*2);
+        context.fillOval(getX(), yAffiche, getRayon()*2, getRayon()*2);
     }
 
 
 }
+
 
 
 

@@ -1,8 +1,9 @@
 import javafx.scene.canvas.GraphicsContext;
 
+import java.util.Queue;
 
 
-    public class Controleur {
+public class Controleur {
 
         Jeu jeu;
 
@@ -13,6 +14,10 @@ import javafx.scene.canvas.GraphicsContext;
         void draw(GraphicsContext context) {
             jeu.draw(context);
         }
+
+        void removePlateformes(Queue p){
+        jeu.removePlateformes(p);
+    }
 
         void update(double deltaTime) {
             jeu.update(deltaTime);

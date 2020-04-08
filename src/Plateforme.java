@@ -13,7 +13,7 @@ public class Plateforme extends Entity {
         Random rand = new Random();
         this.largeur =  rand.nextInt((175 - 80) + 1) + 80;
         this.hauteur = 10;
-        this.y = counter * 100;
+        this.y = counter * -100;
         this.x = rand.nextInt((Interface.WIDTH - 0) + 1);
         counter ++;
 
@@ -32,17 +32,24 @@ public class Plateforme extends Entity {
     public void setId(String typePlateforme) {
         this.id = typePlateforme;
     }
+public boolean outsideLimite(double fenetreY){
+    if(y > y-fenetreY){
+        return true;
+    } else return false;
 
-
-
-
-
+}
 
     @Override
     public void draw(GraphicsContext context, double fenetreY) {
         double yAffiche = y - fenetreY;
-        context.setFill(color);
-        context.fillRect(x, yAffiche, largeur, hauteur);
+            context.setFill(color);
+            context.fillRect(x, yAffiche, largeur, hauteur);
     }
+
+    @Override
+    public void update(double dt) {
+        y = y;
+    }
+
 }
 

@@ -45,7 +45,7 @@ public class Jeu {
 
 
 
-        while(plateformes.size()<10) {
+        while(plateformes.size()<4) {
             plateformes.add(newPlateforme());
         }
 
@@ -84,15 +84,20 @@ public class Jeu {
         return plateforme;
     };
 
-    /*public void removePlateformes(){
-        for (Plateforme p : plateformes) {
-            //if (p.getY() > (fenetreY + 480)) {
-            if(p.getY()>400){
-                plateformes.remove();
-                plateformes.add(newPlateforme());
-            }
+    public void removePlateformes(Queue plateformes){
+        Plateforme p = (Plateforme) plateformes.peek();
+            if(p.outsideLimite(fenetreY)){
+                System.out.print(1222);
         }
-    }*/
+    }
+
+            //if(fenetreY-p.getY()<fenetreY-480){
+
+
+            //}
+
+
+
 
     public void jump() {
         jellyfish.jump();
@@ -137,7 +142,7 @@ public class Jeu {
 
 
 
-    public void update(double dt) {
+        public void update(double dt) {
 
         if (jellyfish.y > Interface.HEIGHT) {
             gameOver = true;
@@ -185,8 +190,9 @@ public class Jeu {
 
 
 
+
         }
-        //removePlateformes();
+
         jellyfish.update(dt);
 
         fenetreVY =  (50 + 2*dt);
@@ -194,7 +200,10 @@ public class Jeu {
 
 
 
+
     }
+
+
 
 
     public void draw(GraphicsContext context) {
@@ -221,9 +230,13 @@ public class Jeu {
 
         for (Plateforme p : plateformes) {
 
-            if(p.getY()>fenetreY && p.getY() < (fenetreY + 480) ) {
-                p.draw(context, fenetreY);
-            }
+
+            p.draw(context, fenetreY);
+
+
+
+
+
 
 
 
@@ -237,6 +250,7 @@ public class Jeu {
                 }
             }
         }
+
 
         if (modeDebug == true) {
             context.setFill(Color.rgb(255, 0, 0, 0.4));

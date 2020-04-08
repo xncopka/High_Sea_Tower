@@ -72,6 +72,8 @@ public class Jellyfish extends Entity {
         image = frames[frame % frames.length];
     }
 
+
+
     public void testCollision(Plateforme other) {
         /**
          * La collision avec une plateforme a lieu seulement si :
@@ -163,15 +165,11 @@ public class Jellyfish extends Entity {
         setAX(0);
         setVX(0);
     }
-
     @Override
     public void draw(GraphicsContext context, double fenetreY) {
-
         double yAffiche = y - fenetreY;
-
-
-
         context.drawImage(image, x, yAffiche, largeur, hauteur);
+
     }
 
 

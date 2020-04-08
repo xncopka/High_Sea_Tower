@@ -35,9 +35,6 @@ public abstract class Entity {
         y = Math.max(y, 0);
     }
 
-    public abstract void draw(GraphicsContext context);
-
-
     // Getters & Setters
     public double getX() {
         return this.x;
@@ -103,4 +100,5 @@ public abstract class Entity {
         this.ay = ay;
     }
 
+    public abstract void draw(GraphicsContext context, double fenetreY);
 }
