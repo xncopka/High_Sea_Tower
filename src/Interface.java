@@ -119,7 +119,7 @@ public class Interface extends Application {
             if (event.getCode() == KeyCode.SPACE) {
                 timer.start();
                 controleur.jump();
-                controleur.plancher();
+                controleur.removePlancher();
 
             }
 

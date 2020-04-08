@@ -164,8 +164,8 @@ public class Jeu {
         }
     }
 
-    public void plancher() {
-        plancher.setLargeur(0);
+    public void removePlancher() {
+        plancher = null;
     }
 
 
@@ -244,7 +244,9 @@ public class Jeu {
             jellyfish.setParterreAcc(false);
         }
 
-        jellyfish.testCollision(plancher);
+        if (plancher != null) {
+            jellyfish.testCollision(plancher);
+        }
 
         while (plateformes.get(plateformes.size() - 1).getY() > fenetreY   ) {
             boolean prevSolide;
