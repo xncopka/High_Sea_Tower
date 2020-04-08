@@ -1,6 +1,7 @@
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
+
 public class Jellyfish extends Entity {
 
     private Image[] frames;
@@ -28,6 +29,7 @@ public class Jellyfish extends Entity {
         this.ay = 1200;
         this.parterre = true;
 
+
         // Chargement des images
         frames = new Image[]{
                 new Image("/jellyfish1.png"),
@@ -48,6 +50,15 @@ public class Jellyfish extends Entity {
     public void setParterre(boolean parterre) {
         this.parterre = parterre;
     }
+
+    public String getParterreFr() {
+        if (getParterre() == true){
+            return "oui";
+        } else {
+            return "non";
+        }
+    }
+
 
     @Override
     public void update(double deltaTime) {
@@ -76,10 +87,21 @@ public class Jellyfish extends Entity {
         if (intersects(other) && Math.abs(this.y + hauteur - other.y) < 10
                 && vy > 0) {
             pushOut(other);
-            this.vy = 0;
+            if (other.getId().equals("plateformeRebon")) {
+                this.vy *= -1.5;
+            } else {
+                this.vy = 0;
+            }
             this.parterre = true;
         }
     }
+
+    public boolean intersectsVert(Plateforme other) {
+        return !(y + hauteur < other.y
+                || other.y + other.hauteur < this.y) && !( x + largeur < other.x ||
+                other.x + other.largeur < this.x);
+    }
+
 
     public boolean intersects(Plateforme other) {
         return !( // Un des carrés est à gauche de l’autre
@@ -141,21 +163,23 @@ public class Jellyfish extends Entity {
         setAX(0);
         setVX(0);
     }
-    public double getVitesVer() {
-        return vy;
-    }
-
-    public void setVitesVer (double vy){
-        this.vy = vy;
-    }
 
     @Override
-    public void draw(GraphicsContext context) {
-        context.drawImage(image, x, y, largeur, hauteur);
+    public void draw(GraphicsContext context, double fenetreY) {
+
+        double yAffiche = y - fenetreY;
+
+
+
+        context.drawImage(image, x, yAffiche, largeur, hauteur);
     }
+
+
+
 
 
 
 
 
 }
+
