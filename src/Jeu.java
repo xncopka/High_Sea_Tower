@@ -40,6 +40,8 @@ public class Jeu {
 
     private boolean firstParterreAcc = true;
 
+    private int counter = 5 ;
+
 
 
 
@@ -244,41 +246,49 @@ public class Jeu {
 
         jellyfish.testCollision(plancher);
 
-        while (plateformes.get(plateformes.size() - 1).getY() > fenetreY) {
+        while (plateformes.get(plateformes.size() - 1).getY() > fenetreY   ) {
             boolean prevSolide;
-            int counter = plateformes.size() + 1;
-            if (plateformes.get(plateformes.size() - 1).getId() == "plateformeSolide") {
-                prevSolide = true;
-            } else {
-                prevSolide = false;
-            }
-
-            Random random = new Random();
-            int pourcent = random.nextInt(101);
-
-            if (pourcent <= 5) {
-                if (!prevSolide) {
-                    generateSolide(counter);
+                if (plateformes.get(plateformes.size() - 1).getId() == "plateformeSolide") {
                     prevSolide = true;
                 } else {
-                    continue;
+                    prevSolide = false;
                 }
-            } else if (5 < pourcent && pourcent <= 15) {
-                generateAcc(counter);
-                prevSolide = false;
+
+                Random random = new Random();
+                int pourcent = random.nextInt(101);
+                System.out.println(pourcent);
+
+                if (pourcent <= 5) {
+                    if (!prevSolide) {
+                        generateSolide(counter);
+                        prevSolide = true;
+                    } else {
+                        continue;
+                    }
+                } else if (5 < pourcent && pourcent <= 15) {
+                    generateAcc(counter);
+                    prevSolide = false;
 
 
-            } else if (15 < pourcent && pourcent <= 35) {
-                generateReb(counter);
-                prevSolide = false;
+                } else if (15 < pourcent && pourcent <= 35) {
+                    generateReb(counter);
+                    prevSolide = false;
 
 
-            } else if (35 < pourcent && pourcent <= 100) {
-                generateSimple(counter);
-                prevSolide = false;
+                } else if (35 < pourcent && pourcent <= 100) {
+                    generateSimple(counter);
+                    prevSolide = false;
 
-            }
-            counter++;
+                }
+                counter++;
+
+        }
+
+        while (plateformes.get(0).getY() > Interface.HEIGHT + fenetreY ) {
+            
+
+                plateformes.remove(0);
+        
         }
 
 
