@@ -256,7 +256,6 @@ public class Jeu {
 
                 Random random = new Random();
                 int pourcent = random.nextInt(101);
-                System.out.println(pourcent);
 
                 if (pourcent <= 5) {
                     if (!prevSolide) {
