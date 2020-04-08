@@ -11,7 +11,7 @@ CHOSES A CODER:
 7) ~Score actualisé en temps réel~ 
 8) ~Scrolling automatique a 75%~
 9) ~Coordonnée (x,y) du mode debug~ 
-10) Optimiser memoire utilisée des plateformes (ie supprimer les plateformes du bas a mesure qu'on avance dans le jeu)
+10) ~Optimiser memoire utilisée des plateformes (ie supprimer les plateformes du bas a mesure qu'on avance dans le jeu)~
 11) Optimiser mémoire pour bulles
 12) ~Dans de rare cas, certaines plateformes ne sont pas creés ou sont creées sur la même ligne horizontale~
 13) Bug plateforme solide quand on rebondit de la plateforme rebondissante à la plateforme solide plusieurs fois (fait traverser la plateforme solide a cause de la vitesse vy qui s'amplifie a chaque fois qu'on rebondit)
