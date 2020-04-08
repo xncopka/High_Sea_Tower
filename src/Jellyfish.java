@@ -131,9 +131,12 @@ public class Jellyfish extends Entity {
 
             
         }
+
+        // Math.abs( other.y - this.y) < 10
         if (other.getId().equals("plateformeSolide")) {
-            if (intersects(other) && Math.abs( other.y - this.y) < 10
+            if (intersects(other) && Math.abs( other.y + other.hauteur - this.y) < 10
                     && vy < 0) {
+                pushOutBas(other);
                 this.vy *= -1;
 
             }
@@ -182,6 +185,11 @@ public class Jellyfish extends Entity {
         double deltaY = this.y + this.hauteur - other.y;
         this.y -= deltaY;
 
+    }
+
+    public void pushOutBas (Plateforme other) {
+        double deltaY = other.y + other.hauteur - this.y;
+        this.y += deltaY;
     }
 
 

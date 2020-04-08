@@ -58,9 +58,9 @@ public class Jeu {
         while(plateformes.size() < 4) {
             Random random = new Random();
             int pourcent = random.nextInt(101);
-            //if(35 <random && random <=100) {
-            if(pourcent <= 5) {
-                if(!prevSolide) {
+            //if(35 <pourcent && pourcent <=100) {
+                if(pourcent <= 5) {
+                if (!prevSolide) {
                     generateSolide(counter);
                     prevSolide = true;
                 } else {
@@ -69,12 +69,11 @@ public class Jeu {
 
 
 
-
             }else if( 5 < pourcent && pourcent<= 15 ){
                 generateAcc(counter);
                 prevSolide = false;
 
-
+            //} else {
             }else if(15< pourcent && pourcent<= 35 ) {
                 generateReb(counter);
                 prevSolide = false;
