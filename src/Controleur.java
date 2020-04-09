@@ -51,6 +51,11 @@ import javafx.scene.canvas.GraphicsContext;
 
         public void updateInit() {jeu.updateInit();}
 
+        /*public int getNbVies() {
+            return jeu.getNbVies();
+        }*/
+
+
 
     }
 

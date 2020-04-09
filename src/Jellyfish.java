@@ -22,6 +22,8 @@ public class Jellyfish extends Entity {
 
     private boolean firstPlateforme;
 
+    private boolean aAttrape = false;
+
 
 
 
@@ -299,6 +301,30 @@ public class Jellyfish extends Entity {
 
         
         context.drawImage(image, x, yAffiche, largeur, hauteur);
+    }
+
+
+    public boolean intersects(BlackHole other) {
+
+            return other.intersects(this);
+
+
+    }
+
+    public void testCollisionPiece(BlackHole other) {
+        if (intersects(other)) {
+            aAttrape = true;
+            other = null;
+        }
+
+    }
+
+    public boolean aAttrape() {
+        return this.aAttrape;
+    }
+
+    public void setAAttrape( boolean aAttrape) {
+        this.aAttrape = aAttrape;
     }
 
 

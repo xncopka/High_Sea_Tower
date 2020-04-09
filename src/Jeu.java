@@ -27,10 +27,11 @@ public class Jeu {
     private Bulle[][] bulles;
     ArrayList<Plateforme> plateformes= new ArrayList<Plateforme>();
     private Plateforme plancher;
+    private BlackHole blackHole;
 
     // Score du jeu
-    //private int points = 0;
-    private String score;
+
+
     //= (int)fenetreY + "m";
 
     private boolean modeDebug;
@@ -45,6 +46,11 @@ public class Jeu {
 
     private static int highScore = 0;
 
+    private String score;
+
+
+
+    private int nombreVies = 3;
 
 
 
@@ -129,6 +135,18 @@ public class Jeu {
 
 
         bulles = new Bulle[0][0]; // pas de bulles au debut du jeu
+
+        Random rand = new Random();
+        blackHole = new BlackHole( rand.nextInt(Interface.WIDTH + 1) + 15,
+                rand.nextInt(100  + 1) + 15);
+
+
+
+
+
+
+
+
 
         gameOver = false;
 
@@ -306,7 +324,9 @@ public class Jeu {
 
     }
 
-  
+    public int getNbVies() {
+        return this.nombreVies;
+    }
 
 
 
@@ -315,11 +335,14 @@ public class Jeu {
 
     public void update(double dt) {
 
-        if (jellyfish.y > Interface.HEIGHT + fenetreY) {
+        if ((jellyfish.y > Interface.HEIGHT + fenetreY) || nombreVies ==0) {
             gameOver = true;
             highScore = Math.max(highScore, -(int) fenetreY );
 
         }
+
+
+
 
         if (imageRight == false) {
             jellyfish.setImage(new Image[]{
@@ -472,10 +495,31 @@ public class Jeu {
             }
         }
 
-
+            if(blackHole.getY() > fenetreY + blackHole.getRayon() + Interface.HEIGHT)
+            { Random rand = new Random();
+                double newX = rand.nextInt(Interface.WIDTH + 1) + 15;
+                double newY = fenetreY - rand.nextInt(Interface.HEIGHT + 1) +15;
+                blackHole = new BlackHole(newX, newY);
+            }
             
-        
-        
+
+
+            jellyfish.testCollisionPiece(blackHole);
+            if(jellyfish.aAttrape()) {
+                Random rand = new Random();
+                double newX = rand.nextInt(Interface.WIDTH + 1) + 15;
+                double newY = fenetreY - rand.nextInt(Interface.HEIGHT + 1) +15;
+                blackHole = new BlackHole(newX, newY);
+                nombreVies--;
+                jellyfish.setAAttrape(false);            }
+
+
+
+            blackHole.update(dt);
+
+
+
+
         
 
 
@@ -501,7 +545,7 @@ public class Jeu {
             }
 
 
-            score = -(int) fenetreY + "m";
+            score =  -(int) fenetreY + "m";
 
 
         }
@@ -526,6 +570,8 @@ public class Jeu {
 
 
         jellyfish.draw(context, fenetreY);
+
+        blackHole.draw(context, fenetreY);
 
         for (Plateforme p : plateformes) {
             p.draw(context, fenetreY);
@@ -559,6 +605,7 @@ public class Jeu {
                             + "highScore : " + highScore   +"\n"
                             + "isJumping :" + jellyfish.getIsJumping() +"\n"
                             + "firstPlateformeTemp :" + jellyfish.getfirstPlateforme() +"\n"
+                            + "position black Hole : (" + (int) blackHole.getX() + ", " + (int)blackHole.getY()  + ")"
 
 
                     , 10, 20);
@@ -575,6 +622,9 @@ public class Jeu {
         context.setTextAlign(TextAlignment.RIGHT);
         context.setFont(Font.font(12));
         context.fillText("highScore : " + highScore, Interface.WIDTH - 10, 20);
+        context.fillText("nombre de vies: " + nombreVies, Interface.WIDTH-10,40 );
 
     }
+
+
 }
