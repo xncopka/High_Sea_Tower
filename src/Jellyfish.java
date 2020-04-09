@@ -304,14 +304,14 @@ public class Jellyfish extends Entity {
     }
 
 
-    public boolean intersects(BlackHole other) {
+    public boolean intersects(Shrimp other) {
 
             return other.intersects(this);
 
 
     }
 
-    public void testCollisionPiece(BlackHole other) {
+    public void testCollisionPiece(Shrimp other) {
         if (intersects(other)) {
             aAttrape = true;
             other = null;

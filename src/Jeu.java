@@ -27,7 +27,7 @@ public class Jeu {
     private Bulle[][] bulles;
     ArrayList<Plateforme> plateformes= new ArrayList<Plateforme>();
     private Plateforme plancher;
-    private BlackHole blackHole;
+    private Shrimp shrimp;
 
     // Score du jeu
 
@@ -47,6 +47,8 @@ public class Jeu {
     private static int highScore = 0;
 
     private String score;
+
+    private int nbCrustaces = 0;
 
 
 
@@ -137,8 +139,8 @@ public class Jeu {
         bulles = new Bulle[0][0]; // pas de bulles au debut du jeu
 
         Random rand = new Random();
-        blackHole = new BlackHole( rand.nextInt(Interface.WIDTH + 1) + 15,
-                rand.nextInt(100  + 1) + 15);
+        shrimp = new Shrimp( rand.nextInt(Interface.WIDTH - 15 -15 + 1) + 15,
+                rand.nextInt(105-15+1) + 15);
 
 
 
@@ -335,9 +337,10 @@ public class Jeu {
 
     public void update(double dt) {
 
-        if ((jellyfish.y > Interface.HEIGHT + fenetreY) || nombreVies ==0) {
+        if (jellyfish.y > Interface.HEIGHT + fenetreY) {
+        //{ || nombreVies ==0) {
             gameOver = true;
-            highScore = Math.max(highScore, -(int) fenetreY );
+            highScore = Math.max(highScore, -(int) fenetreY + nbCrustaces*500 );
 
         }
 
@@ -495,27 +498,28 @@ public class Jeu {
             }
         }
 
-            if(blackHole.getY() > fenetreY + blackHole.getRayon() + Interface.HEIGHT)
+            if(shrimp.getY() > fenetreY + shrimp.getRayon() + Interface.HEIGHT)
             { Random rand = new Random();
-                double newX = rand.nextInt(Interface.WIDTH + 1) + 15;
-                double newY = fenetreY - rand.nextInt(Interface.HEIGHT + 1) +15;
-                blackHole = new BlackHole(newX, newY);
+                double newX = rand.nextInt(Interface.WIDTH - 15 -15 + 1) + 15;
+                double newY = fenetreY - rand.nextInt(Interface.HEIGHT - 15 + 1) + 15;
+                shrimp = new Shrimp(newX, newY);
             }
             
 
 
-            jellyfish.testCollisionPiece(blackHole);
+            jellyfish.testCollisionPiece(shrimp);
             if(jellyfish.aAttrape()) {
                 Random rand = new Random();
-                double newX = rand.nextInt(Interface.WIDTH + 1) + 15;
-                double newY = fenetreY - rand.nextInt(Interface.HEIGHT + 1) +15;
-                blackHole = new BlackHole(newX, newY);
-                nombreVies--;
+                double newX = rand.nextInt(Interface.WIDTH - 15 -15 + 1) + 15;
+                double newY = fenetreY - rand.nextInt(Interface.HEIGHT -15 + 1) + 15;
+                shrimp = new Shrimp(newX, newY);
+                //nombreVies--;
+                nbCrustaces++;
                 jellyfish.setAAttrape(false);            }
 
 
 
-            blackHole.update(dt);
+            shrimp.update(dt);
 
 
 
@@ -545,7 +549,7 @@ public class Jeu {
             }
 
 
-            score =  -(int) fenetreY + "m";
+            score =nbCrustaces*500  -(int) fenetreY + "m";
 
 
         }
@@ -571,7 +575,7 @@ public class Jeu {
 
         jellyfish.draw(context, fenetreY);
 
-        blackHole.draw(context, fenetreY);
+        shrimp.draw(context, fenetreY);
 
         for (Plateforme p : plateformes) {
             p.draw(context, fenetreY);
@@ -605,7 +609,8 @@ public class Jeu {
                             + "highScore : " + highScore   +"\n"
                             + "isJumping :" + jellyfish.getIsJumping() +"\n"
                             + "firstPlateformeTemp :" + jellyfish.getfirstPlateforme() +"\n"
-                            + "position black Hole : (" + (int) blackHole.getX() + ", " + (int)blackHole.getY()  + ")"
+                            + "position black Hole : (" + (int) shrimp.getX() + ", " + (int)shrimp.getY()  + ")"
+                            + "nombre de crustacés: " + nbCrustaces
 
 
                     , 10, 20);

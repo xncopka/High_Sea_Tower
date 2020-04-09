@@ -3,21 +3,21 @@ import javafx.scene.paint.Color;
 
 import java.util.Random;
 
-public class BlackHole extends Entity {
+public class Shrimp extends Entity {
 
 
     private double rayon;
 
 
     // Constructeur de Bulle
-    public BlackHole(double x, double y) {
+    public Shrimp(double x, double y) {
         this.x = x;
         this.y = y;
         this.rayon = 15;
 
     }
 
-   /* public BlackHole() {
+   /* public shrimp() {
         Random rand = new Random();
         this.x = rand.nextInt((Interface.WIDTH-50 - 50) + 1) + 50;
         this.y = rand.nextInt((Interface.HEIGHT-50 - 50) + 1) + 50;
@@ -59,7 +59,7 @@ public class BlackHole extends Entity {
     @Override
     public void draw(GraphicsContext context, double fenetreY) {
         double yAffiche = y - fenetreY;
-        context.setFill(Color.BLACK);
+        context.setFill(Color.CORAL);
         context.fillOval(getX(), yAffiche, getRayon()*2, getRayon()*2);
     }
 
