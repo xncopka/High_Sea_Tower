@@ -139,8 +139,8 @@ public class Jeu {
         bulles = new Bulle[0][0]; // pas de bulles au debut du jeu
 
         Random rand = new Random();
-        shrimp = new Shrimp( rand.nextInt(Interface.WIDTH - 15 -15 + 1) + 15,
-                rand.nextInt(105-15+1) + 15);
+        shrimp = new Shrimp( rand.nextInt(Interface.WIDTH - 30 + 1),
+                rand.nextInt(90+1));
 
 
 
@@ -500,8 +500,8 @@ public class Jeu {
 
             if(shrimp.getY() > fenetreY + shrimp.getRayon() + Interface.HEIGHT)
             { Random rand = new Random();
-                double newX = rand.nextInt(Interface.WIDTH - 15 -15 + 1) + 15;
-                double newY = fenetreY - rand.nextInt(Interface.HEIGHT - 15 + 1) + 15;
+                double newX = rand.nextInt(Interface.WIDTH - 30 + 1);
+                double newY = fenetreY - rand.nextInt(Interface.HEIGHT - 30 + 1) + 30;
                 shrimp = new Shrimp(newX, newY);
             }
             
@@ -510,8 +510,8 @@ public class Jeu {
             jellyfish.testCollisionPiece(shrimp);
             if(jellyfish.aAttrape()) {
                 Random rand = new Random();
-                double newX = rand.nextInt(Interface.WIDTH - 15 -15 + 1) + 15;
-                double newY = fenetreY - rand.nextInt(Interface.HEIGHT -15 + 1) + 15;
+                double newX = rand.nextInt(Interface.WIDTH - 30 + 1);
+                double newY = fenetreY - rand.nextInt(Interface.HEIGHT -30 + 1) + 30;
                 shrimp = new Shrimp(newX, newY);
                 //nombreVies--;
                 nbCrustaces++;
