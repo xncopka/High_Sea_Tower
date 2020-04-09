@@ -113,6 +113,14 @@ public class Jellyfish extends Entity {
          * pas en train de sauter)
          */
         if (intersects(other) && Math.abs(this.y + hauteur - other.y) < 10
+                && other.getId().equals("plancher")) {
+             pushOut(other);
+             this.parterre = true;
+             this.vy=0;
+        }
+
+
+        if (intersects(other) && Math.abs(this.y + hauteur - other.y) < 10
                 && vy > 0) {
             pushOut(other);
            if (other.getId().equals("plateformeRebon")) {
