@@ -19,6 +19,7 @@ public abstract class Entity {
      * @param dt Temps écoulé depuis le dernier update() en secondes
      */
     public void update(double dt) {
+
         vx += dt * ax;
         vy += dt * ay;
         x += dt * vx;

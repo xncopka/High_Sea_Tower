@@ -48,6 +48,9 @@ public class Jeu {
 
     public Jeu() {
 
+
+
+
         plancher = new Plateforme(0);
         plancher.setX(0);
         plancher.setY(Interface.HEIGHT);
@@ -185,6 +188,18 @@ public class Jeu {
         this.fenetreVY = fenetreVY;
     }
 
+
+    public void updateInit() {
+        if (plancher != null) {
+            jellyfish.testCollision(plancher);
+        }
+        for (Plateforme p : plateformes) {
+            p.update(0);
+        }
+        jellyfish.update(0);
+
+    }
+
   
 
 
@@ -223,7 +238,7 @@ public class Jeu {
         }
 
 
-        if (dt != 0) {
+        
 
             // Pour chaque groupe de bulle
             for (int i = 0; i < bulles.length; i++) {
@@ -242,7 +257,7 @@ public class Jeu {
 
             jellyfish.setParterre(false);
             jellyfish.setParterreAcc(false);
-        }
+
 
         if (plancher != null) {
             jellyfish.testCollision(plancher);
@@ -324,11 +339,14 @@ public class Jeu {
 
             jellyfish.update(dt);
 
-            if (modeDebug == false) {
 
-                fenetreVY = (fenetreVY + 2 * dt);
-                fenetreY -= fenetreVY * dt;
-            }
+
+                 if (modeDebug == false) {
+
+                     fenetreVY = (fenetreVY + 2 * dt);
+                     fenetreY -= fenetreVY * dt;
+                 }
+
 
 
 
@@ -391,7 +409,9 @@ public class Jeu {
                     + "a = (" + (int)jellyfish.ax + "," + (int)jellyfish.ay + ")\n"
                     + "Touche le sol : " + jellyfish.getParterreFr() + "\n"
                     + "Nombre de plateformes : " + plateformes.size() +"\n"
-                    + "Mode debug :" + modeDebug
+                    + "Mode debug :" + modeDebug  +"\n"
+                            + "fenetreY :" + fenetreY  +"\n"
+                            + "fenetreVY :" + fenetreVY  +"\n"
 
                     , 10, 20);
 

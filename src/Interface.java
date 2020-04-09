@@ -158,7 +158,7 @@ public class Interface extends Application {
      */
     public void startGame() {
         controleur = new Controleur();
-        controleur.update(0);
+        controleur.updateInit();
         controleur.draw(context);
     }
 
@@ -183,12 +183,7 @@ public class Interface extends Application {
                     return;
                 }
 
-                // redemarre une partie si la partie est terminée
-                if (getGameOver()) {
-                    timer.stop();
-                    startGame();
-                    startTimer();
-                }
+
 
 
                 // Si 3 secondes se sont écoulés depuis le debut de l'animation
@@ -200,6 +195,17 @@ public class Interface extends Application {
 
                 // temps = (temps now - dernier temps) converti en seconde
                 double deltaTime = (now - lastTime) * 1e-9;
+
+
+                // redemarre une partie si la partie est terminée
+                if (getGameOver()) {
+                    timer.stop();
+                    deltaTime =0;
+                    startGame();
+                    startTimer();
+                }
+
+
 
                 // mettre a jour les nouvelles positions
                 controleur.update(deltaTime);
