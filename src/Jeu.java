@@ -302,6 +302,7 @@ public class Jeu {
             p.update(0);
         }
         jellyfish.update(0);
+        score = -(int) fenetreY + "m";
 
     }
 

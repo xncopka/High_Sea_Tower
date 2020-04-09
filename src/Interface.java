@@ -7,6 +7,10 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
 
@@ -21,6 +25,9 @@ public class Interface extends Application {
     private Controleur controleur;
     private GraphicsContext context;
     private AnimationTimer timer;
+    private Pane root;
+    private Text over;
+    private Text again;
 
     /**
      * @param args the command line arguments
@@ -39,7 +46,7 @@ public class Interface extends Application {
 
 
         // racine 
-        Pane root = new Pane();
+         root = new Pane();
 
         //  contenu graphique à afficher dans la fenêtre
         Scene scene = new Scene(root, WIDTH, HEIGHT);
@@ -55,6 +62,13 @@ public class Interface extends Application {
 
         // Debut du jeu
         startGame();
+        Text begin = new Text ("Veillez appuyer sur une touche\n pour commencer la partie");
+        begin.setFill(Color.WHITE);
+        begin.setFont(Font.font(15));
+        begin.setTextAlignment(TextAlignment.CENTER);
+        begin.setX(80);
+        begin.setY(200);
+        root.getChildren().add(begin);
 
 
         startTimer();
@@ -72,6 +86,9 @@ public class Interface extends Application {
 
             // Lancer le timer et faire saute jellyfish si on appuie sur Espace
             if (event.getCode() == KeyCode.SPACE) {
+                root.getChildren().remove(over);
+                root.getChildren().remove(again);
+                root.getChildren().remove(begin);
                 timer.start();
                 controleur.jump();
                 controleur.removePlancher();
@@ -81,6 +98,9 @@ public class Interface extends Application {
 
             // Lancer le timer et faire bouger lateralement vers la gauche jellyfish si on appuie sur Left
             if (event.getCode() == KeyCode.LEFT) {
+                root.getChildren().remove(begin);
+                root.getChildren().remove(over);
+                root.getChildren().remove(again);
                 timer.start();
                 controleur.left();
                 controleur.imageLeft();
@@ -91,10 +111,13 @@ public class Interface extends Application {
 
             // Lancer le timer et faire bouger lateralement vers la droite jellyfish si on appuie sur Right
             if (event.getCode() == KeyCode.RIGHT) {
-
+                root.getChildren().remove(begin);
+                root.getChildren().remove(over);
+                root.getChildren().remove(again);
                 timer.start();
                 controleur.right();
                 controleur.imageRight();
+                
 
 
             }
@@ -207,6 +230,22 @@ public class Interface extends Application {
                     deltaTime =0;
                     startGame();
                     startTimer();
+                    over = new Text("GAME OVER");
+                    over.setFill(Color.WHITE);
+                    over.setFont(Font.font(50));
+                    over.setTextAlignment(TextAlignment.CENTER);
+                    over.setX(40);
+                    over.setY(210);
+                    root.getChildren().add(over);
+                    again = new Text ("Veillez appuyer sur une touche pour recommencer");
+                    again.setFill(Color.WHITE);
+                    again.setFont(Font.font(15));
+                    again.setTextAlignment(TextAlignment.LEFT);
+                    again.setX(10);
+                    again.setY(240);
+                    root.getChildren().add(again);
+
+
                 }
 
 
