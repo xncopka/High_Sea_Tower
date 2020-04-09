@@ -26,16 +26,16 @@ public abstract class Entity {
         y += dt * vy;
 
         // Force à rester dans les bornes de l'écran
-        if (x + largeur > Interface.WIDTH || x < 0) {
+        if (x + largeur > HighSeaTower.WIDTH || x < 0) {
             vx *= -1;
         }
-/*        if (y + hauteur > Interface.HEIGHT || y < 0) {
+/*        if (y + hauteur > HighSeaTower.HEIGHT || y < 0) {
             vy *= -1;
         }*/
-        x = Math.min(x, Interface.WIDTH - largeur);
+        x = Math.min(x, HighSeaTower.WIDTH - largeur);
         x = Math.max(x, 0);
         if (dt == 0) {
-            y = Math.min(y, Interface.HEIGHT - hauteur);
+            y = Math.min(y, HighSeaTower.HEIGHT - hauteur);
         }
         /*y = Math.max(y, 0);*/
     }

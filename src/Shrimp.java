@@ -19,8 +19,8 @@ public class Shrimp extends Entity {
 
    /* public shrimp() {
         Random rand = new Random();
-        this.x = rand.nextInt((Interface.WIDTH-50 - 50) + 1) + 50;
-        this.y = rand.nextInt((Interface.HEIGHT-50 - 50) + 1) + 50;
+        this.x = rand.nextInt((High.SeaTower.WIDTH-50 - 50) + 1) + 50;
+        this.y = rand.nextInt((High.SeaTower.HEIGHT-50 - 50) + 1) + 50;
         this.rayon = 50;
 
     }*/

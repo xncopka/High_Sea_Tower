@@ -67,8 +67,8 @@ public class Jeu {
 
         plancher = new Plateforme(0);
         plancher.setX(0);
-        plancher.setY(Interface.HEIGHT);
-        plancher.setLargeur(Interface.WIDTH);
+        plancher.setY(HighSeaTower.HEIGHT);
+        plancher.setLargeur(HighSeaTower.WIDTH);
         plancher.setId("plancher");
 
 
@@ -139,7 +139,7 @@ public class Jeu {
         bulles = new Bulle[0][0]; // pas de bulles au debut du jeu
 
         Random rand = new Random();
-        shrimp = new Shrimp( rand.nextInt(Interface.WIDTH - 30 + 1),
+        shrimp = new Shrimp( rand.nextInt(HighSeaTower.WIDTH - 30 + 1),
                 rand.nextInt(90+1));
 
 
@@ -337,7 +337,7 @@ public class Jeu {
 
     public void update(double dt) {
 
-        if (jellyfish.y > Interface.HEIGHT + fenetreY) {
+        if (jellyfish.y > HighSeaTower.HEIGHT + fenetreY) {
         //{ || nombreVies ==0) {
             gameOver = true;
             highScore = Math.max(highScore, -(int) fenetreY + nbCrustaces*500 );
@@ -451,7 +451,7 @@ public class Jeu {
             counter++;
         }
 
-        while (plateformes.get(0).getY() > Interface.HEIGHT + fenetreY ) {
+        while (plateformes.get(0).getY() > HighSeaTower.HEIGHT + fenetreY ) {
             
 
                 plateformes.remove(0);
@@ -498,10 +498,10 @@ public class Jeu {
             }
         }
 
-            if(shrimp.getY() > fenetreY + shrimp.getRayon() + Interface.HEIGHT)
+            if(shrimp.getY() > fenetreY + shrimp.getRayon() + HighSeaTower.HEIGHT)
             { Random rand = new Random();
-                double newX = rand.nextInt(Interface.WIDTH - 30 + 1);
-                double newY = fenetreY - rand.nextInt(Interface.HEIGHT - 30 + 1) + 30;
+                double newX = rand.nextInt(HighSeaTower.WIDTH - 30 + 1);
+                double newY = fenetreY - rand.nextInt(HighSeaTower.HEIGHT - 30 + 1) + 30;
                 shrimp = new Shrimp(newX, newY);
             }
             
@@ -510,8 +510,8 @@ public class Jeu {
             jellyfish.testCollisionPiece(shrimp);
             if(jellyfish.aAttrape()) {
                 Random rand = new Random();
-                double newX = rand.nextInt(Interface.WIDTH - 30 + 1);
-                double newY = fenetreY - rand.nextInt(Interface.HEIGHT -30 + 1) + 30;
+                double newX = rand.nextInt(HighSeaTower.WIDTH - 30 + 1);
+                double newY = fenetreY - rand.nextInt(HighSeaTower.HEIGHT -30 + 1) + 30;
                 shrimp = new Shrimp(newX, newY);
                 //nombreVies--;
                 nbCrustaces++;
@@ -544,8 +544,8 @@ public class Jeu {
 
             // Scrolling 75%
 
-            if (jellyfish.y < fenetreY + 0.25 * Interface.HEIGHT) {
-                fenetreY -= Math.abs(jellyfish.y - (fenetreY + 0.25 * Interface.HEIGHT));
+            if (jellyfish.y < fenetreY + 0.25 * HighSeaTower.HEIGHT) {
+                fenetreY -= Math.abs(jellyfish.y - (fenetreY + 0.25 * HighSeaTower.HEIGHT));
             }
 
 
@@ -598,7 +598,7 @@ public class Jeu {
             context.setFont(Font.font(12));
             context.setFill(Color.WHITE);
             context.setTextAlign(TextAlignment.LEFT);
-            context.fillText("Position = (" + (int)jellyfish.x + "," + Math.abs((int)jellyfish.y-Interface.HEIGHT) + ")\n"
+            context.fillText("Position = (" + (int)jellyfish.x + "," + Math.abs((int)jellyfish.y-HighSeaTower.HEIGHT) + ")\n"
                     + "v = (" + (int)jellyfish.vx + "," + (int)jellyfish.vy + ")\n"
                     + "a = (" + (int)jellyfish.ax + "," + (int)jellyfish.ay + ")\n"
                     + "Touche le sol : " + jellyfish.getParterreFr() + "\n"
@@ -626,8 +626,8 @@ public class Jeu {
         context.fillText(score, 175, 60);
         context.setTextAlign(TextAlignment.RIGHT);
         context.setFont(Font.font(12));
-        context.fillText("highScore : " + highScore, Interface.WIDTH - 10, 20);
-        context.fillText("nombre de vies: " + nombreVies, Interface.WIDTH-10,40 );
+        context.fillText("highScore : " + highScore, HighSeaTower.WIDTH - 10, 20);
+        context.fillText("nombre de vies: " + nombreVies, HighSeaTower.WIDTH-10,40 );
 
     }
 

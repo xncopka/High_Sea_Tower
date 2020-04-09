@@ -14,7 +14,7 @@ import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
 
-public class Interface extends Application {
+public class HighSeaTower extends Application {
 
 
 
@@ -85,7 +85,7 @@ public class Interface extends Application {
             }
 
             // Lancer le timer et faire saute jellyfish si on appuie sur Espace
-            if (event.getCode() == KeyCode.SPACE) {
+            if (event.getCode() == KeyCode.SPACE || event.getCode() == KeyCode.UP) {
                 root.getChildren().remove(over);
                 root.getChildren().remove(again);
                 root.getChildren().remove(begin);
