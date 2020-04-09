@@ -105,7 +105,7 @@ public class Jellyfish extends Entity {
     }
 
 
-    public boolean intersects(Plateforme other) {
+    public boolean intersects(Entity other) {
         return !( // Un des carrés est à gauche de l’autre
                 x + largeur < other.x
                         || other.x + other.largeur < this.x

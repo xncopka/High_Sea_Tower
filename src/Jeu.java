@@ -23,6 +23,7 @@ public class Jeu {
     private Jellyfish jellyfish;
     private Bulle[][] bulles;
     private Plateforme plancher;
+    private Tortue tortue;
     Queue<Plateforme> plateformes= new LinkedList<>();
 
     // Score du jeu
@@ -42,13 +43,11 @@ public class Jeu {
         plancher.setId("plancher");
 
 
-
-
-
         while(plateformes.size()<5) {
             plateformes.add(newPlateforme());
         }
 
+        tortue = new Tortue();
 
 
         jellyfish = new Jellyfish(width / 2 - 25, height);
@@ -92,6 +91,13 @@ public class Jeu {
             }
     }
 
+    public boolean tortueOutside(Tortue t){
+        if( Math.abs(fenetreY - t.getY()) > 480){
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     public void jump() {
         jellyfish.jump();
@@ -141,7 +147,9 @@ public class Jeu {
         if (jellyfish.y > Interface.HEIGHT) {
             gameOver = true;
         }
-
+        if(jellyfish.intersects(tortue)){
+            gameOver = true;
+        }
 
         if (dt != 0) {
 
@@ -170,6 +178,10 @@ public class Jeu {
             plateformes.add(newPlateforme());
             plateformes.remove();
         };
+        if (tortueOutside(this.tortue)){
+                double yTortue = tortue.getY();
+                tortue.setY(yTortue + 1000);
+            };
 
 
         for (Plateforme p : plateformes) {
@@ -190,7 +202,9 @@ public class Jeu {
             // Si le personnage se trouve sur une plateforme, ça sera défini ici
             jellyfish.testCollision(p);
 
+
         }
+        tortue.update(dt);
 
         jellyfish.update(dt);
 
@@ -223,6 +237,7 @@ public class Jeu {
 
 
         jellyfish.draw(context, fenetreY);
+        tortue.draw(context, fenetreY);
 
 
 
