@@ -20,6 +20,7 @@ public class Interface extends Application {
     // Contrôleur de l'application
     private Controleur controleur;
     private GraphicsContext context;
+    private AnimationTimer timer;
 
     /**
      * @param args the command line arguments
@@ -56,53 +57,7 @@ public class Interface extends Application {
         startGame();
 
 
-        // Création de l'animation
-        AnimationTimer timer = new AnimationTimer() {
-
-
-            // Initialiser dernier temps et premier temps
-            private long lastTime = 0;
-            private long firstTime = 0;
-
-            // fonction appelée à chaque frame
-            @Override
-            public void handle(long now) {
-
-                // Si dernier temps = 0
-                if (lastTime == 0) {
-                    lastTime = now;
-                    firstTime = now;
-                    controleur.groupBulles();
-                    return;
-                }
-
-                // redemarre une partie si la partie est terminée
-                if (getGameOver()) {
-                    startGame();
-                }
-
-                                                   
-                  // Si 3 secondes se sont écoulés depuis le debut de l'animation
-                  if ((now - firstTime) >= ((long)3e+9)) {
-                      firstTime = now;
-                      controleur.groupBulles();
-                  }
-
-
-                // temps = (temps now - dernier temps) converti en seconde
-                double deltaTime = (now - lastTime) * 1e-9;
-
-                // mettre a jour les nouvelles positions
-                controleur.update(deltaTime);
-
-                // dessiner le nouveau dessin
-                controleur.draw(context);
-
-
-                // mettre a jour le dernier temps
-                lastTime = now;
-            }
-        };
+        startTimer();
 
 
 
@@ -205,6 +160,58 @@ public class Interface extends Application {
         controleur = new Controleur();
         controleur.update(0);
         controleur.draw(context);
+    }
+
+    public void startTimer() {
+        // Création de l'animation
+        timer = new AnimationTimer() {
+
+
+            // Initialiser dernier temps et premier temps
+            private long lastTime = 0;
+            private long firstTime = 0;
+
+            // fonction appelée à chaque frame
+            @Override
+            public void handle(long now) {
+
+                // Si dernier temps = 0
+                if (lastTime == 0) {
+                    lastTime = now;
+                    firstTime = now;
+                    controleur.groupBulles();
+                    return;
+                }
+
+                // redemarre une partie si la partie est terminée
+                if (getGameOver()) {
+                    timer.stop();
+                    startGame();
+                    startTimer();
+                }
+
+
+                // Si 3 secondes se sont écoulés depuis le debut de l'animation
+                if ((now - firstTime) >= ((long)3e+9)) {
+                    firstTime = now;
+                    controleur.groupBulles();
+                }
+
+
+                // temps = (temps now - dernier temps) converti en seconde
+                double deltaTime = (now - lastTime) * 1e-9;
+
+                // mettre a jour les nouvelles positions
+                controleur.update(deltaTime);
+
+                // dessiner le nouveau dessin
+                controleur.draw(context);
+
+
+                // mettre a jour le dernier temps
+                lastTime = now;
+            }
+        };
     }
 
 
