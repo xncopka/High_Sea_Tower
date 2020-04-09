@@ -1,3 +1,5 @@
+import javafx.animation.Animation;
+import javafx.animation.AnimationTimer;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
@@ -13,6 +15,16 @@ public class Jellyfish extends Entity {
     private boolean parterre;
 
     private boolean parterreAcc;
+
+    private boolean parterreTemp;
+
+    private boolean isJumping;
+
+    private boolean firstPlateforme;
+
+
+
+
 
 
 
@@ -119,6 +131,7 @@ public class Jellyfish extends Entity {
              pushOut(other);
              this.parterre = true;
              this.vy=0;
+
         }
 
 
@@ -128,15 +141,25 @@ public class Jellyfish extends Entity {
            if (other.getId().equals("plateformeRebon")) {
                 this.vy *= -1.5;
                 vy = Math.min(vy, -100);
+
             } else {
                this.vy = 0;
            }
            this.parterre = true;
+           isJumping = false;
 
 
             if (other.getId().equals("plateformeAcc")) {
                 this.parterreAcc = true;
+
             }
+
+            if (other.getId().equals("plateformeTemporaire")) {
+                firstPlateforme = true;
+
+            }
+
+
 
 
 
@@ -165,6 +188,24 @@ public class Jellyfish extends Entity {
     public void setParterreAcc(boolean parterreAcc){
         this.parterreAcc = parterreAcc;
     }
+
+
+    public boolean getIsJumping(){
+        return this.isJumping;
+    }
+
+
+
+
+    public void setfirstPlateforme(boolean firstPlateforme){
+        this.firstPlateforme = firstPlateforme;
+    }
+
+    public boolean getfirstPlateforme(){
+        return this.firstPlateforme;
+    }
+
+
 
 
 
@@ -212,6 +253,9 @@ public class Jellyfish extends Entity {
     public void jump() {
         if (parterre) {
             vy = -600;
+            isJumping = true;
+            
+
 
         }
     }

@@ -31,6 +31,8 @@ public class Plateforme extends Entity {
         this.id = typePlateforme;
     }
 
+
+
  
 
 

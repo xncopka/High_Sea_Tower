@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Random;
 
 
@@ -39,10 +40,12 @@ public class Jeu {
     private boolean imageRight;
 
     private boolean firstParterreAcc = true;
-
+    
     private int counter = 5 ;
 
     private static int highScore = 0;
+
+
 
 
 
@@ -80,20 +83,28 @@ public class Jeu {
                 generateAcc(counter);
                 prevSolide = false;
 
-            //} else {
-            }else if(15< pourcent && pourcent<= 35 ) {
+
+            }else if(15< pourcent && pourcent<= 30 ) {
                 generateReb(counter);
                 prevSolide = false;
 
-            }else if(35 <pourcent && pourcent <=75) {
-                    generateSimple(counter);
+            }else if(30 <pourcent && pourcent <=45) {
+                    generateTemporaire(counter);
                 prevSolide = false;
 
-            } else if(75 <pourcent && pourcent <=100) {
+            } else if(45 <pourcent && pourcent <=60) {
                     generateMouvante(counter);
                     prevSolide = false;
-                }
-            counter++;
+
+
+        } else if(60 <pourcent && pourcent <=100) {
+            generateSimple(counter);
+            prevSolide = false;
+        }
+
+
+
+                counter++;
         }
 
 
@@ -140,6 +151,13 @@ public class Jeu {
         plateformeMouvante.setVX(100);
         plateformeMouvante.setId("plateformeMouvante");
         plateformes.add(plateformeMouvante);
+    }
+
+    public void generateTemporaire(int counter) {
+        Plateforme plateformegTemporaire = new Plateforme(counter);
+        plateformegTemporaire.setColor(Color.BLACK);
+        plateformegTemporaire.setId("plateformeTemporaire");
+        plateformes.add(plateformegTemporaire);
     }
 
 
@@ -272,7 +290,7 @@ public class Jeu {
 
             jellyfish.setParterre(false);
             jellyfish.setParterreAcc(false);
-
+          
 
         if (plancher != null) {
             jellyfish.testCollision(plancher);
@@ -296,24 +314,30 @@ public class Jeu {
                     } else {
                         continue;
                     }
-                } else if (5 < pourcent && pourcent <= 15) {
+
+                }else if( 5 < pourcent && pourcent<= 15 ){
                     generateAcc(counter);
                     prevSolide = false;
 
 
-                } else if (15 < pourcent && pourcent <= 35) {
+                }else if(15< pourcent && pourcent<= 30 ) {
                     generateReb(counter);
                     prevSolide = false;
 
-
-                } else if (35 < pourcent && pourcent <= 75) {
-                    generateSimple(counter);
+                }else if(30 <pourcent && pourcent <=45) {
+                    generateTemporaire(counter);
                     prevSolide = false;
 
-                }  else if(75 <pourcent && pourcent <=100) {
+                } else if(45 <pourcent && pourcent <=60) {
                     generateMouvante(counter);
                     prevSolide = false;
+
+
+                } else if(60 <pourcent && pourcent <=100) {
+                    generateSimple(counter);
+                    prevSolide = false;
                 }
+
                 counter++;
 
         }
@@ -327,12 +351,12 @@ public class Jeu {
 
 
         for (Plateforme p : plateformes) {
-            p.update(dt);
+
+                p.update(dt);
 
 
-            // Si le personnage se trouve sur une plateforme, ça sera défini ici
-            jellyfish.testCollision(p);
-
+                // Si le personnage se trouve sur une plateforme, ça sera défini ici
+                jellyfish.testCollision(p);
 
 
                 if (jellyfish.getParterreAcc() == true) {
@@ -348,9 +372,28 @@ public class Jeu {
                         setFenetreVY(fenetreVY / 3);
                     }
                 }
-                
-            }
 
+
+
+
+
+        }
+
+        for (Iterator<Plateforme> iterator = plateformes.iterator(); iterator.hasNext();) {
+            Plateforme plateforme = iterator.next();
+            if (plateforme.getId().equals("plateformeTemporaire")) {
+                if (jellyfish.getIsJumping() && jellyfish.getfirstPlateforme()) {
+                    iterator.remove();
+                    jellyfish.setfirstPlateforme(false);
+                }
+            }
+        }
+
+
+            
+        
+        
+        
 
 
 
@@ -431,6 +474,9 @@ public class Jeu {
                             + "fenetreY :" + fenetreY  +"\n"
                             + "fenetreVY :" + fenetreVY  +"\n"
                             + "highScore : " + highScore   +"\n"
+                            + "isJumping :" + jellyfish.getIsJumping() +"\n"
+                            + "firstPlateformeTemp :" + jellyfish.getfirstPlateforme() +"\n"
+
 
                     , 10, 20);
 
