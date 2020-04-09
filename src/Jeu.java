@@ -5,7 +5,7 @@ import java.util.Random;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import javafx.scene.paint.Color;
+import javafx.scene.paint.*;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 
@@ -69,38 +69,47 @@ public class Jeu {
             Random random = new Random();
             int pourcent = random.nextInt(101);
             //if(35 <pourcent && pourcent <=100) {
-                if(pourcent <= 5) {
+                if(pourcent <= 50) {
                 if (!prevSolide) {
-                    generateSolide(counter);
-                    prevSolide = true;
+                    generateSolide(counter, prevSolide);
+
                 } else {
                     continue;
                 }
 
 
 
-            }else if( 5 < pourcent && pourcent<= 15 ){
-                generateAcc(counter);
-                prevSolide = false;
+           /* }else if( 100 < pourcent && pourcent<= 100 ){
+                generateAcc(counter, prevSolide);
 
 
-            }else if(15< pourcent && pourcent<= 30 ) {
-                generateReb(counter);
-                prevSolide = false;
 
-            }else if(30 <pourcent && pourcent <=45) {
-                    generateTemporaire(counter);
-                prevSolide = false;
-
-            } else if(45 <pourcent && pourcent <=60) {
-                    generateMouvante(counter);
-                    prevSolide = false;
+            }else if(100< pourcent && pourcent<= 100 ) {
+                generateReb(counter, prevSolide);
 
 
-        } else if(60 <pourcent && pourcent <=100) {
-            generateSimple(counter);
-            prevSolide = false;
-        }
+            }else if(100 <pourcent && pourcent <=100) {
+                    generateTemporaire(counter, prevSolide);
+
+
+            } else if(100 <pourcent && pourcent <=100) {
+                    generateMouvante(counter, prevSolide);
+
+
+
+        } else if(0 <pourcent && pourcent <=100) {
+                    generateSurprise(counter, prevSolide);*/
+
+
+
+
+        }  else if(50 <pourcent && pourcent <=100) {
+                    generateSimple(counter, prevSolide);
+
+
+
+
+                }
 
 
 
@@ -117,48 +126,92 @@ public class Jeu {
 
     }
 
-    public void generateSimple(int counter) {
+    public void generateSimple(int counter, boolean prevSolide) {
         Plateforme plateformeSimple = new Plateforme(counter);
         plateformeSimple.setColor(Color.rgb(230, 134, 58));
         plateformeSimple.setId("plateformeSimple");
         plateformes.add(plateformeSimple);
+        prevSolide = false;
     }
 
-    public void generateAcc(int counter) {
+    public void generateAcc(int counter, boolean prevSolide) {
         Plateforme plateformeAcc = new Plateforme(counter);
         plateformeAcc.setColor(Color.rgb(230, 221, 58));
         plateformeAcc.setId("plateformeAcc");
         plateformes.add(plateformeAcc);
+        prevSolide = false;
     }
 
-    public void generateReb(int counter) {
+    public void generateReb(int counter, boolean prevSolide) {
         Plateforme plateformeRebon = new Plateforme(counter);
         plateformeRebon.setColor(Color.LIGHTGREEN);
         plateformeRebon.setId("plateformeRebon");
         plateformes.add(plateformeRebon);
+        prevSolide = false;
     }
 
-    public void generateSolide(int counter) {
+    public void generateSolide(int counter, boolean prevSolide) {
         Plateforme plateformeSolide = new Plateforme(counter);
         plateformeSolide.setColor(Color.rgb(184, 15, 36));
         plateformeSolide.setId("plateformeSolide");
         plateformes.add(plateformeSolide);
+        prevSolide = true;
     }
 
-    public void generateMouvante(int counter) {
+    public void generateMouvante(int counter, boolean prevSolide) {
         Plateforme plateformeMouvante = new Plateforme(counter);
         plateformeMouvante.setColor(Color.BEIGE);
         plateformeMouvante.setVX(100);
         plateformeMouvante.setId("plateformeMouvante");
         plateformes.add(plateformeMouvante);
+        prevSolide = false;
     }
 
-    public void generateTemporaire(int counter) {
-        Plateforme plateformegTemporaire = new Plateforme(counter);
-        plateformegTemporaire.setColor(Color.BLACK);
-        plateformegTemporaire.setId("plateformeTemporaire");
-        plateformes.add(plateformegTemporaire);
+    public void generateTemporaire(int counter, boolean prevSolide) {
+        Plateforme plateformeTemporaire = new Plateforme(counter);
+        plateformeTemporaire.setColor(Color.BLACK);
+        plateformeTemporaire.setId("plateformeTemporaire");
+        plateformes.add(plateformeTemporaire);
+        prevSolide = false;
     }
+
+    public void generateSurprise(int counter, boolean prevSolide) {
+        Plateforme plateformeSurprise = new Plateforme(counter);
+        plateformeSurprise.setColor(Color.GREEN);
+        Random random = new Random();
+        int numero = random.nextInt(5);
+            if (numero == 0) {
+                plateformeSurprise.setId("plateformeAcc");
+                prevSolide = false;
+
+            } else if (numero == 1) {
+                plateformeSurprise.setId("plateformeTemporaire");
+                prevSolide = false;
+
+            } else if (numero == 2) {
+                plateformeSurprise.setId("plateformeMouvante");
+                prevSolide = false;
+                plateformeSurprise.setVX(100);
+
+            } else if (numero == 3) {
+                if (prevSolide == false) {
+                    plateformeSurprise.setId("plateformeSolide");
+                    prevSolide = true;
+
+                } else {
+
+                     generateSurprise(counter, prevSolide);
+                }
+            } else if (numero == 4) {
+                plateformeSurprise.setId("plateformeRebon");
+                prevSolide = false;
+
+            }
+
+
+            plateformes.add(plateformeSurprise);
+        }
+
 
 
 
@@ -296,8 +349,9 @@ public class Jeu {
             jellyfish.testCollision(plancher);
         }
 
+        boolean prevSolide;
         while (plateformes.get(plateformes.size() - 1).getY() > fenetreY   ) {
-            boolean prevSolide;
+
                 if (plateformes.get(plateformes.size() - 1).getId() == "plateformeSolide") {
                     prevSolide = true;
                 } else {
@@ -307,39 +361,51 @@ public class Jeu {
                 Random random = new Random();
                 int pourcent = random.nextInt(101);
 
-                if (pourcent <= 5) {
-                    if (!prevSolide) {
-                        generateSolide(counter);
-                        prevSolide = true;
-                    } else {
-                        continue;
-                    }
+            if(pourcent <= 50) {
+                if (!prevSolide) {
+                    generateSolide(counter, prevSolide);
 
-                }else if( 5 < pourcent && pourcent<= 15 ){
-                    generateAcc(counter);
-                    prevSolide = false;
-
-
-                }else if(15< pourcent && pourcent<= 30 ) {
-                    generateReb(counter);
-                    prevSolide = false;
-
-                }else if(30 <pourcent && pourcent <=45) {
-                    generateTemporaire(counter);
-                    prevSolide = false;
-
-                } else if(45 <pourcent && pourcent <=60) {
-                    generateMouvante(counter);
-                    prevSolide = false;
-
-
-                } else if(60 <pourcent && pourcent <=100) {
-                    generateSimple(counter);
-                    prevSolide = false;
+                } else {
+                    continue;
                 }
 
-                counter++;
 
+
+            /*}else if( 100 < pourcent && pourcent<= 100 ){
+                generateAcc(counter, prevSolide);
+
+
+
+            }else if(100< pourcent && pourcent<= 100 ) {
+                generateReb(counter, prevSolide);
+
+
+            }else if(100 <pourcent && pourcent <=100) {
+                generateTemporaire(counter, prevSolide);
+
+
+            } else if(100 <pourcent && pourcent <=100) {
+                generateMouvante(counter, prevSolide);
+
+
+
+            } else if(100 <pourcent && pourcent <=100) {
+                generateSurprise(counter, prevSolide);*/
+
+
+
+
+            }  else if(50 <pourcent && pourcent <=100) {
+                generateSimple(counter, prevSolide);
+
+
+
+
+            }
+
+
+
+            counter++;
         }
 
         while (plateformes.get(0).getY() > Interface.HEIGHT + fenetreY ) {
