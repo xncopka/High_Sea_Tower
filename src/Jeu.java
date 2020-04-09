@@ -28,6 +28,7 @@ public class Jeu {
     ArrayList<Plateforme> plateformes= new ArrayList<Plateforme>();
     private Plateforme plancher;
     private Shrimp shrimp;
+    private Tortue tortue;
 
     // Score du jeu
 
@@ -131,7 +132,7 @@ public class Jeu {
 
                 counter++;
         }
-
+        tortue = new Tortue();
 
         jellyfish = new Jellyfish(width/2 - 25, height);
 
@@ -343,6 +344,10 @@ public class Jeu {
             highScore = Math.max(highScore, -(int) fenetreY + nbCrustaces*500 );
 
         }
+        if(jellyfish.intersects(tortue)){
+            gameOver = true;
+            highScore = Math.max(highScore, -(int) fenetreY + nbCrustaces*500 );
+        }
 
 
 
@@ -507,7 +512,7 @@ public class Jeu {
             
 
 
-            jellyfish.testCollisionPiece(shrimp);
+            jellyfish.testCollision(shrimp);
             if(jellyfish.aAttrape()) {
                 Random rand = new Random();
                 double newX = rand.nextInt(HighSeaTower.WIDTH - 30 + 1);
@@ -520,6 +525,8 @@ public class Jeu {
 
 
             shrimp.update(dt);
+
+            tortue.update(dt);
 
 
 
@@ -574,6 +581,7 @@ public class Jeu {
 
 
         jellyfish.draw(context, fenetreY);
+        tortue.draw(context, fenetreY);
 
         shrimp.draw(context, fenetreY);
 

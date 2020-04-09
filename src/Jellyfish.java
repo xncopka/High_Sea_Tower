@@ -25,25 +25,9 @@ public class Jellyfish extends Entity {
     private boolean aAttrape = false;
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     /**
      * Constructeur de Jellyfish
+     *
      * @param x position x
      * @param y position y
      */
@@ -59,7 +43,7 @@ public class Jellyfish extends Entity {
         this.parterre = true;
 
 
-       // Chargement des images
+        // Chargement des images
         frames = new Image[]{
                 new Image("/jellyfish1.png"),
                 new Image("/jellyfish2.png"),
@@ -73,13 +57,10 @@ public class Jellyfish extends Entity {
 
     }
 
-    public void setImage(Image[] images){
+    public void setImage(Image[] images) {
         this.frames = images;
 
     }
-
-
-
 
 
     // Getters & Setters
@@ -92,7 +73,7 @@ public class Jellyfish extends Entity {
     }
 
     public String getParterreFr() {
-        if (getParterre() == true){
+        if (getParterre() == true) {
             return "oui";
         } else {
             return "non";
@@ -111,12 +92,10 @@ public class Jellyfish extends Entity {
         int frame = (int) (tempsTotal * frameRate);
 
 
-
-
         image = frames[frame % frames.length];
     }
 
-    public void testCollision(Plateforme other) {
+    public void testCollision(Entity other) {
         /**
          * La collision avec une plateforme a lieu seulement si :
          *
@@ -128,100 +107,90 @@ public class Jellyfish extends Entity {
          * - La vitesse va vers le bas (le personnage est en train de tomber,
          * pas en train de sauter)
          */
-        if (intersects(other) && Math.abs(this.y + hauteur - other.y) < 10
-                && other.getId().equals("plancher")) {
-             pushOut(other);
-             this.parterre = true;
-             this.vy=0;
-
-        }
-
-
-        if (intersects(other) && Math.abs(this.y + hauteur - other.y) < 10
-                && vy > 0) {
-            pushOut(other);
-           if (other.getId().equals("plateformeRebon")) {
-                this.vy *= -1.5;
-                vy = Math.min(vy, -100);
-
-            } else {
-               this.vy = 0;
-           }
-           this.parterre = true;
-           isJumping = false;
-
-
-            if (other.getId().equals("plateformeAcc")) {
-                this.parterreAcc = true;
-
-            }
-
-            if (other.getId().equals("plateformeTemporaire")) {
-                firstPlateforme = true;
+        if (other instanceof Plateforme) {
+            Plateforme plateforme = (Plateforme) other;
+            if (intersects(plateforme) && Math.abs(this.y + hauteur - other.y) < 10
+                    && plateforme.getId().equals("plancher")) {
+                pushOut(plateforme);
+                this.parterre = true;
+                this.vy = 0;
 
             }
 
 
+            if (intersects(plateforme) && Math.abs(this.y + hauteur - other.y) < 10
+                    && vy > 0) {
+                pushOut(plateforme);
+                if (plateforme.getId().equals("plateformeRebon")) {
+                    this.vy *= -1.5;
+                    vy = Math.min(vy, -100);
+
+                } else {
+                    this.vy = 0;
+                }
+                this.parterre = true;
+                isJumping = false;
 
 
+                if (plateforme.getId().equals("plateformeAcc")) {
+                    this.parterreAcc = true;
 
+                }
 
-            
-        }
-        //other.y + other.hauteur - this.y
-        // Math.abs( other.y - this.y) < 10
-        if (other.getId().equals("plateformeSolide")) {
-            if (intersects(other) && Math.abs(  other.y + other.getHauteur() - this.y) < 10
-                    && vy < 0) {
-                pushOutBas(other);
-                this.vy *= -0.9;
+                if (plateforme.getId().equals("plateformeTemporaire")) {
+                    firstPlateforme = true;
+
+                }
+
 
             }
+            //other.y + other.hauteur - this.y
+            // Math.abs( other.y - this.y) < 10
+            if (plateforme.getId().equals("plateformeSolide")) {
+                if (intersects(plateforme) && Math.abs(plateforme.y + plateforme.getHauteur() - this.y) < 10
+                        && vy < 0) {
+                    pushOutBas(plateforme);
+                    this.vy *= -0.9;
+
+                }
+            }
+        } else if (other instanceof Shrimp) {
+            if (intersects(other)) {
+                aAttrape = true;
+                other = null;
+            }
+
         }
 
 
     }
 
 
-    public boolean getParterreAcc(){
+    public boolean getParterreAcc() {
         return this.parterreAcc;
     }
 
-    public void setParterreAcc(boolean parterreAcc){
+    public void setParterreAcc(boolean parterreAcc) {
         this.parterreAcc = parterreAcc;
     }
 
 
-    public boolean getIsJumping(){
+    public boolean getIsJumping() {
         return this.isJumping;
     }
 
 
-
-
-    public void setfirstPlateforme(boolean firstPlateforme){
+    public void setfirstPlateforme(boolean firstPlateforme) {
         this.firstPlateforme = firstPlateforme;
     }
 
-    public boolean getfirstPlateforme(){
+    public boolean getfirstPlateforme() {
         return this.firstPlateforme;
     }
 
 
+    public boolean intersects(Entity other) {
 
-
-
-
-
-
-
-
-
-
-
-
-
-    public boolean intersects(Plateforme other) {
         return !( // Un des carrés est à gauche de l’autre
                 x + largeur < other.x
                         || other.x + other.largeur < this.x
@@ -229,6 +198,7 @@ public class Jellyfish extends Entity {
                         || y + hauteur < other.y
                         || other.y + other.hauteur < this.y);
     }
+
 
 
 
@@ -304,20 +274,9 @@ public class Jellyfish extends Entity {
     }
 
 
-    public boolean intersects(Shrimp other) {
-
-            return other.intersects(this);
 
 
-    }
 
-    public void testCollisionPiece(Shrimp other) {
-        if (intersects(other)) {
-            aAttrape = true;
-            other = null;
-        }
-
-    }
 
     public boolean aAttrape() {
         return this.aAttrape;
@@ -326,11 +285,6 @@ public class Jellyfish extends Entity {
     public void setAAttrape( boolean aAttrape) {
         this.aAttrape = aAttrape;
     }
-
-
-
-
-
 
 
 
