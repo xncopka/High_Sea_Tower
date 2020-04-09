@@ -51,6 +51,7 @@ import javafx.scene.canvas.GraphicsContext;
 
         public void updateInit() {jeu.updateInit();}
 
+
     }
 
 

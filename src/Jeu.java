@@ -42,6 +42,8 @@ public class Jeu {
 
     private int counter = 5 ;
 
+    private static int highScore = 0;
+
 
 
 
@@ -83,11 +85,14 @@ public class Jeu {
                 generateReb(counter);
                 prevSolide = false;
 
-            }else if(35 <pourcent && pourcent <=100) {
-                generateSimple(counter);
+            }else if(35 <pourcent && pourcent <=75) {
+                    generateSimple(counter);
                 prevSolide = false;
 
-            }
+            } else if(75 <pourcent && pourcent <=100) {
+                    generateMouvante(counter);
+                    prevSolide = false;
+                }
             counter++;
         }
 
@@ -127,6 +132,14 @@ public class Jeu {
         plateformeSolide.setColor(Color.rgb(184, 15, 36));
         plateformeSolide.setId("plateformeSolide");
         plateformes.add(plateformeSolide);
+    }
+
+    public void generateMouvante(int counter) {
+        Plateforme plateformeMouvante = new Plateforme(counter);
+        plateformeMouvante.setColor(Color.BEIGE);
+        plateformeMouvante.setVX(100);
+        plateformeMouvante.setId("plateformeMouvante");
+        plateformes.add(plateformeMouvante);
     }
 
 
@@ -211,6 +224,8 @@ public class Jeu {
 
         if (jellyfish.y > Interface.HEIGHT + fenetreY) {
             gameOver = true;
+            highScore = Math.max(highScore, -(int) fenetreY );
+
         }
 
         if (imageRight == false) {
@@ -291,10 +306,13 @@ public class Jeu {
                     prevSolide = false;
 
 
-                } else if (35 < pourcent && pourcent <= 100) {
+                } else if (35 < pourcent && pourcent <= 75) {
                     generateSimple(counter);
                     prevSolide = false;
 
+                }  else if(75 <pourcent && pourcent <=100) {
+                    generateMouvante(counter);
+                    prevSolide = false;
                 }
                 counter++;
 
@@ -412,6 +430,7 @@ public class Jeu {
                     + "Mode debug :" + modeDebug  +"\n"
                             + "fenetreY :" + fenetreY  +"\n"
                             + "fenetreVY :" + fenetreVY  +"\n"
+                            + "highScore : " + highScore   +"\n"
 
                     , 10, 20);
 
@@ -424,6 +443,9 @@ public class Jeu {
         context.setFont(Font.font(25));
         context.setFill(Color.WHITE);
         context.fillText(score, 175, 60);
+        context.setTextAlign(TextAlignment.RIGHT);
+        context.setFont(Font.font(12));
+        context.fillText("highScore : " + highScore, Interface.WIDTH - 10, 20);
 
     }
 }

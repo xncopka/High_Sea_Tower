@@ -107,6 +107,8 @@ public class Interface extends Application {
             }
 
 
+
+
         });
 
         // Actions sur le clavier en relachant la touche
@@ -152,6 +154,8 @@ public class Interface extends Application {
     public boolean getGameOver() {
         return controleur.getGameOver();
     }
+
+
 
     /**
      *  Reinitialise les valeurs du jeu au debut
