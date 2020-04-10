@@ -167,7 +167,7 @@ public class Jeu {
                 plateforme.setColor(Color.rgb(184, 15, 36));
                 plateforme.setId("plateformeSolide");
 
-            } else if (pourcent <= 5 && !prevSolide) {
+            } else if (pourcent <= 5 && prevSolide) {
                 generateSurprise(prevSolide, plateforme);
 
 

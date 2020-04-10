@@ -103,9 +103,7 @@ public class Jellyfish extends Entity {
          *
          * - La collision a lieu entre la plateforme et le *bas du personnage*
          * seulement
-         *
-         * - La vitesse va vers le bas (le personnage est en train de tomber,
-         * pas en train de sauter)
+
          */
         if (other instanceof Plateforme) {
             Plateforme plateforme = (Plateforme) other;
@@ -116,43 +114,43 @@ public class Jellyfish extends Entity {
                 this.vy = 0;
 
             }
-
-
             if (intersects(plateforme) && Math.abs(this.y + hauteur - plateforme.y) < 10
                     && vy > 0) {
                 pushOut(plateforme);
+
                 if (plateforme.getId().equals("plateformeRebon")) {
                     this.vy *= -1.5;
                     vy = Math.min(vy, -100);
 
-                } else {
-                    this.vy = 0;
-                }
-                this.parterre = true;
-                isJumping = false;
-
-
-                if (plateforme.getId().equals("plateformeAcc")) {
+                } else if (plateforme.getId().equals("plateformeAcc")) {
                     this.parterreAcc = true;
-
-                }
-
-                if (plateforme.getId().equals("plateformeTemporaire")) {
+                    this.vy = 0;
+                    this.parterre = true;
+                    isJumping = false;
+                } else if (plateforme.getId().equals("plateformeTemporaire")) {
                     firstPlateforme = true;
+                    this.vy = 0;
+                    this.parterre = true;
+                    isJumping = false;
 
+
+                } else if(!(plateforme.getId().equals("plateformeSolide"))){
+                    this.vy = 0;
+                    this.parterre = true;
+                    isJumping = false;
                 }
 
+                //other.y + other.hauteur - this.y
+                // Math.abs( other.y - this.y) < 10
 
-            }
-            //other.y + other.hauteur - this.y
-            // Math.abs( other.y - this.y) < 10
-            if (plateforme.getId().equals("plateformeSolide")) {
+            } else if (plateforme.getId().equals("plateformeSolide")) {
                 if (intersects(plateforme) && Math.abs(plateforme.y + plateforme.getHauteur() - this.y) < 10
                         && vy < 0) {
                     pushOutBas(plateforme);
                     this.vy *= -0.9;
                 }
             }
+
         } else if (other instanceof Shrimp) {
             Shrimp shrimp = (Shrimp) other;
             if (this.intersects(shrimp)) {
@@ -160,8 +158,8 @@ public class Jellyfish extends Entity {
                 shrimp = null;
             }
         }
-    }
 
+    }
 
     public boolean getParterreAcc() {
         return this.parterreAcc;
@@ -187,26 +185,30 @@ public class Jellyfish extends Entity {
 
 
     public boolean intersects(Entity other) {
-    if(other instanceof Plateforme){
+
+
+        if(other instanceof Plateforme){
+            Plateforme plateforme = (Plateforme) other;
         return !( // Un des carrés est à gauche de l’autre
-                x + largeur < other.x
-                        || other.x + other.largeur < this.x
+                x + largeur < plateforme.x
+                        || plateforme.x + plateforme.largeur < this.x
                         // Un des carrés est en haut de l’autre
-                        || y + hauteur < other.y
-                        || other.y + other.hauteur < this.y);
+                        || y + hauteur < plateforme.y
+                        || plateforme.y + plateforme.hauteur < this.y);
     } else if(other instanceof Shrimp){
+            Shrimp shrimp = (Shrimp) other;
                 /**
                  * Trouve le point (x, y) à l'intérieur du carré le plus proche du
                  * centre du cercle et vérifie s'il se trouve dans le rayon du cercle
                  */
-                double deltaX = other.x - Math.max(
+                double deltaX = shrimp.x - Math.max(
                         this.getX() - this.getLargeur() / 2,
                         Math.min(other.x, this.getX() + this.getLargeur() / 2));
-                double deltaY = other.y - Math.max(
+                double deltaY = shrimp.y - Math.max(
                         this.getY() - this.getHauteur() / 2,
                         Math.min(other.y, this.getY() + this.getLargeur() / 2));
 
-                return ((Math.pow(deltaX,2)) + (Math.pow(deltaY,2)) < Math.pow(((Shrimp) other).getRayon(), 2));
+                return Math.pow(deltaX,2) + Math.pow(deltaY,2) < Math.pow(shrimp.getRayon(), 2);
             }
     return false;
         }
@@ -301,3 +303,5 @@ public class Jellyfish extends Entity {
 
 
 }
+
+
