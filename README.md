@@ -21,7 +21,7 @@ CHOSES A CODER:
 17) ~Quand jellyfish tombe au fond de l'ocean, la partie redemarre automatiquement au lieu de manuellement (ie en touchant sur une touche de deplacement du clavier)~
 18) ~Bulles qui vont moins loin que la hauteur de l'ecran à mesure qu'on avance dans le jeu (effet progressif: plus on avance plus la distance parcourue des bulles retrecit)~
 19) Jeu impossible si la plateforme suivante est solide de même largeur ou plus que la plateforme actuelle et qu'elle est positionnée juste au dessus de celle presente (bonus)
-20) Ameliorer le saut de jellyfish pour permettre une meilleur saut à gauche/droite en forme d'arc?(deja bien codé mais pas sur vu le saut de la video a 25sec qui semble permettre des sauts permettant de contourner les plateformes et semble plus smooth)
+20) ~Ameliorer le saut de jellyfish pour permettre une meilleur saut à gauche/droite en forme d'arc?(deja bien codé mais pas sur vu le saut de la video a 25sec qui semble permettre des sauts permettant de contourner les plateformes et semble plus smooth)~
 21) Bonus (5 points) : ~high score~, levels de difficulte, bouton pause, multi-joueurs, ~plateformes breakables~, plateforme trampoline, ~plateforme qui se deplace~, objets dans le jeu, ennemis ,etc ...) 
 22) Bonus (10 points) : optimiser jeu pour android 
 
@@ -32,5 +32,7 @@ Bonus:
 - Ajout de plateformes surprises qui generent des plateformes aléatoires avec une couleur diffente pour garder l'effet de surprise
 - Ajout de textes pour le debut de partie et fin de partie
 - Ajout de crevettes dans le jeu qui augmente le score de Jellyfish si Jellyfish attrape ces crevettes
+- Bouton restart
+- Smooth mouvement des fleches gauches et droites
 
 
