@@ -8,7 +8,7 @@ public class Tortue extends Entity {
     private Image imageRight;
     private  Image[] framesLeft;
     private Image imageLeft;
-    private double frameRate = 8; // 8 frame par sec
+    private double frameRate = 8;
     private double tempsTotal = 0;
 
 
@@ -53,7 +53,10 @@ public class Tortue extends Entity {
     }
 
 
-
+    /**
+     * Methode met a jour limage affiche
+     * @param deltaTime Temps écoulé depuis le dernier update() en secondes
+     */
 
     @Override
     public void update(double deltaTime) {
@@ -61,7 +64,7 @@ public class Tortue extends Entity {
         // Physique du personnage
         super.update(deltaTime);
 
-        // Mise à jour de l'image affichée
+
         tempsTotal += deltaTime;
         int frame = (int) (tempsTotal * frameRate);
         if(this.vx>0) {
@@ -72,7 +75,11 @@ public class Tortue extends Entity {
     }
 
 
-
+    /**
+     * Methode qui dessine la tortue
+     * @param context le canvas sur lequel sera dessine la tortue
+     * @param fenetreY la fenetre Y qui monte
+     */
     @Override
     public void draw(GraphicsContext context, double fenetreY) {
         double yAffiche = y - fenetreY;

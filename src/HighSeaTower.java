@@ -13,6 +13,16 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
+/**
+ * Jeu en interface graphique qui tente de remonter une meduse
+ * le plus dans l’océan en sautant de plateforme en plateforme.
+ * L’écran monte graduellement automatiquement, etle but est
+ * de ne pas tomber au fond de l’océan. La classe HighSeaTower
+ * est la main de notre programme.
+ @author Thombas Bui
+ @author Vanda Gaonac'h-Lovejoy
+ 9-avril- 2020
+ */
 
 public class HighSeaTower extends Application {
 

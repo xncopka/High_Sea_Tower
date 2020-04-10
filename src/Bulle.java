@@ -3,6 +3,9 @@ import javafx.scene.paint.Color;
 
 import java.util.Random;
 
+/**
+ * Classe de bulle
+ */
 public class Bulle extends Entity {
 
 
@@ -14,7 +17,14 @@ public class Bulle extends Entity {
     public static double maxRayon = 40;
     public static double minRayon = 10;
 
-    // Constructeur de Bulle
+    /**
+     * Constructeur de bulle
+     * @param x position x de la bulle
+     * @param y position y de la bulle
+     * @param rayon rayon de la bulle
+     * @param vx vitesse x de la bulle
+     * @param vy vitesse y de la bulle
+     */
     public Bulle(double x, double y, double rayon, double vx, double vy) {
         this.x = x;
         this.y = y;
@@ -26,7 +36,10 @@ public class Bulle extends Entity {
 
     // Getters & Setters
 
-
+    /**
+     * Getter de rayon
+     * @return un rayon
+     */
     public double getRayon() {
         return rayon;
     }
@@ -42,7 +55,6 @@ public class Bulle extends Entity {
      *
      * @param dt Temps écoulé depuis le dernier update() en secondes
      */
-    @Override
     public void update(double dt) {
         // mettre a jour la nouvelle position Y
         y -=  dt * vy;

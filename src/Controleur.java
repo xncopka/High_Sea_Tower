@@ -1,6 +1,8 @@
 import javafx.scene.canvas.GraphicsContext;
 
-
+/**
+ * Classe du controleur qui fait le pont entre GUI et les autres classes
+ */
 
     public class Controleur {
 

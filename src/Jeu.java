@@ -10,7 +10,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 
 /**
- *
+ *Classe
  */
 public class Jeu {
 
