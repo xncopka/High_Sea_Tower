@@ -284,16 +284,16 @@ public class Jeu {
 
     public void update(double dt) {
 
-        if (jellyfish.y > HighSeaTower.HEIGHT + fenetreY) /*||
-                jellyfish.intersects(tortue))*/ {
+        if ((jellyfish.y > HighSeaTower.HEIGHT + fenetreY) ||
+                jellyfish.intersects(tortue)) {
 
-           // if(this.nombreVies == 1){
+            if(this.nombreVies == 1){
                 gameOver = true;
                 highScore = Math.max(highScore, -(int) fenetreY + nbCrustaces*500 );
-           /* } else {
+            } else {
                 lostLife = true;
                 nombreVies --;
-            }*/
+            }
         }
 
 
