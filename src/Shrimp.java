@@ -66,22 +66,4 @@ public class Shrimp extends Entity {
 
 
 
-
-
-    public boolean intersects(Jellyfish other) {
-        /**
-         * Trouve le point (x, y) à l'intérieur du carré le plus proche du
-         * centre du cercle et vérifie s'il se trouve dans le rayon du cercle
-         */
-        double deltaX = x - Math.max(
-                other.getX() - other.getLargeur() / 2,
-                Math.min(x, other.getX() + other.getLargeur() / 2));
-        double deltaY = y - Math.max(
-                other.getY() - other.getHauteur() / 2,
-                Math.min(y, other.getY() + other.getLargeur() / 2));
-
-        return deltaX * deltaX + deltaY * deltaY < rayon * rayon;
-    }
-
-
 }

@@ -254,11 +254,12 @@ public class HighSeaTower extends Application {
                     root.getChildren().add(again);
 
 
-                }
-
-                if (getLifeStatus()) {
+                } else if (getLifeStatus()) {
                     int nbVies = getNbVies();
+                    timer.stop();
+                    deltaTime =0;
                     startGame();
+                    startTimer();
                     controleur.setNbVie(nbVies--);
                 }
 

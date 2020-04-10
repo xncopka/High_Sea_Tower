@@ -151,18 +151,15 @@ public class Jellyfish extends Entity {
                         && vy < 0) {
                     pushOutBas(plateforme);
                     this.vy *= -0.9;
-
                 }
             }
         } else if (other instanceof Shrimp) {
-            if (intersects(other)) {
+            Shrimp shrimp = (Shrimp) other;
+            if (this.intersects(shrimp)) {
                 aAttrape = true;
-                other = null;
+                shrimp = null;
             }
-
         }
-
-
     }
 
 
@@ -190,14 +187,29 @@ public class Jellyfish extends Entity {
 
 
     public boolean intersects(Entity other) {
-
+    if(other instanceof Plateforme){
         return !( // Un des carrés est à gauche de l’autre
                 x + largeur < other.x
                         || other.x + other.largeur < this.x
                         // Un des carrés est en haut de l’autre
                         || y + hauteur < other.y
                         || other.y + other.hauteur < this.y);
-    }
+    } else if(other instanceof Shrimp){
+                /**
+                 * Trouve le point (x, y) à l'intérieur du carré le plus proche du
+                 * centre du cercle et vérifie s'il se trouve dans le rayon du cercle
+                 */
+                double deltaX = other.x - Math.max(
+                        this.getX() - this.getLargeur() / 2,
+                        Math.min(other.x, this.getX() + this.getLargeur() / 2));
+                double deltaY = other.y - Math.max(
+                        this.getY() - this.getHauteur() / 2,
+                        Math.min(other.y, this.getY() + this.getLargeur() / 2));
+
+                return ((Math.pow(deltaX,2)) + (Math.pow(deltaY,2)) < Math.pow(((Shrimp) other).getRayon(), 2));
+            }
+    return false;
+        }
 
 
 
