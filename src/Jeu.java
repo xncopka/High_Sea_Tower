@@ -78,7 +78,7 @@ public class Jeu {
 
         while(plateformes.size() < 4) {
 
-            plateformes.add(newPlateforme(counter));
+            newPlateforme(counter);
             counter ++;
         }
         tortue = new Tortue(0, 250);
@@ -164,7 +164,7 @@ public class Jeu {
     }
 
 
-    public Plateforme newPlateforme(int counter) {
+    public void newPlateforme(int counter) {
         boolean prevSolide;
 
         if (plateformes.size()==0) {
@@ -186,12 +186,12 @@ public class Jeu {
                 Plateforme plateforme = new Plateforme(counter);
                 plateforme.setColor(Color.rgb(184, 15, 36));
                 plateforme.setId("plateformeSolide");
-                return plateforme;
+                plateformes.add(plateforme);
 
 
             } else {
 
-                return newPlateforme( counter);
+               newPlateforme( counter);
             }
 
 
@@ -206,7 +206,7 @@ public class Jeu {
                 Plateforme plateforme = new Plateforme(counter);
             plateforme.setColor(Color.rgb(230, 221, 58));
             plateforme.setId("plateformeAcc");
-                return plateforme;
+                plateformes.add(plateforme);
 
 
 
@@ -214,7 +214,7 @@ public class Jeu {
                 Plateforme plateforme = new Plateforme(counter);
             plateforme.setColor(Color.LIGHTGREEN);
             plateforme.setId("plateformeRebon");
-                return plateforme;
+                plateformes.add(plateforme);
 
 
 
@@ -223,7 +223,7 @@ public class Jeu {
             plateforme.setColor(Color.PALETURQUOISE);
             plateforme.setVX(100);
             plateforme.setId("plateformeMouvante");
-                return plateforme;
+                plateformes.add(plateforme);
 
 
 
@@ -231,7 +231,7 @@ public class Jeu {
                 Plateforme plateforme = new Plateforme(counter);
             plateforme.setColor(Color.GREY);
             plateforme.setId("plateformeTemporaire");
-                return plateforme;
+                plateformes.add(plateforme);
 
 
 
@@ -240,10 +240,10 @@ public class Jeu {
                 Plateforme plateforme = new Plateforme(counter);
             plateforme.setColor(Color.rgb(230, 134, 58));
             plateforme.setId("plateformeSimple");
-            return plateforme;
+                plateformes.add(plateforme);
 
         }
-    return null;
+
 
     };
 
@@ -397,7 +397,8 @@ public class Jeu {
 
 
         while (plateformes.get(plateformes.size() - 1).getY() > fenetreY   ) {
-            plateformes.add(newPlateforme(counter));
+            newPlateforme(counter);
+            counter ++;
 
         }
 
