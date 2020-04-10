@@ -1,4 +1,5 @@
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 
 import java.util.Random;
@@ -7,6 +8,7 @@ public class Shrimp extends Entity {
 
 
     private double rayon;
+    private Image image;
 
 
     // Constructeur de Bulle
@@ -14,6 +16,8 @@ public class Shrimp extends Entity {
         this.x = x;
         this.y = y;
         this.rayon = 15;
+
+        image = new Image("/shrimp.png");
 
     }
 
@@ -60,7 +64,7 @@ public class Shrimp extends Entity {
     public void draw(GraphicsContext context, double fenetreY) {
         double yAffiche = y - fenetreY;
         context.setFill(Color.CORAL);
-        context.fillOval(getX(), yAffiche, getRayon()*2, getRayon()*2);
+        context.drawImage(image, getX(), yAffiche, getRayon()*2, getRayon()*2);
     }
 
 
