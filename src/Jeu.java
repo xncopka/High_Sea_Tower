@@ -75,64 +75,13 @@ public class Jeu {
 
 
         var counter = 1;
-        boolean prevSolide;
+
         while(plateformes.size() < 4) {
-            if (plateformes.size()==0) {
-                prevSolide = false;
-            } else {
-                if (plateformes.get(plateformes.size() - 1).getId() == "plateformeSolide") {
-                    prevSolide = true;
-                } else {
-                    prevSolide = false;
-                }
-            }
 
-            Random random = new Random();
-            int pourcent = random.nextInt(101);
-                if(pourcent <= 5) {
-                if (!prevSolide) {
-                    generateSolide(counter);
-
-                } else {
-                   continue;
-                }
-
-
-
-           }else if( 5 < pourcent && pourcent<= 10 ){
-                    generateSurprise(counter, prevSolide);
-
-
-
-            }else if(10< pourcent && pourcent<= 20 ) {
-                generateAcc(counter);
-
-
-            }else if(20 <pourcent && pourcent <=40) {
-                    generateReb(counter);
-
-
-            } else if(40 <pourcent && pourcent <=60) {
-                    generateMouvante(counter);
-
-
-
-        } else if(60 <pourcent && pourcent <=70) {
-                    generateTemporaire(counter);
-
-
-
-
-        }  else if(70 <pourcent && pourcent <=100) {
-                    generateSimple(counter);
-
-                }
-
-
-
-                counter++;
+            plateformes.add(newPlateforme(counter));
+            counter ++;
         }
-        tortue = new Tortue();
+        tortue = new Tortue(0, 250);
 
         jellyfish = new Jellyfish(width/2 - 25, height);
 
@@ -144,106 +93,67 @@ public class Jeu {
                 rand.nextInt(90+1));
 
 
-
-
-
-
-
-
-
         gameOver = false;
 
     }
 
-    public void generateSimple(int counter) {
-        Plateforme plateformeSimple = new Plateforme(counter);
-        plateformeSimple.setColor(Color.rgb(230, 134, 58));
-        plateformeSimple.setId("plateformeSimple");
-        plateformes.add(plateformeSimple);
-       
-    }
-
-    public void generateAcc(int counter) {
-        Plateforme plateformeAcc = new Plateforme(counter);
-        plateformeAcc.setColor(Color.rgb(230, 221, 58));
-        plateformeAcc.setId("plateformeAcc");
-        plateformes.add(plateformeAcc);
-
-    }
-
-    public void generateReb(int counter) {
-        Plateforme plateformeRebon = new Plateforme(counter);
-        plateformeRebon.setColor(Color.LIGHTGREEN);
-        plateformeRebon.setId("plateformeRebon");
-        plateformes.add(plateformeRebon);
-
-    }
-
-    public void generateSolide(int counter) {
-        Plateforme plateformeSolide = new Plateforme(counter);
-        plateformeSolide.setColor(Color.rgb(184, 15, 36));
-        plateformeSolide.setId("plateformeSolide");
-        plateformes.add(plateformeSolide);
-
-    }
-
-    public void generateMouvante(int counter) {
-        Plateforme plateformeMouvante = new Plateforme(counter);
-        plateformeMouvante.setColor(Color.PALETURQUOISE);
-        plateformeMouvante.setVX(100);
-        plateformeMouvante.setId("plateformeMouvante");
-        plateformes.add(plateformeMouvante);
-
-    }
-
-    public void generateTemporaire(int counter) {
-        Plateforme plateformeTemporaire = new Plateforme(counter);
-        plateformeTemporaire.setColor(Color.GREY);
-        plateformeTemporaire.setId("plateformeTemporaire");
-        plateformes.add(plateformeTemporaire);
-
-    }
 
     public void generateSurprise(int counter, boolean prevSolide) {
-        Plateforme plateformeSurprise = new Plateforme(counter);
-        plateformeSurprise.setColor(Color.PURPLE);
+
 
             Random random = new Random();
             int numero = random.nextInt(6);
             if (numero == 0) {
+                Plateforme plateformeSurprise = new Plateforme(counter);
+                plateformeSurprise.setColor(Color.PURPLE);
                 plateformeSurprise.setId("plateformeAcc");
                 plateformes.add(plateformeSurprise);
 
+
             } else if (numero == 1) {
+                Plateforme plateformeSurprise = new Plateforme(counter);
+                plateformeSurprise.setColor(Color.PURPLE);
                 plateformeSurprise.setId("plateformeTemporaire");
                 plateformes.add(plateformeSurprise);
 
+
             } else if (numero == 2) {
+                Plateforme plateformeSurprise = new Plateforme(counter);
+                plateformeSurprise.setColor(Color.PURPLE);
                 plateformeSurprise.setId("plateformeMouvante");
 
                 plateformeSurprise.setVX(100);
                 plateformes.add(plateformeSurprise);
+
             } else if (numero == 3) {
                 if (!prevSolide) {
+                    Plateforme plateformeSurprise = new Plateforme(counter);
+                    plateformeSurprise.setColor(Color.PURPLE);
                     plateformeSurprise.setId("plateformeSolide");
                     plateformes.add(plateformeSurprise);
 
+
                 } else {
 
-                    generateSurprise(counter, prevSolide);
+                    generateSurprise(counter, true);
 
 
                 }
                 // plateformeSurprise.setId("plateformeRebon");
             } else if (numero == 4) {
+                Plateforme plateformeSurprise = new Plateforme(counter);
+                plateformeSurprise.setColor(Color.PURPLE);
                 plateformeSurprise.setId("plateformeRebon");
                 plateformes.add(plateformeSurprise);
 
-             } else if (numero == 5) {
-        plateformeSurprise.setId("plateformeSimple");
-        plateformes.add(plateformeSurprise);
 
-    }
+             } else if (numero == 5) {
+                Plateforme plateformeSurprise = new Plateforme(counter);
+                plateformeSurprise.setColor(Color.PURPLE);
+                plateformeSurprise.setId("plateformeSimple");
+                plateformes.add(plateformeSurprise);
+
+        }
 
 
         }
@@ -252,9 +162,90 @@ public class Jeu {
         public void generationPlateformes(int counter, boolean prevSolide){
 
     }
-    
 
 
+    public Plateforme newPlateforme(int counter) {
+        boolean prevSolide;
+
+        if (plateformes.size()==0) {
+            prevSolide = false;
+        } else {
+            if (plateformes.get(plateformes.size() - 1).getId() == "plateformeSolide") {
+                prevSolide = true;
+            } else {
+                prevSolide = false;
+            }
+        }
+
+        Random random = new Random();
+        int pourcent = random.nextInt(101);
+
+
+            if(pourcent <= 5) {
+            if (!prevSolide) {
+                Plateforme plateforme = new Plateforme(counter);
+                plateforme.setColor(Color.rgb(184, 15, 36));
+                plateforme.setId("plateformeSolide");
+                return plateforme;
+
+
+            } else {
+
+                return newPlateforme( counter);
+            }
+
+
+        }else if( 5 < pourcent && pourcent<= 10 ){
+            generateSurprise(counter, prevSolide);
+
+
+
+
+
+        }else if(10< pourcent && pourcent<= 20 ) {
+                Plateforme plateforme = new Plateforme(counter);
+            plateforme.setColor(Color.rgb(230, 221, 58));
+            plateforme.setId("plateformeAcc");
+                return plateforme;
+
+
+
+        }else if(20 <pourcent && pourcent <=40) {
+                Plateforme plateforme = new Plateforme(counter);
+            plateforme.setColor(Color.LIGHTGREEN);
+            plateforme.setId("plateformeRebon");
+                return plateforme;
+
+
+
+        } else if(40 <pourcent && pourcent <=60) {
+                Plateforme plateforme = new Plateforme(counter);
+            plateforme.setColor(Color.PALETURQUOISE);
+            plateforme.setVX(100);
+            plateforme.setId("plateformeMouvante");
+                return plateforme;
+
+
+
+        } else if(60 <pourcent && pourcent <=70) {
+                Plateforme plateforme = new Plateforme(counter);
+            plateforme.setColor(Color.GREY);
+            plateforme.setId("plateformeTemporaire");
+                return plateforme;
+
+
+
+
+        }  else if (70 <pourcent && pourcent <=100) {
+                Plateforme plateforme = new Plateforme(counter);
+            plateforme.setColor(Color.rgb(230, 134, 58));
+            plateforme.setId("plateformeSimple");
+            return plateforme;
+
+        }
+    return null;
+
+    };
 
 
 
@@ -334,8 +325,6 @@ public class Jeu {
 
 
 
-
-
     public void update(double dt) {
 
         if (jellyfish.y > HighSeaTower.HEIGHT + fenetreY) {
@@ -345,8 +334,12 @@ public class Jeu {
 
         }
         if(jellyfish.intersects(tortue)){
-            gameOver = true;
-            highScore = Math.max(highScore, -(int) fenetreY + nbCrustaces*500 );
+
+
+                gameOver =true;
+                highScore = Math.max(highScore, -(int) fenetreY + nbCrustaces*500 );
+
+
         }
 
 
@@ -402,58 +395,10 @@ public class Jeu {
             jellyfish.testCollision(plancher);
         }
 
-        boolean prevSolide;
+
         while (plateformes.get(plateformes.size() - 1).getY() > fenetreY   ) {
+            plateformes.add(newPlateforme(counter));
 
-                if (plateformes.get(plateformes.size() - 1).getId() == "plateformeSolide") {
-                    prevSolide = true;
-                } else {
-                    prevSolide = false;
-                }
-
-            Random random = new Random();
-            int pourcent = random.nextInt(101);
-            if(pourcent <= 5) {
-                if (!prevSolide) {
-                    generateSolide(counter);
-
-                } else {
-                    continue;
-                }
-
-
-
-            }else if( 5 < pourcent && pourcent<= 10 ){
-                generateSurprise(counter, prevSolide);
-
-
-
-            }else if(10< pourcent && pourcent<= 20 ) {
-                generateAcc(counter);
-
-
-            }else if(20 <pourcent && pourcent <=40) {
-                generateReb(counter);
-
-
-            } else if(40 <pourcent && pourcent <=60) {
-                generateMouvante(counter);
-
-
-
-            } else if(60 <pourcent && pourcent <=70) {
-                generateTemporaire(counter);
-
-
-
-
-            }  else if(70 <pourcent && pourcent <=100) {
-                generateSimple(counter);
-
-            }
-
-
-            counter++;
         }
 
         while (plateformes.get(0).getY() > HighSeaTower.HEIGHT + fenetreY ) {
@@ -509,8 +454,13 @@ public class Jeu {
                 double newY = fenetreY - rand.nextInt(HighSeaTower.HEIGHT - 30 + 1) + 30;
                 shrimp = new Shrimp(newX, newY);
             }
-            
 
+        if(tortue.getY() > fenetreY  + HighSeaTower.HEIGHT)
+        { Random rand = new Random();
+            double newX = rand.nextInt(HighSeaTower.WIDTH - 30 + 1);
+            double newY = fenetreY - rand.nextInt(HighSeaTower.HEIGHT - 30 + 1) + 30;
+            tortue = new Tortue(newX, newY);
+        }
 
             jellyfish.testCollision(shrimp);
             if(jellyfish.aAttrape()) {

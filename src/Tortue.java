@@ -10,23 +10,23 @@ public class Tortue extends Entity {
     private Image imageLeft;
     private double frameRate = 8; // 8 frame par sec
     private double tempsTotal = 0;
-    public static int counter = 0;
+
 
 
     /**
      * Constructeur de Tortue
      *
      */
-    public Tortue() {
-        this.x = 0;
-        this.y = 250;
+    public Tortue(double x, double y) {
+        this.x = x;
+        this.y = y;
         this.largeur = 60;
         this.hauteur = 40;
-        this.vx = 400;
+        this.vx = 100;
         this.vy = 0;
         this.ax = 0;
         this.ay = 0;
-        counter ++;
+
 
 
         // Chargement des images
