@@ -609,8 +609,8 @@ public class Jeu {
                             + "highScore : " + highScore   +"\n"
                             + "isJumping :" + jellyfish.getIsJumping() +"\n"
                             + "firstPlateformeTemp :" + jellyfish.getfirstPlateforme() +"\n"
-                            + "position black Hole : (" + (int) shrimp.getX() + ", " + (int)shrimp.getY()  + ")"
-                            + "nombre de crustacés: " + nbCrustaces
+                            + "position Shrimp : (" + (int) shrimp.getX() + ", " + (int)shrimp.getY()  + ")" +"\n"
+                            + "nombre de crustacés: " + nbCrustaces +"\n"
 
 
                     , 10, 20);

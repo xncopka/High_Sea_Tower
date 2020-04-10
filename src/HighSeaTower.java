@@ -28,6 +28,10 @@ public class HighSeaTower extends Application {
     private Pane root;
     private Text over;
     private Text again;
+    private boolean gauche;
+    private boolean droite;
+    private double deltaTime;
+    private Text begin;
 
     /**
      * @param args the command line arguments
@@ -62,17 +66,11 @@ public class HighSeaTower extends Application {
 
         // Debut du jeu
         startGame();
-        Text begin = new Text ("Veillez appuyer sur une touche\n pour commencer la partie");
-        begin.setFill(Color.WHITE);
-        begin.setFont(Font.font(15));
-        begin.setTextAlignment(TextAlignment.CENTER);
-        begin.setX(80);
-        begin.setY(200);
-        root.getChildren().add(begin);
+        textDebut();
 
 
-        startTimer();
 
+        newTimer();
 
 
 
@@ -104,6 +102,7 @@ public class HighSeaTower extends Application {
                 timer.start();
                 controleur.left();
                 controleur.imageLeft();
+                gauche = true;
 
 
 
@@ -117,6 +116,7 @@ public class HighSeaTower extends Application {
                 timer.start();
                 controleur.right();
                 controleur.imageRight();
+                droite = true;
                 
 
 
@@ -129,6 +129,15 @@ public class HighSeaTower extends Application {
 
             }
 
+            if (event.getCode() == KeyCode.R) {
+                restart();
+                textDebut();
+
+
+            }
+
+
+            
 
 
 
@@ -140,15 +149,27 @@ public class HighSeaTower extends Application {
 
             // arreter jellyfish de continuer d'aller a gauche si on relache Left
             if (event.getCode() == KeyCode.LEFT) {
+                gauche = false;
 
-                controleur.stop();
+
 
             }
 
             // arreter jellyfish de continuer d'aller a droite si on relache Right
             if (event.getCode() == KeyCode.RIGHT) {
+                droite = false;
+            }
+
+            if(!gauche && droite) {
+                controleur.right();
+            }
+            if (gauche && !droite){
+                controleur.left();
+            }
+            if (!gauche && !droite){
                 controleur.stop();
             }
+            
 
         });
 
@@ -189,7 +210,7 @@ public class HighSeaTower extends Application {
         controleur.draw(context);
     }
 
-    public void startTimer() {
+    public void newTimer() {
         // Création de l'animation
         timer = new AnimationTimer() {
 
@@ -221,15 +242,13 @@ public class HighSeaTower extends Application {
 
 
                 // temps = (temps now - dernier temps) converti en seconde
-                double deltaTime = (now - lastTime) * 1e-9;
+                 deltaTime = (now - lastTime) * 1e-9;
 
 
                 // redemarre une partie si la partie est terminée
                 if (getGameOver()) {
-                    timer.stop();
-                    deltaTime =0;
-                    startGame();
-                    startTimer();
+
+                     restart();
                     over = new Text("GAME OVER");
                     over.setFill(Color.WHITE);
                     over.setFont(Font.font(50));
@@ -244,7 +263,6 @@ public class HighSeaTower extends Application {
                     again.setX(10);
                     again.setY(240);
                     root.getChildren().add(again);
-
 
                 }
 
@@ -261,6 +279,26 @@ public class HighSeaTower extends Application {
                 lastTime = now;
             }
         };
+    }
+
+    public void restart(){
+
+        timer.stop();
+        deltaTime =0;
+        startGame();
+        newTimer();
+
+
+    }
+
+    public void textDebut(){
+        begin = new Text ("Veillez appuyer sur une touche\n pour commencer la partie");
+        begin.setFill(Color.WHITE);
+        begin.setFont(Font.font(15));
+        begin.setTextAlignment(TextAlignment.CENTER);
+        begin.setX(80);
+        begin.setY(200);
+        root.getChildren().add(begin);
     }
 
 
