@@ -39,6 +39,8 @@ public class Jeu {
 
     private boolean gameOver;
 
+    private boolean lostLife;
+
     private boolean imageRight;
 
     private boolean firstParterreAcc = true;
@@ -94,6 +96,7 @@ public class Jeu {
 
 
         gameOver = false;
+        lostLife = false;
 
     }
 
@@ -249,12 +252,6 @@ public class Jeu {
 
 
 
-
-
-
-
-
-
     public void jump() {
         jellyfish.jump();
     }
@@ -317,9 +314,15 @@ public class Jeu {
         score = -(int) fenetreY + "m";
 
     }
-
+ public boolean getLifeStatus(){
+        return this.lostLife;
+ }
     public int getNbVies() {
         return this.nombreVies;
+    }
+
+    public void setNbVie(int nombreVies){
+        this.nombreVies = nombreVies;
     }
 
 
@@ -327,22 +330,17 @@ public class Jeu {
 
     public void update(double dt) {
 
-        if (jellyfish.y > HighSeaTower.HEIGHT + fenetreY) {
-        //{ || nombreVies ==0) {
-            gameOver = true;
-            highScore = Math.max(highScore, -(int) fenetreY + nbCrustaces*500 );
+        if (jellyfish.y > HighSeaTower.HEIGHT + fenetreY ||
+                jellyfish.intersects(tortue)) {
 
-        }
-        if(jellyfish.intersects(tortue)){
-
-
-                gameOver =true;
+            if(this.nombreVies == 1){
+                gameOver = true;
                 highScore = Math.max(highScore, -(int) fenetreY + nbCrustaces*500 );
-
-
+            } else {
+                lostLife = true;
+                nombreVies --;
+            }
         }
-
-
 
 
         if (imageRight == false) {
@@ -432,10 +430,6 @@ public class Jeu {
                         setFenetreVY(fenetreVY / 3);
                     }
                 }
-
-
-
-
 
         }
 

@@ -177,6 +177,14 @@ public class HighSeaTower extends Application {
     public boolean getGameOver() {
         return controleur.getGameOver();
     }
+    /**
+     * savoir si une vie a ete perdue
+     * @return un boolean
+     */
+    public boolean getLifeStatus()  { return controleur.getLifeStatus(); }
+
+    public int getNbVies() { return controleur.getNbVies(); }
+
 
 
 
@@ -248,6 +256,11 @@ public class HighSeaTower extends Application {
 
                 }
 
+                if (getLifeStatus()) {
+                    int nbVies = getNbVies();
+                    startGame();
+                    controleur.setNbVie(nbVies--);
+                }
 
 
                 // mettre a jour les nouvelles positions
