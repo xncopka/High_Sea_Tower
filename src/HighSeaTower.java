@@ -131,7 +131,7 @@ public class HighSeaTower extends Application {
 
             if (event.getCode() == KeyCode.R) {
                 restart();
-                textDebut();
+              
 
 
             }
