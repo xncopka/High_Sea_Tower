@@ -1,5 +1,3 @@
-import javafx.animation.Animation;
-import javafx.animation.AnimationTimer;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
@@ -15,8 +13,6 @@ public class Jellyfish extends Entity {
     private boolean parterre;
 
     private boolean parterreAcc;
-
-    private boolean parterreTemp;
 
     private boolean isJumping;
 
@@ -92,7 +88,7 @@ public class Jellyfish extends Entity {
     }
 
     public String getParterreFr() {
-        if (getParterre() == true){
+        if (getParterre()){
             return "oui";
         } else {
             return "non";

@@ -2,8 +2,6 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 
-import java.util.Random;
-
 public class Shrimp extends Entity {
 
 
@@ -21,13 +19,7 @@ public class Shrimp extends Entity {
 
     }
 
-   /* public shrimp() {
-        Random rand = new Random();
-        this.x = rand.nextInt((High.SeaTower.WIDTH-50 - 50) + 1) + 50;
-        this.y = rand.nextInt((High.SeaTower.HEIGHT-50 - 50) + 1) + 50;
-        this.rayon = 50;
 
-    }*/
 
 
     // Getters & Setters

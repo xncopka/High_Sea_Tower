@@ -1,6 +1,6 @@
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
+
 
 import java.util.Random;
 
@@ -8,7 +8,7 @@ public class Plateforme extends Entity {
 
     private Color color;
     private String id;
-    private Paint paint;
+
 
     public Plateforme(int counter) {
         Random rand = new Random();
@@ -26,14 +26,6 @@ public class Plateforme extends Entity {
         return id;
     }
 
-    public Paint getPaint() {
-        return paint;
-    }
-
-    public void setPaint(Paint paint){
-        this.paint = paint;
-
-    }
 
     public void setColor(Color color) {
         this.color = color;
@@ -41,12 +33,6 @@ public class Plateforme extends Entity {
     public void setId(String typePlateforme) {
         this.id = typePlateforme;
     }
-
-
-
- 
-
-
 
 
     @Override

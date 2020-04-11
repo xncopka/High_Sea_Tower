@@ -9,10 +9,6 @@ public abstract class Entity {
     protected double vx, vy;
     protected double ax, ay;
 
-
-
-
-
     /**
      * Met à jour la position et la vitesse de la balle
      *
@@ -29,15 +25,13 @@ public abstract class Entity {
         if (x + largeur > HighSeaTower.WIDTH || x < 0) {
             vx *= -1;
         }
-/*        if (y + hauteur > HighSeaTower.HEIGHT || y < 0) {
-            vy *= -1;
-        }*/
+
         x = Math.min(x, HighSeaTower.WIDTH - largeur);
         x = Math.max(x, 0);
         if (dt == 0) {
             y = Math.min(y, HighSeaTower.HEIGHT - hauteur);
         }
-        /*y = Math.max(y, 0);*/
+
     }
 
     public abstract void draw(GraphicsContext context, double fenetreY);

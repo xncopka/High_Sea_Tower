@@ -9,9 +9,7 @@ import javafx.scene.paint.*;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 
-/**
- *
- */
+
 public class Jeu {
 
     // Largeur, hauteur du niveau
@@ -29,10 +27,6 @@ public class Jeu {
     private Plateforme plancher;
     private Shrimp shrimp;
 
-    // Score du jeu
-
-
-    //= (int)fenetreY + "m";
 
     private boolean modeDebug;
 
@@ -50,17 +44,12 @@ public class Jeu {
 
     private int nbCrustaces = 0;
 
-
-
-    private int nombreVies = 3;
-
-
-
-
-
+    private boolean[] levels = new boolean[4];
 
 
     public Jeu() {
+
+        levels[0] = true;
 
 
 
@@ -79,53 +68,12 @@ public class Jeu {
             if (plateformes.size()==0) {
                 prevSolide = false;
             } else {
-                if (plateformes.get(plateformes.size() - 1).getId() == "plateformeSolide") {
-                    prevSolide = true;
-                } else {
-                    prevSolide = false;
-                }
+                prevSolide = plateformes.get(plateformes.size() - 1).getId().equals("plateformeSolide");
             }
 
-            Random random = new Random();
-            int pourcent = random.nextInt(101);
-                if(pourcent <= 5) {
-                if (!prevSolide) {
-                    generateSolide(counter);
-
-                } else {
-                   continue;
-                }
 
 
-
-           }else if( 5 < pourcent && pourcent<= 10 ){
-                    generateSurprise(counter, prevSolide);
-
-
-
-            }else if(10< pourcent && pourcent<= 20 ) {
-                generateAcc(counter);
-
-
-            }else if(20 <pourcent && pourcent <=40) {
-                    generateReb(counter);
-
-
-            } else if(40 <pourcent && pourcent <=60) {
-                    generateMouvante(counter);
-
-
-
-        } else if(60 <pourcent && pourcent <=70) {
-                    generateTemporaire(counter);
-
-
-
-
-        }  else if(70 <pourcent && pourcent <=100) {
-                    generateSimple(counter);
-
-                }
+            generationPlateformes(counter, prevSolide, 5, 10, 20, 40, 60, 70);
 
 
 
@@ -141,12 +89,6 @@ public class Jeu {
         Random rand = new Random();
         shrimp = new Shrimp( rand.nextInt(HighSeaTower.WIDTH - 30 + 1),
                 rand.nextInt(90+1));
-
-
-
-
-
-
 
 
 
@@ -248,19 +190,51 @@ public class Jeu {
         }
 
 
-        public void generationPlateformes(int counter, boolean prevSolide){
+        public void generationPlateformes(int counter, boolean prevSolide, int pSolide, int pSurprise, int pAcc, int pReb, int pMouv, int pTemp){
+            Random random = new Random();
+            int pourcent = random.nextInt(101);
+            if(pourcent <= pSolide) {
+                if (!prevSolide) {
+                    generateSolide(counter);
 
-    }
+                } else {
+                    generationPlateformes(counter, prevSolide, pSolide, pSurprise, pAcc,  pReb, pMouv, pTemp);
+                }
+
+
+
+            }else if(pourcent <= pSurprise){
+                generateSurprise(counter, prevSolide);
+
+
+
+            }else if(pourcent <= pAcc) {
+                generateAcc(counter);
+
+
+            }else if(pourcent <= pReb) {
+                generateReb(counter);
+
+
+            } else if(pourcent <= pMouv) {
+                generateMouvante(counter);
+
+
+
+            } else if(pourcent <= pTemp) {
+                generateTemporaire(counter);
+
+
+
+
+            }  else if(pourcent <= 100) {
+                generateSimple(counter);
+
+            }
+
+
+        }
     
-
-
-
-
-
-
-
-
-
 
 
     public void jump() {
@@ -285,11 +259,7 @@ public class Jeu {
     }
 
     public void debug() {
-        if (modeDebug) {
-            modeDebug = false;
-        } else {
-            modeDebug = true;
-        }
+        modeDebug = !modeDebug;
     }
 
     public void removePlancher() {
@@ -326,28 +296,32 @@ public class Jeu {
 
     }
 
-    public int getNbVies() {
-        return this.nombreVies;
+    public String getLevel() {
+        if (levels[0]) {
+           return "Facile";
+        } else if (levels[1]) {
+            return "Moyen";
+        } else if (levels[2]) {
+            return "Difficile";
+        } else {
+            return "Hardcore";
+        }
     }
-
-
-
 
 
 
     public void update(double dt) {
 
+
         if (jellyfish.y > HighSeaTower.HEIGHT + fenetreY) {
-        //{ || nombreVies ==0) {
+            //{ || nombreVies ==0) {
             gameOver = true;
-            highScore = Math.max(highScore, -(int) fenetreY + nbCrustaces*500 );
+            highScore = Math.max(highScore, -(int) fenetreY + nbCrustaces * 500);
 
         }
 
 
-
-
-        if (imageRight == false) {
+        if (!imageRight) {
             jellyfish.setImage(new Image[]{
                     new Image("/jellyfish1g.png"),
                     new Image("/jellyfish2g.png"),
@@ -358,7 +332,7 @@ public class Jeu {
             });
         }
 
-        if (imageRight == true) {
+        if (imageRight) {
             jellyfish.setImage(new Image[]{
                     new Image("/jellyfish1.png"),
                     new Image("/jellyfish2.png"),
@@ -372,123 +346,83 @@ public class Jeu {
         }
 
 
-        
-
-            // Pour chaque groupe de bulle
-            for (int i = 0; i < bulles.length; i++) {
-                // Pour chaque bulles dans un groupe
-                for (int j = 0; j < bulles[0].length; j++) {
-                    // mettre a jour la vitesse de la bulle
-                    Bulle bulle = bulles[i][j];
-                    bulle.update(dt);
-                }
+        // Pour chaque groupe de bulle
+        for (int i = 0; i < bulles.length; i++) {
+            // Pour chaque bulles dans un groupe
+            for (int j = 0; j < bulles[0].length; j++) {
+                // mettre a jour la vitesse de la bulle
+                Bulle bulle = bulles[i][j];
+                bulle.update(dt);
             }
+        }
 
-            /**
-             * À chaque tour, on recalcule si le personnage se trouve parterre ou
-             * non
-             */
+        /**
+         * À chaque tour, on recalcule si le personnage se trouve parterre ou
+         * non
+         */
 
-            jellyfish.setParterre(false);
-            jellyfish.setParterreAcc(false);
-          
+        jellyfish.setParterre(false);
+        jellyfish.setParterreAcc(false);
+
 
         if (plancher != null) {
             jellyfish.testCollision(plancher);
         }
 
         boolean prevSolide;
-        while (plateformes.get(plateformes.size() - 1).getY() > fenetreY   ) {
+        while (plateformes.get(plateformes.size() - 1).getY() > fenetreY) {
 
-                if (plateformes.get(plateformes.size() - 1).getId() == "plateformeSolide") {
-                    prevSolide = true;
-                } else {
-                    prevSolide = false;
-                }
+            prevSolide = plateformes.get(plateformes.size() - 1).getId().equals("plateformeSolide");
 
-            Random random = new Random();
-            int pourcent = random.nextInt(101);
-            if(pourcent <= 5) {
-                if (!prevSolide) {
-                    generateSolide(counter);
-
-                } else {
-                    continue;
-                }
-
-
-
-            }else if( 5 < pourcent && pourcent<= 10 ){
-                generateSurprise(counter, prevSolide);
-
-
-
-            }else if(10< pourcent && pourcent<= 20 ) {
-                generateAcc(counter);
-
-
-            }else if(20 <pourcent && pourcent <=40) {
-                generateReb(counter);
-
-
-            } else if(40 <pourcent && pourcent <=60) {
-                generateMouvante(counter);
-
-
-
-            } else if(60 <pourcent && pourcent <=70) {
-                generateTemporaire(counter);
-
-
-
-
-            }  else if(70 <pourcent && pourcent <=100) {
-                generateSimple(counter);
-
+            if (levels[0]) {
+                generationPlateformes(counter, prevSolide, 5, 0, 15, 35, 0, 0);
+            } else if (levels[1]) {
+                generationPlateformes(counter, prevSolide, 5, 10, 20, 40, 60, 70);
+            } else if (levels[2]) {
+                generationPlateformes(counter, prevSolide, 10, 20, 35, 50, 65, 80);
+            } else if (levels[3]) {
+                generationPlateformes(counter, prevSolide, 0, 100, 0, 0, 0, 0);
             }
 
 
             counter++;
         }
 
-        while (plateformes.get(0).getY() > HighSeaTower.HEIGHT + fenetreY ) {
-            
+        while (plateformes.get(0).getY() > HighSeaTower.HEIGHT + fenetreY) {
 
-                plateformes.remove(0);
-        
+
+            plateformes.remove(0);
+
         }
 
 
         for (Plateforme p : plateformes) {
 
-                p.update(dt);
+            p.update(dt);
 
 
-                // Si le personnage se trouve sur une plateforme, ça sera défini ici
-                jellyfish.testCollision(p);
+            // Si le personnage se trouve sur une plateforme, ça sera défini ici
+            jellyfish.testCollision(p);
 
 
-                if (jellyfish.getParterreAcc() == true) {
-                    if (firstParterreAcc) {
-                        firstParterreAcc = false;
-                        setFenetreVY(3 * fenetreVY);
-                    }
+            if (jellyfish.getParterreAcc()) {
+                if (firstParterreAcc) {
+                    firstParterreAcc = false;
+                    setFenetreVY(3 * fenetreVY);
                 }
+            }
 
-                if (jellyfish.getParterreAcc() == false) {
-                    if (firstParterreAcc == false) {
-                        firstParterreAcc = true;
-                        setFenetreVY(fenetreVY / 3);
-                    }
+            if (!jellyfish.getParterreAcc()) {
+                if (!firstParterreAcc) {
+                    firstParterreAcc = true;
+                    setFenetreVY(fenetreVY / 3);
                 }
-
-
-
+            }
 
 
         }
 
-        for (Iterator<Plateforme> iterator = plateformes.iterator(); iterator.hasNext();) {
+        for (Iterator<Plateforme> iterator = plateformes.iterator(); iterator.hasNext(); ) {
             Plateforme plateforme = iterator.next();
             if (plateforme.getId().equals("plateformeTemporaire")) {
                 if (jellyfish.getIsJumping() && jellyfish.getfirstPlateforme()) {
@@ -498,61 +432,68 @@ public class Jeu {
             }
         }
 
-            if(shrimp.getY() > fenetreY + shrimp.getRayon() + HighSeaTower.HEIGHT)
-            { Random rand = new Random();
-                double newX = rand.nextInt(HighSeaTower.WIDTH - 30 + 1);
-                double newY = fenetreY - rand.nextInt(HighSeaTower.HEIGHT - 30 + 1) + 30;
-                shrimp = new Shrimp(newX, newY);
-            }
-            
-
-
-            jellyfish.testCollisionPiece(shrimp);
-            if(jellyfish.aAttrape()) {
-                Random rand = new Random();
-                double newX = rand.nextInt(HighSeaTower.WIDTH - 30 + 1);
-                double newY = fenetreY - rand.nextInt(HighSeaTower.HEIGHT -30 + 1) + 30;
-                shrimp = new Shrimp(newX, newY);
-                //nombreVies--;
-                nbCrustaces++;
-                jellyfish.setAAttrape(false);            }
-
-
-
-            shrimp.update(dt);
-
-
-
-
-        
-
-
-
-
-            jellyfish.update(dt);
-
-
-
-                 if (modeDebug == false) {
-
-                     fenetreVY = (fenetreVY + 2 * dt);
-                     fenetreY -= fenetreVY * dt;
-                 }
-
-
-
-
-            // Scrolling 75%
-
-            if (jellyfish.y < fenetreY + 0.25 * HighSeaTower.HEIGHT) {
-                fenetreY -= Math.abs(jellyfish.y - (fenetreY + 0.25 * HighSeaTower.HEIGHT));
-            }
-
-
-            score =nbCrustaces*500  -(int) fenetreY + "m";
-
-
+        if (shrimp.getY() > fenetreY + shrimp.getRayon() + HighSeaTower.HEIGHT) {
+            Random rand = new Random();
+            double newX = rand.nextInt(HighSeaTower.WIDTH - 30 + 1);
+            double newY = fenetreY - rand.nextInt(HighSeaTower.HEIGHT - 30 + 1) + 30;
+            shrimp = new Shrimp(newX, newY);
         }
+
+
+        jellyfish.testCollisionPiece(shrimp);
+        if (jellyfish.aAttrape()) {
+            Random rand = new Random();
+            double newX = rand.nextInt(HighSeaTower.WIDTH - 30 + 1);
+            double newY = fenetreY - rand.nextInt(HighSeaTower.HEIGHT - 30 + 1) + 30;
+            shrimp = new Shrimp(newX, newY);
+            nbCrustaces++;
+            jellyfish.setAAttrape(false);
+        }
+
+
+        shrimp.update(dt);
+
+
+        jellyfish.update(dt);
+
+
+        if (!modeDebug) {
+
+            fenetreVY = (fenetreVY + 2 * dt);
+            fenetreY -= fenetreVY * dt;
+        }
+
+
+        // Scrolling 75%
+
+        if (jellyfish.y < fenetreY + 0.25 * HighSeaTower.HEIGHT) {
+            fenetreY -= Math.abs(jellyfish.y - (fenetreY + 0.25 * HighSeaTower.HEIGHT));
+        }
+
+        int points = nbCrustaces * 500 - (int) fenetreY;
+        score = points + "m";
+
+        if (points < 2500) {
+            levels[0] = true;
+        } else if (points < 5000) {
+            levels[0] = false;
+            levels[1] = true;
+        } else if (points < 7500) {
+            levels[1] = false;
+            levels[2] = true;
+        } else {
+            levels[2] = false;
+            levels[3] = true;
+        }
+
+
+
+
+
+
+
+
+    }
     
 
     public void draw(GraphicsContext context) {
@@ -578,9 +519,10 @@ public class Jeu {
         shrimp.draw(context, fenetreY);
 
         for (Plateforme p : plateformes) {
+
             p.draw(context, fenetreY);
 
-            if (modeDebug == true) {
+            if (modeDebug) {
                 if  (jellyfish.intersects(p) && Math.abs(jellyfish.y + jellyfish.hauteur - p.y) < 10
                         && jellyfish.vy > 0) {
                     Color temp = p.getColor();
@@ -591,7 +533,7 @@ public class Jeu {
             }
         }
 
-        if (modeDebug == true) {
+        if (modeDebug) {
             context.setFill(Color.rgb(255, 0, 0, 0.4));
             context.fillRect(jellyfish.x, jellyfish.y - fenetreY, jellyfish.largeur, jellyfish.hauteur);
 
@@ -604,11 +546,10 @@ public class Jeu {
                     + "Touche le sol : " + jellyfish.getParterreFr() + "\n"
                     + "Nombre de plateformes : " + plateformes.size() +"\n"
                     + "Mode debug :" + modeDebug  +"\n"
-                            + "fenetreY :" + fenetreY  +"\n"
+                            + "fenetreY :" + (int) fenetreY  +"\n"
                             + "fenetreVY :" + fenetreVY  +"\n"
                             + "highScore : " + highScore   +"\n"
                             + "isJumping :" + jellyfish.getIsJumping() +"\n"
-                            + "firstPlateformeTemp :" + jellyfish.getfirstPlateforme() +"\n"
                             + "position Shrimp : (" + (int) shrimp.getX() + ", " + (int)shrimp.getY()  + ")" +"\n"
                             + "nombre de crustacés: " + nbCrustaces +"\n"
 
@@ -626,8 +567,8 @@ public class Jeu {
         context.fillText(score, 175, 60);
         context.setTextAlign(TextAlignment.RIGHT);
         context.setFont(Font.font(12));
-        context.fillText("highScore : " + highScore, HighSeaTower.WIDTH - 10, 20);
-        context.fillText("nombre de vies: " + nombreVies, HighSeaTower.WIDTH-10,40 );
+        context.fillText("High Score : " + highScore, HighSeaTower.WIDTH - 10, 20);
+        context.fillText("Level : " + getLevel(), HighSeaTower.WIDTH-10,40 );
 
     }
 
