@@ -23,7 +23,7 @@ public abstract class Entity {
 
         // Force à rester dans les bornes de l'écran
         if (x + largeur > HighSeaTower.WIDTH || x < 0) {
-            vx *= -1;
+            vx *= -0.5;
         }
 
         x = Math.min(x, HighSeaTower.WIDTH - largeur);

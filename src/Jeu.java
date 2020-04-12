@@ -515,7 +515,7 @@ public class Jeu {
         if (shrimp.getY() > fenetreY + shrimp.getRayon() + HighSeaTower.HEIGHT) {
             Random rand = new Random();
             double newX = rand.nextInt(HighSeaTower.WIDTH - 30 + 1);
-            double newY = fenetreY - rand.nextInt(HighSeaTower.HEIGHT - 30 + 1) + 30;
+            double newY = fenetreY - rand.nextInt(HighSeaTower.HEIGHT - 30 + 1) - 30;
             shrimp = new Shrimp(newX, newY);
         }
 
@@ -523,7 +523,7 @@ public class Jeu {
         if (jellyfish.aAttrape()) {
             Random rand = new Random();
             double newX = rand.nextInt(HighSeaTower.WIDTH - 30 + 1);
-            double newY = fenetreY - rand.nextInt(HighSeaTower.HEIGHT - 30 + 1) + 30;
+            double newY = fenetreY - rand.nextInt(HighSeaTower.HEIGHT - 30 + 1) - 30;
             shrimp = new Shrimp(newX, newY);
             nbCrustaces++;
             jellyfish.setAAttrape(false);
