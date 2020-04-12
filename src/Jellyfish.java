@@ -183,14 +183,6 @@ public class Jellyfish extends Entity {
 
 
 
-    public void setfirstPlateforme(boolean firstPlateforme){
-        this.firstPlateforme = firstPlateforme;
-    }
-
-    public boolean getfirstPlateforme(){
-        return this.firstPlateforme;
-    }
-
 
 
 

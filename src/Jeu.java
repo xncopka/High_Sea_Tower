@@ -690,7 +690,6 @@ public class Jeu {
                             + "position Shrimp : (" + (int) shrimp.getX() + ", " + (int)shrimp.getY()  + ")" +"\n"
                             + "nombre de crustacés: " + nbCrustaces +"\n"
                             //+ "probTrampo" +  probTrampoline
-                            + "getfirstPlateforme()" + jellyfish.getfirstPlateforme()
 
 
 
