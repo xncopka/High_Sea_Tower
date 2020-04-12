@@ -51,9 +51,22 @@ import javafx.scene.canvas.GraphicsContext;
 
         public void updateInit() {jeu.updateInit();}
 
-        /*public int getNbVies() {
+        public boolean getFirstInterTortue() {
+            return jeu.getFirstInterTortue();
+        }
+
+        public boolean getLastInterTortue() {
+            return jeu.getLastInterTortue();
+        }
+
+        public int getNbVies() {
             return jeu.getNbVies();
-        }*/
+        }
+        public void setNbVies(int life) {
+             jeu.setNbVies(life);
+        }
+
+
 
 
 

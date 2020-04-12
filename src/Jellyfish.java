@@ -22,6 +22,8 @@ public class Jellyfish extends Entity {
 
     private int life = 3 ;
 
+    private boolean firstInter = true;
+
 
 
 
@@ -190,7 +192,7 @@ public class Jellyfish extends Entity {
 
 
 
-    public boolean intersects(Plateforme other) {
+    public boolean intersects(Entity other) {
         return !( // Un des carrés est à gauche de l’autre
                 x + largeur < other.x
                         || other.x + other.largeur < this.x
@@ -205,13 +207,13 @@ public class Jellyfish extends Entity {
      * Repousse le personnage vers le haut (sans déplacer la
      * plateforme)
      */
-    public void pushOut(Plateforme other) {
+    public void pushOut(Entity other) {
         double deltaY = this.y + this.hauteur - other.y;
         this.y -= deltaY;
 
     }
 
-    public void pushOutBas (Plateforme other) {
+    public void pushOutBas (Entity other) {
         double deltaY =  other.y + other.getHauteur() - this.y;
         this.y += deltaY;
     }
@@ -304,9 +306,42 @@ public class Jellyfish extends Entity {
     }
 
 
-    public void testCollision(Tortue tortue) {
+    public void testCollision(Tortue other) {
+        if (intersects(other) && Math.abs(this.y + hauteur - other.y) < 10
+                && vy > 0) {
+            pushOut(other);
+            this.parterre = true;
+            isJumping = false;
+            this.vy=0;
+        }
+
+        if (intersects(other) && Math.abs(  other.y + other.getHauteur() - this.y) < 10
+                && vy < 0) {
+            pushOutBas(other);
+            this.vy *= -0.9;
+        }
+
         
 
+    }
+
+
+    public boolean getFirstInterTortue(Tortue other){
+        if (firstInter && intersects(other) && vy < 0) {
+            firstInter = false;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean getLastInterTortue(Tortue other){
+        if (!firstInter && !intersects(other) && vy < 0) {
+            firstInter = true;
+            return true;
+        } else {
+            return false;
+        }
     }
 
 

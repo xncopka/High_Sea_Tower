@@ -48,6 +48,8 @@ public class Jeu {
     private boolean[] levels = new boolean[4];
 
 
+
+
     public Jeu() {
 
         levels[0] = true;
@@ -74,7 +76,7 @@ public class Jeu {
 
 
 
-            generatePlateforme(counter, prevSolide, 5, 10, 20, 40, 60, 70);
+            generatePlateforme(counter, prevSolide, 5, 0, 15, 35, 0, 0);
 
 
 
@@ -309,21 +311,38 @@ public class Jeu {
     }
 
 
+    public boolean getFirstInterTortue() {
+            return jellyfish.getFirstInterTortue(tortue);
+    }
+
+    public boolean getLastInterTortue() {
+        return jellyfish.getLastInterTortue(tortue);
+    }
+
+    public int getNbVies() {
+        return jellyfish.getNbVies();
+    }
+    public void setNbVies(int life) {
+        jellyfish.setNbVies(life);
+    }
+
+
+
 
     public void update(double dt) {
 
+        jellyfish.testCollision(tortue);
 
-        if ( (jellyfish.y > HighSeaTower.HEIGHT + fenetreY) || (jellyfish.intersects(tortue) && jellyfish.getNbVies() == 1  ) {
+
+
+        if ( (jellyfish.y > HighSeaTower.HEIGHT + fenetreY) || jellyfish.getNbVies() == 0 ) {
 
             gameOver = true;
             highScore = Math.max(highScore, -(int) fenetreY + nbCrustaces * 500);
 
         }
 
-        if (jellyfish.intersects(tortue) && jellyfish.getNbVies() != 1) {
-
-                jellyfish.setNbVies(jellyfish.getNbVies()-1);
-            }
+        
 
 
 
@@ -570,6 +589,7 @@ public class Jeu {
                             + "nombre de crustacés: " + nbCrustaces +"\n"
 
 
+
                     , 10, 20);
 
         }
@@ -585,6 +605,8 @@ public class Jeu {
         context.setFont(Font.font(12));
         context.fillText("High Score : " + highScore, HighSeaTower.WIDTH - 10, 20);
         context.fillText("Level : " + getLevel(), HighSeaTower.WIDTH-10,40 );
+        context.fillText("Vies restantes : " + jellyfish.getNbVies(), HighSeaTower.WIDTH-10,60 );
+
 
     }
 

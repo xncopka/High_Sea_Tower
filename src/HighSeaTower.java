@@ -219,6 +219,9 @@ public class HighSeaTower extends Application {
             private long lastTime = 0;
             private long firstTime = 0;
 
+            private long firstInter = 0;
+            private long lastInter = 0;
+
             // fonction appelée à chaque frame
             @Override
             public void handle(long now) {
@@ -230,6 +233,23 @@ public class HighSeaTower extends Application {
                     controleur.groupBulles();
                     return;
                 }
+
+
+                if(controleur.getFirstInterTortue()) {
+                     firstInter = now;
+                }
+
+                if(controleur.getLastInterTortue()) {
+                     lastInter = now;
+                }
+
+                if (lastInter - firstInter >= (long) (1e+9)/100 ) {
+                    controleur.setNbVies(controleur.getNbVies() - 1);
+                    firstInter =0;
+                    lastInter = 0;
+                }
+
+
 
 
 
