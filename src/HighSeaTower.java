@@ -137,10 +137,6 @@ public class HighSeaTower extends Application {
             }
 
 
-            
-
-
-
         });
 
         // Actions sur le clavier en relachant la touche
@@ -198,6 +194,10 @@ public class HighSeaTower extends Application {
     public boolean getGameOver() {
         return controleur.getGameOver();
     }
+
+
+
+
 
 
 

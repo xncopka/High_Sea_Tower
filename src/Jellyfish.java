@@ -20,16 +20,7 @@ public class Jellyfish extends Entity {
 
     private boolean aAttrape = false;
 
-
-
-
-
-
-
-
-
-
-
+    private int life = 3 ;
 
 
 
@@ -106,9 +97,6 @@ public class Jellyfish extends Entity {
         tempsTotal += deltaTime;
         int frame = (int) (tempsTotal * frameRate);
 
-
-
-
         image = frames[frame % frames.length];
     }
 
@@ -135,7 +123,12 @@ public class Jellyfish extends Entity {
 
         if (intersects(other) && Math.abs(this.y + hauteur - other.y) < 10
                 && vy > 0) {
+
             pushOut(other);
+            this.parterre = true;
+            isJumping = false;
+
+
            if (other.getId().equals("plateformeRebon")) {
                 this.vy *= -1.5;
                 vy = Math.min(vy, -100);
@@ -143,8 +136,6 @@ public class Jellyfish extends Entity {
             } else {
                this.vy = 0;
            }
-           this.parterre = true;
-           isJumping = false;
 
 
             if (other.getId().equals("plateformeAcc")) {
@@ -157,15 +148,8 @@ public class Jellyfish extends Entity {
 
             }
 
-
-
-
-
-
-            
         }
-        //other.y + other.hauteur - this.y
-        // Math.abs( other.y - this.y) < 10
+
         if (other.getId().equals("plateformeSolide")) {
             if (intersects(other) && Math.abs(  other.y + other.getHauteur() - this.y) < 10
                     && vy < 0) {
@@ -206,17 +190,6 @@ public class Jellyfish extends Entity {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
     public boolean intersects(Plateforme other) {
         return !( // Un des carrés est à gauche de l’autre
                 x + largeur < other.x
@@ -252,8 +225,6 @@ public class Jellyfish extends Entity {
         if (parterre) {
             vy = -600;
             isJumping = true;
-            
-
 
         }
     }
@@ -310,10 +281,11 @@ public class Jellyfish extends Entity {
     public void testCollisionPiece(Shrimp other) {
         if (intersects(other)) {
             aAttrape = true;
-            other = null;
         }
 
     }
+
+
 
     public boolean aAttrape() {
         return this.aAttrape;
@@ -323,7 +295,19 @@ public class Jellyfish extends Entity {
         this.aAttrape = aAttrape;
     }
 
+    public int getNbVies(){
+        return this.life;
+    }
 
+    public void setNbVies(int life){
+        this.life = life;
+    }
+
+
+    public void testCollision(Tortue tortue) {
+        
+
+    }
 
 
 

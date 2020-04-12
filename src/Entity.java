@@ -37,6 +37,9 @@ public abstract class Entity {
     public abstract void draw(GraphicsContext context, double fenetreY);
 
 
+
+
+
     // Getters & Setters
     public double getX() {
         return this.x;

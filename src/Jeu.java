@@ -26,6 +26,7 @@ public class Jeu {
     ArrayList<Plateforme> plateformes= new ArrayList<Plateforme>();
     private Plateforme plancher;
     private Shrimp shrimp;
+    private Tortue tortue;
 
 
     private boolean modeDebug;
@@ -73,7 +74,7 @@ public class Jeu {
 
 
 
-            generationPlateformes(counter, prevSolide, 5, 10, 20, 40, 60, 70);
+            generatePlateforme(counter, prevSolide, 5, 10, 20, 40, 60, 70);
 
 
 
@@ -90,7 +91,7 @@ public class Jeu {
         shrimp = new Shrimp( rand.nextInt(HighSeaTower.WIDTH - 30 + 1),
                 rand.nextInt(90+1));
 
-
+        tortue = new Tortue(0, 250);
 
         gameOver = false;
 
@@ -150,55 +151,54 @@ public class Jeu {
         plateformeSurprise.setColor(Color.PURPLE);
 
             Random random = new Random();
-            int numero = random.nextInt(6);
-            if (numero == 0) {
+            int numero;
+        if(prevSolide) {
+            numero = random.nextInt(6);
+        } else {
+            numero = random.nextInt(5);
+        }
+
+        switch (numero) {
+            case 0:
                 plateformeSurprise.setId("plateformeAcc");
                 plateformes.add(plateformeSurprise);
-
-            } else if (numero == 1) {
+                break;
+            case 1:
                 plateformeSurprise.setId("plateformeTemporaire");
                 plateformes.add(plateformeSurprise);
-
-            } else if (numero == 2) {
+                break;
+            case 2:
                 plateformeSurprise.setId("plateformeMouvante");
-
                 plateformeSurprise.setVX(100);
                 plateformes.add(plateformeSurprise);
-            } else if (numero == 3) {
-                if (!prevSolide) {
-                    plateformeSurprise.setId("plateformeSolide");
-                    plateformes.add(plateformeSurprise);
-
-                } else {
-
-                    generateSurprise(counter, prevSolide);
-
-
-                }
-                // plateformeSurprise.setId("plateformeRebon");
-            } else if (numero == 4) {
+                break;
+            case 3:
+                plateformeSurprise.setId("plateformeSimple");
+                plateformes.add(plateformeSurprise);
+                break;
+            case 4:
                 plateformeSurprise.setId("plateformeRebon");
                 plateformes.add(plateformeSurprise);
+                break;
 
-             } else if (numero == 5) {
-        plateformeSurprise.setId("plateformeSimple");
-        plateformes.add(plateformeSurprise);
-
-    }
-
-
+            case 5:
+                plateformeSurprise.setId("plateformeSolide");
+                plateformes.add(plateformeSurprise);
+                break;
+        }
         }
 
 
-        public void generationPlateformes(int counter, boolean prevSolide, int pSolide, int pSurprise, int pAcc, int pReb, int pMouv, int pTemp){
+        public void generatePlateforme(int counter, boolean prevSolide, int pSolide, int pSurprise, int pAcc, int pReb, int pMouv, int pTemp){
             Random random = new Random();
             int pourcent = random.nextInt(101);
+            
             if(pourcent <= pSolide) {
                 if (!prevSolide) {
                     generateSolide(counter);
 
                 } else {
-                    generationPlateformes(counter, prevSolide, pSolide, pSurprise, pAcc,  pReb, pMouv, pTemp);
+                    generatePlateforme(counter, prevSolide, pSolide, pSurprise, pAcc,  pReb, pMouv, pTemp);
                 }
 
 
@@ -313,12 +313,21 @@ public class Jeu {
     public void update(double dt) {
 
 
-        if (jellyfish.y > HighSeaTower.HEIGHT + fenetreY) {
-            //{ || nombreVies ==0) {
+        if ( (jellyfish.y > HighSeaTower.HEIGHT + fenetreY) || (jellyfish.intersects(tortue) && jellyfish.getNbVies() == 1  ) {
+
             gameOver = true;
             highScore = Math.max(highScore, -(int) fenetreY + nbCrustaces * 500);
 
         }
+
+        if (jellyfish.intersects(tortue) && jellyfish.getNbVies() != 1) {
+
+                jellyfish.setNbVies(jellyfish.getNbVies()-1);
+            }
+
+
+
+
 
 
         if (!imageRight) {
@@ -369,19 +378,19 @@ public class Jeu {
             jellyfish.testCollision(plancher);
         }
 
-        boolean prevSolide;
+
         while (plateformes.get(plateformes.size() - 1).getY() > fenetreY) {
 
-            prevSolide = plateformes.get(plateformes.size() - 1).getId().equals("plateformeSolide");
+            boolean prevSolide = plateformes.get(plateformes.size() - 1).getId().equals("plateformeSolide");
 
             if (levels[0]) {
-                generationPlateformes(counter, prevSolide, 5, 0, 15, 35, 0, 0);
+                generatePlateforme(counter, prevSolide, 5, 0, 15, 35, 0, 0);
             } else if (levels[1]) {
-                generationPlateformes(counter, prevSolide, 5, 10, 20, 40, 60, 70);
+                generatePlateforme(counter, prevSolide, 5, 10, 20, 40, 60, 70);
             } else if (levels[2]) {
-                generationPlateformes(counter, prevSolide, 10, 20, 35, 50, 65, 80);
+                generatePlateforme(counter, prevSolide, 10, 20, 35, 50, 65, 80);
             } else if (levels[3]) {
-                generationPlateformes(counter, prevSolide, 0, 100, 0, 0, 0, 0);
+                generatePlateforme(counter, prevSolide, 0, 100, 0, 0, 0, 0);
             }
 
 
@@ -389,10 +398,7 @@ public class Jeu {
         }
 
         while (plateformes.get(0).getY() > HighSeaTower.HEIGHT + fenetreY) {
-
-
             plateformes.remove(0);
-
         }
 
 
@@ -439,7 +445,6 @@ public class Jeu {
             shrimp = new Shrimp(newX, newY);
         }
 
-
         jellyfish.testCollisionPiece(shrimp);
         if (jellyfish.aAttrape()) {
             Random rand = new Random();
@@ -450,8 +455,17 @@ public class Jeu {
             jellyfish.setAAttrape(false);
         }
 
-
         shrimp.update(dt);
+
+
+        if(tortue.getY() > fenetreY  + HighSeaTower.HEIGHT)
+        { Random rand = new Random();
+            double newX = rand.nextInt(HighSeaTower.WIDTH - 30 + 1);
+            double newY = fenetreY - rand.nextInt(HighSeaTower.HEIGHT - 30 + 1) + 30;
+            tortue = new Tortue(newX, newY);
+        }
+
+        tortue.update(dt);
 
 
         jellyfish.update(dt);
@@ -517,6 +531,8 @@ public class Jeu {
         jellyfish.draw(context, fenetreY);
 
         shrimp.draw(context, fenetreY);
+
+        tortue.draw(context, fenetreY);
 
         for (Plateforme p : plateformes) {
 
