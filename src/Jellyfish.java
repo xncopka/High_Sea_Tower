@@ -16,7 +16,6 @@ public class Jellyfish extends Entity {
 
     private boolean isJumping;
 
-    private boolean firstPlateforme;
 
     private boolean aAttrape = false;
 
