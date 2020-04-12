@@ -321,7 +321,7 @@ public class Jellyfish extends Entity {
 
         if (intersects(other) && other.y <  this.y
                 && vy < 0) {
-            this.vy *= -0.5;
+            this.vy *= -0.1;
         }
 
 
