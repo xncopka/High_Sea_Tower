@@ -234,21 +234,23 @@ public class HighSeaTower extends Application {
                     return;
                 }
 
+                if(controleur.getTortue()) {
 
-                if(controleur.getFirstInterTortue()) {
-                     firstInter = now;
+                    if (controleur.getFirstInterTortue()) {
+                        firstInter = now;
+                    }
+
+                    if (controleur.getLastInterTortue()) {
+                        lastInter = now;
+                    }
+
+                    if (lastInter - firstInter >= (long) 1e+6) {
+                        controleur.setNbVies(controleur.getNbVies() - 1);
+                        firstInter = 0;
+                        lastInter = 0;
+                    }
+
                 }
-
-                if(controleur.getLastInterTortue()) {
-                     lastInter = now;
-                }
-
-                if (lastInter - firstInter >= (long) (1e+9)/100 ) {
-                    controleur.setNbVies(controleur.getNbVies() - 1);
-                    firstInter =0;
-                    lastInter = 0;
-                }
-
 
 
 

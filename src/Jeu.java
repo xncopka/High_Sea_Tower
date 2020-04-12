@@ -27,6 +27,7 @@ public class Jeu {
     private Plateforme plancher;
     private Shrimp shrimp;
     private Tortue tortue;
+    private Trampoline trampoline;
 
 
     private boolean modeDebug;
@@ -47,12 +48,21 @@ public class Jeu {
 
     private boolean[] levels = new boolean[4];
 
+    private boolean trampInGame = false;
+
+    private int probTrampoline;
+
+    private boolean firstTortue=true;
+
 
 
 
     public Jeu() {
 
         levels[0] = true;
+        tortue = null;
+
+        trampoline = null;
 
 
 
@@ -93,7 +103,7 @@ public class Jeu {
         shrimp = new Shrimp( rand.nextInt(HighSeaTower.WIDTH - 30 + 1),
                 rand.nextInt(90+1));
 
-        tortue = new Tortue(0, 250);
+        //tortue = new Tortue(0, -30);
 
         gameOver = false;
 
@@ -312,8 +322,10 @@ public class Jeu {
 
 
     public boolean getFirstInterTortue() {
-            return jellyfish.getFirstInterTortue(tortue);
+        return jellyfish.getFirstInterTortue(tortue);
     }
+
+
 
     public boolean getLastInterTortue() {
         return jellyfish.getLastInterTortue(tortue);
@@ -327,11 +339,34 @@ public class Jeu {
     }
 
 
+     public boolean getTortue() {
+        if (tortue == null) {
+            return false;
+        } else {
+            return true;
+        }
+     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     public void update(double dt) {
+    
 
-        jellyfish.testCollision(tortue);
+
 
 
 
@@ -405,7 +440,7 @@ public class Jeu {
             if (levels[0]) {
                 generatePlateforme(counter, prevSolide, 5, 0, 15, 35, 0, 0);
             } else if (levels[1]) {
-                generatePlateforme(counter, prevSolide, 5, 10, 20, 40, 60, 70);
+                generatePlateforme(counter, prevSolide, 5, 15, 30, 45, 60, 75);
             } else if (levels[2]) {
                 generatePlateforme(counter, prevSolide, 10, 20, 35, 50, 65, 80);
             } else if (levels[3]) {
@@ -413,7 +448,14 @@ public class Jeu {
             }
 
 
+
+
             counter++;
+        }
+
+        if (levels[2] && firstTortue) {
+            tortue = new Tortue(0, plateformes.get(plateformes.size()-1).getY()-70);
+            firstTortue = false;
         }
 
         while (plateformes.get(0).getY() > HighSeaTower.HEIGHT + fenetreY) {
@@ -445,14 +487,27 @@ public class Jeu {
             }
 
 
+            if (p.getId().equals("plateformeMouvante") && p.getPossedeTramp() ) {
+                trampoline.setVX(p.getVX());
+            }
+            
+
+
         }
 
         for (Iterator<Plateforme> iterator = plateformes.iterator(); iterator.hasNext(); ) {
             Plateforme plateforme = iterator.next();
             if (plateforme.getId().equals("plateformeTemporaire")) {
-                if (jellyfish.getIsJumping() && jellyfish.getfirstPlateforme()) {
+
+                if (jellyfish.getIsJumping() && plateforme.getPlateformeSaute()) {
+
+                    if(plateforme.getPossedeTramp()) {
+                        trampoline = null;
+                        trampInGame = false;
+                    }
                     iterator.remove();
-                    jellyfish.setfirstPlateforme(false);
+
+
                 }
             }
         }
@@ -477,14 +532,49 @@ public class Jeu {
         shrimp.update(dt);
 
 
-        if(tortue.getY() > fenetreY  + HighSeaTower.HEIGHT)
-        { Random rand = new Random();
-            double newX = rand.nextInt(HighSeaTower.WIDTH - 30 + 1);
-            double newY = fenetreY - rand.nextInt(HighSeaTower.HEIGHT - 30 + 1) + 30;
-            tortue = new Tortue(newX, newY);
+        if(tortue != null) {
+            jellyfish.testCollision(tortue);
+            if (tortue.getY() > fenetreY + HighSeaTower.HEIGHT) {
+                Random rand = new Random();
+                double newX = rand.nextInt(HighSeaTower.WIDTH - 60 + 1);
+                double newY = fenetreY - rand.nextInt(5)*110 -70;
+                tortue = new Tortue(newX, newY);
+            }
+
+            tortue.update(dt);
         }
 
-        tortue.update(dt);
+
+        Random random = new Random();
+        probTrampoline = random.nextInt(201);
+        if(probTrampoline == 0 && !trampInGame) {
+            trampInGame = true;
+            //System.out.println((plateformes.get(plateformes.size()-1).getLargeur()));
+            trampoline = new Trampoline((plateformes.get(plateformes.size()-1).getX()+ plateformes.get(plateformes.size()-1).getLargeur() - 20 - plateformes.get(plateformes.size()-1).getX())*random.nextDouble()
+                   + plateformes.get(plateformes.size()-1).getX(), plateformes.get(plateformes.size()-1).getY() - 30);
+            plateformes.get(plateformes.size()-1).setPossedeTramp(true);
+        }
+
+        
+
+
+
+
+
+             if(trampoline != null) {
+                 jellyfish.testCollision(trampoline);
+                 trampoline.update(dt);
+
+                 if(trampoline.getY() > fenetreY  + HighSeaTower.HEIGHT) {
+                     trampInGame = false;
+                     trampoline = null;
+                 }
+             }
+
+
+
+
+
 
 
         jellyfish.update(dt);
@@ -551,7 +641,14 @@ public class Jeu {
 
         shrimp.draw(context, fenetreY);
 
-        tortue.draw(context, fenetreY);
+
+        if(tortue != null) {
+            tortue.draw(context, fenetreY);
+        }
+
+        if(trampoline != null) {
+            trampoline.draw(context, fenetreY);
+        }
 
         for (Plateforme p : plateformes) {
 
@@ -572,6 +669,11 @@ public class Jeu {
             context.setFill(Color.rgb(255, 0, 0, 0.4));
             context.fillRect(jellyfish.x, jellyfish.y - fenetreY, jellyfish.largeur, jellyfish.hauteur);
 
+            if (tortue != null) {
+                context.setFill(Color.rgb(0, 255, 0, 0.4));
+                context.fillRect(tortue.x, tortue.y - fenetreY, tortue.largeur, tortue.hauteur);
+            }
+
             context.setFont(Font.font(12));
             context.setFill(Color.WHITE);
             context.setTextAlign(TextAlignment.LEFT);
@@ -587,6 +689,8 @@ public class Jeu {
                             + "isJumping :" + jellyfish.getIsJumping() +"\n"
                             + "position Shrimp : (" + (int) shrimp.getX() + ", " + (int)shrimp.getY()  + ")" +"\n"
                             + "nombre de crustacés: " + nbCrustaces +"\n"
+                            //+ "probTrampo" +  probTrampoline
+                            + "getfirstPlateforme()" + jellyfish.getfirstPlateforme()
 
 
 

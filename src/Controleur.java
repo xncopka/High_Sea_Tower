@@ -55,6 +55,8 @@ import javafx.scene.canvas.GraphicsContext;
             return jeu.getFirstInterTortue();
         }
 
+
+
         public boolean getLastInterTortue() {
             return jeu.getLastInterTortue();
         }
@@ -64,6 +66,10 @@ import javafx.scene.canvas.GraphicsContext;
         }
         public void setNbVies(int life) {
              jeu.setNbVies(life);
+        }
+
+        public boolean getTortue() {
+            return jeu.getTortue();
         }
 
 

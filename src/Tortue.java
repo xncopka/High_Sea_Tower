@@ -22,7 +22,7 @@ public class Tortue extends Entity {
         this.y = y;
         this.largeur = 60;
         this.hauteur = 40;
-        this.vx = 100;
+        this.vx = 50;
         this.vy = 0;
         this.ax = 0;
         this.ay = 0;
@@ -51,6 +51,8 @@ public class Tortue extends Entity {
         imageLeft = framesLeft[0];
 
     }
+
+
 
 
 

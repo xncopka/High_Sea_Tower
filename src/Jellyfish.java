@@ -24,6 +24,8 @@ public class Jellyfish extends Entity {
 
     private boolean firstInter = true;
 
+    private boolean trampUsed = false;
+
 
 
 
@@ -46,6 +48,7 @@ public class Jellyfish extends Entity {
         this.ax = 0;
         this.ay = 1200;
         this.parterre = true;
+
 
 
        // Chargement des images
@@ -133,7 +136,7 @@ public class Jellyfish extends Entity {
 
            if (other.getId().equals("plateformeRebon")) {
                 this.vy *= -1.5;
-                vy = Math.min(vy, -100);
+                vy = Math.min(vy, -300);
 
             } else {
                this.vy = 0;
@@ -146,7 +149,7 @@ public class Jellyfish extends Entity {
             }
 
             if (other.getId().equals("plateformeTemporaire")) {
-                firstPlateforme = true;
+                other.setPlateformeSaute(true);
 
             }
 
@@ -155,8 +158,7 @@ public class Jellyfish extends Entity {
         if (other.getId().equals("plateformeSolide")) {
             if (intersects(other) && Math.abs(  other.y + other.getHauteur() - this.y) < 10
                     && vy < 0) {
-                pushOutBas(other);
-                this.vy *= -0.9;
+                this.vy *= -0.5;
 
             }
         }
@@ -213,10 +215,11 @@ public class Jellyfish extends Entity {
 
     }
 
-    public void pushOutBas (Entity other) {
-        double deltaY =  other.y + other.getHauteur() - this.y;
-        this.y += deltaY;
-    }
+
+
+
+
+
 
 
     /**
@@ -307,27 +310,41 @@ public class Jellyfish extends Entity {
 
 
     public void testCollision(Tortue other) {
-        if (intersects(other) && Math.abs(this.y + hauteur - other.y) < 10
-                && vy > 0) {
+        if (intersects(other) && Math.abs(this.y + hauteur - other.y) < other.hauteur
+                && vy > 0 ) {
             pushOut(other);
+           
             this.parterre = true;
             isJumping = false;
-            this.vy=0;
+            this.vy=0;                                               
         }
 
-        if (intersects(other) && Math.abs(  other.y + other.getHauteur() - this.y) < 10
+        if (intersects(other) && other.y <  this.y
                 && vy < 0) {
-            pushOutBas(other);
-            this.vy *= -0.9;
+            this.vy *= -0.5;
         }
 
-        
+
 
     }
 
 
+
+    public void testCollision(Trampoline other) {
+        if (intersects(other) && Math.abs(this.y + hauteur - other.y) < 20
+                && vy > 0) {
+            pushOut(other);
+            this.parterre = true;
+            isJumping = false;
+            this.vy=-750;
+            trampUsed = true;
+        }
+    }
+    
+
+
     public boolean getFirstInterTortue(Tortue other){
-        if (firstInter && intersects(other) && vy < 0) {
+        if (firstInter && intersects(other) && vy <= 28 && other.y < this.y) {
             firstInter = false;
             return true;
         } else {
@@ -336,7 +353,7 @@ public class Jellyfish extends Entity {
     }
 
     public boolean getLastInterTortue(Tortue other){
-        if (!firstInter && !intersects(other) && vy < 0) {
+        if (!firstInter && !intersects(other)) {
             firstInter = true;
             return true;
         } else {

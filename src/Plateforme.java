@@ -8,6 +8,8 @@ public class Plateforme extends Entity {
 
     private Color color;
     private String id;
+    private boolean possedeTramp;
+    private boolean plateformeSaute = false;
 
 
     public Plateforme(int counter) {
@@ -16,6 +18,7 @@ public class Plateforme extends Entity {
         this.hauteur = 10;
         this.y = HighSeaTower.HEIGHT - (100+10)*counter ;
         this.x = rand.nextInt(HighSeaTower.WIDTH + 1);
+        this.possedeTramp = false;
 
     }
 
@@ -25,6 +28,12 @@ public class Plateforme extends Entity {
     public String getId() {
         return id;
     }
+    public boolean getPossedeTramp(){
+        return this.possedeTramp;
+    }
+    public boolean getPlateformeSaute() {
+        return this.plateformeSaute;
+    }
 
 
     public void setColor(Color color) {
@@ -32,6 +41,12 @@ public class Plateforme extends Entity {
     }
     public void setId(String typePlateforme) {
         this.id = typePlateforme;
+    }
+    public void setPossedeTramp(boolean possedeTramp) {
+        this.possedeTramp = possedeTramp;
+    }
+    public void setPlateformeSaute(boolean plateformeSaute) {
+        this.plateformeSaute = plateformeSaute;
     }
 
 
