@@ -4,7 +4,8 @@ import javafx.scene.image.Image;
 
 public class Jellyfish extends Entity {
 
-    private Image[] frames;
+    private Image[] framesRight;
+    private Image[] framesLeft;
     private Image image;
     private double frameRate = 8; // 8 frame par sec
     private double tempsTotal = 0;
@@ -51,7 +52,7 @@ public class Jellyfish extends Entity {
 
 
        // Chargement des images
-        frames = new Image[]{
+        framesRight = new Image[]{
                 new Image("/jellyfish1.png"),
                 new Image("/jellyfish2.png"),
                 new Image("/jellyfish3.png"),
@@ -59,15 +60,38 @@ public class Jellyfish extends Entity {
                 new Image("/jellyfish5.png"),
                 new Image("/jellyfish6.png")
         };
-        image = frames[0];
+        image = framesRight[0];
+
+        framesLeft = new Image[]{
+                new Image("/jellyfish1g.png"),
+                new Image("/jellyfish2g.png"),
+                new Image("/jellyfish3g.png"),
+                new Image("/jellyfish4g.png"),
+                new Image("/jellyfish5g.png"),
+                new Image("/jellyfish6g.png")
+        };
 
 
     }
 
-    public void setImage(Image[] images){
-        this.frames = images;
+  /* public void setImage(Image[] images){
+        this.images = images;
+
+        }*/
+
+
+
+
+    public Image getImageActuelle(){
+        return this.image;
 
     }
+
+
+   /* public Image[] getImageInverse(){
+        return this.framesInverse;
+
+    }*/
 
 
 
@@ -101,7 +125,15 @@ public class Jellyfish extends Entity {
         tempsTotal += deltaTime;
         int frame = (int) (tempsTotal * frameRate);
 
-        image = frames[frame % frames.length];
+        //image = framesActuelle[frame % framesActuelle.length];
+
+        if(this.vx>0) {
+            image = framesRight[frame % framesRight.length];
+        }else if (this.vx < 0) {
+            image = framesLeft[frame % framesLeft.length];
+        } else {
+            image = getImageActuelle();
+        }
     }
 
     public void testCollision(Plateforme other) {

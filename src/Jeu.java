@@ -4,7 +4,6 @@ import java.util.Random;
 
 
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
 import javafx.scene.paint.*;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
@@ -33,8 +32,6 @@ public class Jeu {
     private boolean modeDebug;
 
     private boolean gameOver;
-
-    private boolean imageRight;
 
     private boolean firstParterreAcc = true;
     
@@ -283,14 +280,6 @@ public class Jeu {
         return this.gameOver;
     }
 
-    public void imageRight() {
-        imageRight = true;
-    }
-
-    public void imageLeft() {
-        imageRight = false;
-    }
-
     public void setFenetreVY(double fenetreVY) {
         this.fenetreVY = fenetreVY;
     }
@@ -377,36 +366,13 @@ public class Jeu {
 
         }
 
-        
 
 
 
 
 
 
-        if (!imageRight) {
-            jellyfish.setImage(new Image[]{
-                    new Image("/jellyfish1g.png"),
-                    new Image("/jellyfish2g.png"),
-                    new Image("/jellyfish3g.png"),
-                    new Image("/jellyfish4g.png"),
-                    new Image("/jellyfish5g.png"),
-                    new Image("/jellyfish6g.png")
-            });
-        }
 
-        if (imageRight) {
-            jellyfish.setImage(new Image[]{
-                    new Image("/jellyfish1.png"),
-                    new Image("/jellyfish2.png"),
-                    new Image("/jellyfish3.png"),
-                    new Image("/jellyfish4.png"),
-                    new Image("/jellyfish5.png"),
-                    new Image("/jellyfish6.png")
-            });
-
-
-        }
 
 
         // Pour chaque groupe de bulle

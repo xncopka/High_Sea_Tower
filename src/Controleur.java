@@ -40,14 +40,6 @@ import javafx.scene.canvas.GraphicsContext;
             return jeu.getGameOver();
         }
 
-        void imageLeft() {
-            jeu.imageLeft();
-        }
-
-        void imageRight() {
-            jeu.imageRight();
-
-        }
 
         public void updateInit() {jeu.updateInit();}
 

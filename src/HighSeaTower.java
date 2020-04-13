@@ -101,7 +101,6 @@ public class HighSeaTower extends Application {
                 root.getChildren().remove(again);
                 timer.start();
                 controleur.left();
-                controleur.imageLeft();
                 gauche = true;
 
 
@@ -115,7 +114,6 @@ public class HighSeaTower extends Application {
                 root.getChildren().remove(again);
                 timer.start();
                 controleur.right();
-                controleur.imageRight();
                 droite = true;
                 
 
