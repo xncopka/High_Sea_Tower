@@ -223,7 +223,6 @@ public class HighSeaTower extends Application {
      */
     public void startGame() {
         controleur = new Controleur();
-        controleur.updateInit();
         controleur.draw(context);
     }
 

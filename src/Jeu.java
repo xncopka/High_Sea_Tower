@@ -84,6 +84,9 @@ public class Jeu {
         plancher.setId("plancher");
 
 
+
+
+
         // Plateformes du debut du jeu
         var counter = 1;
         boolean prevSolide;
@@ -105,6 +108,7 @@ public class Jeu {
 
         // initialiser la meduse
         jellyfish = new Jellyfish(width/2 - 25, height);
+        jellyfish.update(0);
 
         // pas de bulles au debut du jeu
         bulles = new Bulle[0][0];
@@ -116,6 +120,9 @@ public class Jeu {
 
         // le jeu n'est pas terminée
         gameOver = false;
+
+        // initialise le score
+        score = -(int) fenetreY + "m";
 
     }
 
@@ -366,20 +373,7 @@ public class Jeu {
         this.fenetreVY = fenetreVY;
     }
 
-    /**
-     * Initialisation du debut du jeu avant que le timer commence
-     */
-    public void updateInit() {
-        if (plancher != null) {
-            jellyfish.testCollision(plancher);
-        }
-        for (Plateforme p : plateformes) {
-            p.update(0);
-        }
-        jellyfish.update(0);
-        score = -(int) fenetreY + "m";
 
-    }
 
     /**
      * Represente le niveau de difficulté du jeu

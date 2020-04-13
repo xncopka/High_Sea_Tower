@@ -80,11 +80,6 @@ public class Controleur {
         return jeu.getGameOver();
     }
 
-    /**
-     *
-     * Methode pour mettre à jour le jeu avec ses valeurs initiales
-     */
-    public void updateInit() {jeu.updateInit();}
 
 
     /**
