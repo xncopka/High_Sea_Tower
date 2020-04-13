@@ -161,7 +161,6 @@ public class Jellyfish extends Entity {
                 this.vy *= -1.5;
                 vy = Math.min(vy, -300);
                 vy = Math.max(vy,-1000);
-                System.out.println(vy);
 
             } else {
                this.vy = 0;
