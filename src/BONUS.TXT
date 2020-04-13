@@ -31,7 +31,7 @@ lorsque la méduse se pose sur celle-ci. Nous avons également crée une méthod
 generateSurprise qui genère une plateforme de facon aléatoire, ayant une couleur
 spécifique, camouflant le type de plateforme de celle-ci.
 
-6)
+6) Trampoline
 Nous avons ajouté une trampoline qui permet à la méduse de se propulser plus haut
 lorsqu'elle touche celle-ci. Pour cela, nous avons créé une classe représentant
 la trampoline
