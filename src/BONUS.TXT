@@ -53,7 +53,7 @@ est augmentée. De plus, nous avons pris soin de situer les trampolines toujours
 des plateformes.
 
 7) Ameliorations diverses 
-ajout d'un restart en appuyant sur la touche R du clavier, rendre les deplacements de 
-la meduse plus fluide si deux touches sont appuyés, informations de debogage plus 
-détaillées, ajout de texte dans le pane pour le debut de partie et la fin de partie, 
-garder en memoire le plus haut score obtenu.
+ajout d'un restart en appuyant sur la touche R du clavier, rendre les deplacements à gauche et
+droite de la meduse plus fluide, informations de  debogage plus détaillées, ajout de texte dans 
+le pane pour le debut de partie et la fin de partie, garder en memoire le plus haut score obtenu, 
+changements volontaires de la plateforme rebondissante afin d'assurer une meilleure jouabilité.
