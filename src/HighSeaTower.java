@@ -18,7 +18,12 @@ import javafx.stage.Stage;
  * 13 avril 2020
  * @author Thomas Bui
  * @author Vanda Gaonac'h-Lovejoy, 1018781
- *   Classe qui sert à définir ce qui doit être affiché (Vue)
+ * Jeu en interface graphique qui tente de remonter une meduse
+ * le plus dans l’océan en sautant de plateforme en plateforme.
+ * L’écran monte graduellement automatiquement, etle but est
+ * de ne pas tomber au fond de l’océan. La classe HighSeaTower
+ * est la main de notre programme.
+ * Classe qui sert à définir ce qui doit être affiché (Vue)
  */
 public class HighSeaTower extends Application {
 
