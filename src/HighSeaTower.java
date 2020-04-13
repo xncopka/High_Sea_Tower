@@ -62,7 +62,7 @@ public class HighSeaTower extends Application {
     // Texte du debut de partie
     private Text begin;
 
-    /**
+    /** Méthode main de HighSeaTower
      * @param args the command line arguments
      */
     public static void main(String[] args) {
@@ -72,8 +72,8 @@ public class HighSeaTower extends Application {
 
     /**
      * Méthode start qui est redéfinie et sert à construire l’interface
-     * @param primaryStage
-     * @throws Exception
+     * @param primaryStage représente la fenetre de l'application
+     * @throws Exception // FXMLLoader.load(...) throws an IOException
      */
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -113,8 +113,10 @@ public class HighSeaTower extends Application {
                 Platform.exit();
             }
 
-            // Lancer le timer et faire saute jellyfish si on appuie sur Espace
-            if (event.getCode() == KeyCode.SPACE || event.getCode() == KeyCode.UP) {
+            // Lancer le timer et faire saute jellyfish si on appuie
+            // sur Espace
+            if (event.getCode() == KeyCode.SPACE || event.getCode() ==
+                    KeyCode.UP) {
                 root.getChildren().remove(over);
                 root.getChildren().remove(again);
                 root.getChildren().remove(begin);
@@ -198,7 +200,6 @@ public class HighSeaTower extends Application {
                 controleur.stop();
             }
 
-
         });
 
 
@@ -219,17 +220,12 @@ public class HighSeaTower extends Application {
     }
 
     /**
-     * savoir si la partie est terminée
+     * Methode qui renvoit si la partie est terminée
      * @return un boolean
      */
     public boolean getGameOver() {
         return controleur.getGameOver();
     }
-
-
-
-
-
 
 
     /**
@@ -340,7 +336,6 @@ public class HighSeaTower extends Application {
         startGame();
         newTimer();
 
-
     }
 
     /**
@@ -382,10 +377,6 @@ public class HighSeaTower extends Application {
         again.setY(240);
         root.getChildren().add(again);
     }
-
-
-
-
 
 }
 
