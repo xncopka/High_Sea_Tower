@@ -117,7 +117,7 @@ public class HighSeaTower extends Application {
             }
 
             // Lancer le timer et faire saute jellyfish si on appuie
-            // sur Espace
+            // sur Espace ou Haut
             if (event.getCode() == KeyCode.SPACE || event.getCode() ==
                     KeyCode.UP) {
                 root.getChildren().remove(over);
@@ -158,7 +158,7 @@ public class HighSeaTower extends Application {
 
             }
 
-            // Lance le mode debug ou revient au mode normal
+            // Lance le mode debug ou revient au mode normal en appuyant sur T
             if (event.getCode() == KeyCode.T) {
                 controleur.debug();
                 controleur.draw(context);  // permet d'utiliser le
@@ -166,7 +166,7 @@ public class HighSeaTower extends Application {
 
             }
 
-            // Restart la partie
+            // Restart la partie en appuyant sur R
             if (event.getCode() == KeyCode.R) {
                 restart();
 
