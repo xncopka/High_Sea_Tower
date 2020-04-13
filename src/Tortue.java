@@ -11,7 +11,7 @@ public class Tortue extends Entity {
     private Image imageRight;
     private  Image[] framesLeft;
     private Image imageLeft;
-    private double frameRate = 4; // 4 frame par sec
+    private double frameRate = 8;
     private double tempsTotal = 0;
 
 
