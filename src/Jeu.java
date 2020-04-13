@@ -437,14 +437,17 @@ public class Jeu {
     }
 
     /**
-     * Accesseur du nombre de vies de la meduse
-     * @param life
+     * Mutateur du nombre de vies de la meduse
+     * @param life nouveau nombre de vies restant
      */
     public void setNbVies(int life) {
         jellyfish.setNbVies(life);
     }
 
-
+    /**
+     * savoir si une tortue est dans le jeu
+     * @return une boolean
+     */
      public boolean getTortue() {
         if (tortue == null) {
             return false;
