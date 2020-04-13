@@ -104,6 +104,9 @@ public class Jeu {
 
                 counter++;
         }
+        for (Plateforme p : plateformes) {
+            p.update(0);
+        }
 
         // initialiser la méduse
         jellyfish = new Jellyfish(width/2 - 25, height);
