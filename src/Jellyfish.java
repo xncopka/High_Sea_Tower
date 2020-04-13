@@ -74,10 +74,6 @@ public class Jellyfish extends Entity {
 
     }
 
-  /* public void setImage(Image[] images){
-        this.images = images;
-
-        }*/
 
 
 
@@ -88,10 +84,6 @@ public class Jellyfish extends Entity {
     }
 
 
-   /* public Image[] getImageInverse(){
-        return this.framesInverse;
-
-    }*/
 
 
 
@@ -168,6 +160,8 @@ public class Jellyfish extends Entity {
            if (other.getId().equals("plateformeRebon")) {
                 this.vy *= -1.5;
                 vy = Math.min(vy, -300);
+                vy = Math.max(vy,-1000);
+                System.out.println(vy);
 
             } else {
                this.vy = 0;
