@@ -15,6 +15,9 @@ import javafx.stage.Stage;
 
 
 /**
+ * 13 avril 2020
+ * @author Thomas Bui
+ * @author Vanda Gaonac'h-Lovejoy, 1018781
  *   Classe qui sert à définir ce qui doit être affiché (Vue)
  */
 public class HighSeaTower extends Application {
