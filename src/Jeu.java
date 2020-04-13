@@ -559,7 +559,7 @@ public class Jeu {
         }
 
         // Permet de pouvoir supprimer les plateformes temporaires apres que la meduse saute depuis ces plateformes
-        // On utilise un iterator afin d'eviter l'exception de type NULL
+        // On utilise un iterator afin d'eviter l'exception de type ConcurrentModificationException
         for (Iterator<Plateforme> iterator = plateformes.iterator(); iterator.hasNext(); ) {
             Plateforme plateforme = iterator.next();
             if (plateforme.getId().equals("plateformeTemporaire")) {
