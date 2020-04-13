@@ -5,24 +5,33 @@ Nous avons rajouté une tortue qui agis comme un ennemi de la méduse
 Celle-ci se déplace verticalement. Lorsque la méduse touche 3 fois la
 tortue, celle-ci meurt. La méduse peut cependant se propulser à partir
 de la carapace de la tortue. Nous avons ajouté une classe Tortue. La tortue
-apparait après le niveau 2 de notre jeu.
+apparait à partir du niveau difficile de notre jeu. Pour le systeme de vies,
+nous avons mis dans le timer du code permettant de savoir quand la meduse a
+touché en premier et en dernier la tortue. Et si la difference est d'un certain
+temps alors la vie de la meduse est decrementé de 1.
 
 2) Niveaux de difficulté
 Nous avons rajouté des niveaux de difficulté à notre jeu. Le niveau du jeu
 dépend du nombre de point gagné lors de celui-ci. Au debut du jeu on est
 au niveau facile, puis apres un certain nombre de points, on est au niveau
- normal, puis difficile et enfin hardcore
+ normal, puis difficile et enfin hardcore. Au mode facile, nous avons seulement
+ les plateformes demandes dans l'enonce. Au niveau moyen, nous avons toutes les
+ plateformes. Au niveau difficile, nous avons ajouter en plus les tortues au jeu.
+ Enfin au dernier niveau, seulement des plateformes surprises sont générés.
 
 3)Points gagnés lors d'une partie
 Nombre de points gagnes qui est le nombre depixels dont l'ecran a monte depuis
 le debut de partie additionnes des points supplementaires gagnes grace aux
-crevettes mangés
+crevettes mangés. Ainsi si on veut seulement savoir le nombre de pixels dont l'ecran a
+monte depuis le debut de partie (score d'apres l'enoncé), il faut activer le mode 
+debug pour le savoir. 
 
 4)Shrimp
 Nous avons rajouté des crevettes tout au long du jeu qui permettent à la méduse
 d'accumuler des points. Pour cela, nous avons créée une classe representant une
-crevette dans l'océan, proie de la meduse.Lorsquela meduse attrape une crevette,
-le joueur gagne des points supplémentaires
+crevette dans l'océan, proie de la meduse. Lorsque la meduse attrape une crevette,
+le joueur gagne des points supplémentaires. La crevette est modélisée comme un cercle
+donc on a ajouté une methode intersects propre a la crevette.
 
 5)Plateformes
 Nous avons crée deux types de plateformes en plus de celles de l'énoncée du tp.
@@ -30,8 +39,21 @@ La plateforme mouvante, bouge selon l'axe y et la plateforme temporaire disparai
 lorsque la méduse se pose sur celle-ci. Nous avons également crée une méthode
 generateSurprise qui genère une plateforme de facon aléatoire, ayant une couleur
 spécifique, camouflant le type de plateforme de celle-ci.
+Pour les plateformes temporaires, nous avons utilisé un Iterator et sa methode remove() nous
+permettant de pouvoir supprimer les plateformes temporaires des que la meduse saute sur
+ce type de plateforme. Pour les plateformes mouvantes, nous avons ajouté une vitesse en x à
+la plateforme. Et pour les plateformes surprises, nous avons ajoute un switch qui genere une
+plateforme suivant le numero tombé.
 
 6) Trampoline
 Nous avons ajouté une trampoline qui permet à la méduse de se propulser plus haut
 lorsqu'elle touche celle-ci. Pour cela, nous avons créé une classe représentant
-la trampoline
+la trampoline. Quand la meduse tombe sur un trampoline, sa vitesse en y vers le haut 
+est augmentée. De plus, nous avons pris soin de situer les trampolines toujours sur 
+des plateformes.
+
+7) Ameliorations diverses 
+ajout d'un restart en appuyant sur la touche R du clavier, rendre les deplacements de 
+la meduse plus fluide si deux touches sont appuyés, informations de debogage plus 
+détaillées, ajout de texte dans le pane pour le debut de partie et la fin de partie, 
+garder en memoire le plus haut score obtenu.
