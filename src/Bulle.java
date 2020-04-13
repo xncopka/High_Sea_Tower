@@ -64,7 +64,8 @@ public class Bulle extends Entity {
      * @param widthScreen largeur de l'ecran
      * @param heightScreen hauteur de l'ecran
      */
-    public static void groupBulles (Bulle[][] bulles, double widthScreen, double heightScreen) {
+    public static void groupBulles (Bulle[][] bulles, double widthScreen,
+                                    double heightScreen) {
         Random random= new Random();
         double[] baseX = new double[bulles.length];
         double borne = 20;
@@ -78,17 +79,21 @@ public class Bulle extends Entity {
             for (int j = 0; j < bulles[0].length; j++) {
 
                 // calculer rayon pour chaque bulle
-                double rayon = random.nextDouble() * (maxRayon + 1 - minRayon) + minRayon;
+                double rayon = random.nextDouble() * (maxRayon + 1 - minRayon)
+                        + minRayon;
 
                 // calculer vitesse pour chaque bulle
-                double vitesseY = random.nextDouble() * (Bulle.vitesseMax + 1 - Bulle.vitesseMin) + Bulle.vitesseMin;
+                double vitesseY = random.nextDouble() * (Bulle.vitesseMax + 1
+                        - Bulle.vitesseMin) + Bulle.vitesseMin;
 
                 // calculer la position initiale X pour chaque bulle
                 double base = baseX[i];
-                double initX = random.nextDouble() * (base + borne + 1 - base + borne) + base - borne;
+                double initX = random.nextDouble() * (base + borne + 1 - base
+                        + borne) + base - borne;
 
                 // mettre a jour les valeurs dans la bulle
-                bulles[i][j] = new Bulle(initX, heightScreen, rayon, 0, vitesseY);
+                bulles[i][j] = new Bulle(initX, heightScreen, rayon, 0,
+                        vitesseY);
             }
         }
     }
@@ -105,8 +110,6 @@ public class Bulle extends Entity {
         context.setFill(Color.rgb(0, 0, 255, 0.4));
         context.fillOval(getX(), yAffiche, getRayon()*2, getRayon()*2);
     }
-
-
 }
 
 

@@ -5,7 +5,8 @@ import javafx.scene.image.Image;
 
 /**
  * Classe representant une crevette dans l'océan, proie de la meduse.
- * Si la meduse attrape une crevette, le joueur gagne des points supplémentaires
+ * Si la meduse attrape une crevette, le joueur gagne des points
+ * supplémentaires
  */
 public class Shrimp extends Entity {
 
@@ -29,8 +30,6 @@ public class Shrimp extends Entity {
     }
 
 
-
-
     /**
      * Accesseur de rayon
      * @return le rayon
@@ -38,9 +37,6 @@ public class Shrimp extends Entity {
     public double getRayon() {
         return rayon;
     }
-
-
-
 
     /**
      * Met à jour la position de la crevette

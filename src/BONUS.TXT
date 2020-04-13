@@ -1,0 +1,37 @@
+Fonctionnalités rajoutées:
+
+1) Ennemi
+Nous avons rajouté une tortue qui agis comme un ennemi de la méduse
+Celle-ci se déplace verticalement. Lorsque la méduse touche 3 fois la
+tortue, celle-ci meurt. La méduse peut cependant se propulser à partir
+de la carapace de la tortue. Nous avons ajouté une classe Tortue. La tortue
+apparait après le niveau 2 de notre jeu.
+
+2) Niveaux de difficulté
+Nous avons rajouté des niveaux de difficulté à notre jeu. Le niveau du jeu
+dépend du nombre de point gagné lors de celui-ci. Au debut du jeu on est
+au niveau facile, puis apres un certain nombre de points, on est au niveau
+ normal, puis difficile et enfin hardcore
+
+3)Points gagnés lors d'une partie
+Nombre de points gagnes qui est le nombre depixels dont l'ecran a monte depuis
+le debut de partie additionnes des points supplementaires gagnes grace aux
+crevettes mangés
+
+4)Shrimp
+Nous avons rajouté des crevettes tout au long du jeu qui permettent à la méduse
+d'accumuler des points. Pour cela, nous avons créée une classe representant une
+crevette dans l'océan, proie de la meduse.Lorsquela meduse attrape une crevette,
+le joueur gagne des points supplémentaires
+
+5)Plateformes
+Nous avons crée deux types de plateformes en plus de celles de l'énoncée du tp.
+La plateforme mouvante, bouge selon l'axe y et la plateforme temporaire disparait
+lorsque la méduse se pose sur celle-ci. Nous avons également crée une méthode
+generateSurprise qui genère une plateforme de facon aléatoire, ayant une couleur
+spécifique, camouflant le type de plateforme de celle-ci.
+
+6)
+Nous avons ajouté une trampoline qui permet à la méduse de se propulser plus haut
+lorsqu'elle touche celle-ci. Pour cela, nous avons créé une classe représentant
+la trampoline

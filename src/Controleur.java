@@ -1,7 +1,7 @@
 import javafx.scene.canvas.GraphicsContext;
 
 /**
- *  classe qui relie la vue au modele, HighSeaTower à Jeu
+ *  Classe qui relie la vue au modèle, HighSeaTower à Jeu
  */
 
 
@@ -114,7 +114,6 @@ public class Controleur {
         jeu.setNbVies(life);
     }
 
-
     /**
      * Methode pour savoir si une tortue est dans le jeu
      * @return  un boolean
@@ -122,10 +121,6 @@ public class Controleur {
     public boolean getTortue() {
         return jeu.getTortue();
     }
-
-
-
-
 
 }
 

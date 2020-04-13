@@ -25,8 +25,8 @@ public class Plateforme extends Entity {
     /**
      * Constructeur de Plateforme
      * @param counter  compteur du nombre de plateformes crees afin
-     *                 de positionner la plateforme au bon endroit
-     *                0 signifie la construction du plancher
+     * de positionner la plateforme au bon endroit 0 signifie la
+     * construction du plancher
      */
     public Plateforme(int counter) {
         Random rand = new Random();
@@ -69,7 +69,7 @@ public class Plateforme extends Entity {
     }
 
     /**
-     * Methode qui dessine la plateforme
+     * Méthode qui dessine la plateforme
      * @param context contexte graphique du canvas
      * @param fenetreY position y par rapport au niveau du jeu
      */

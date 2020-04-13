@@ -10,7 +10,7 @@ import javafx.scene.text.TextAlignment;
 
 /**
  * Classe reprentant le jeu et la logique interne de
- * l’application (modele)
+ * l’application (modèle)
  */
 public class Jeu {
 
@@ -99,17 +99,13 @@ public class Jeu {
                         1).getId().equals("plateformeSolide");
             }
 
-
-
             generatePlateforme(counter, prevSolide, 5, 0,
                     15, 35, 0, 0);
-
-
 
                 counter++;
         }
 
-        // initialiser la meduse
+        // initialiser la méduse
         jellyfish = new Jellyfish(width/2 - 25, height);
         jellyfish.update(0);
 
@@ -132,7 +128,7 @@ public class Jeu {
     /**
      * Permet de generer une plateforme simple
      * @param counter compteur du nombre de plateformes crees afin
-     *               de positionner la plateforme au bon endroit
+     * de positionner la plateforme au bon endroit
      */
     public void generateSimple(int counter) {
         Plateforme plateformeSimple = new Plateforme(counter);
@@ -158,7 +154,7 @@ public class Jeu {
     /**
      * Permet de generer une plateforme rebondissante
      * @param counter compteur du nombre de plateformes crees afin de
-     *               positionner la plateforme au bon endroit
+     * positionner la plateforme au bon endroit
      */
     public void generateReb(int counter) {
         Plateforme plateformeRebon = new Plateforme(counter);
@@ -171,7 +167,7 @@ public class Jeu {
     /**
      * Permet de generer une plateforme solide
      * @param counter compteur du nombre de plateformes crees
-     *               afin de positionner la plateforme au bon endroit
+     * afin de positionner la plateforme au bon endroit
      */
     public void generateSolide(int counter) {
         Plateforme plateformeSolide = new Plateforme(counter);
@@ -184,7 +180,7 @@ public class Jeu {
     /**
      * Permet de generer une plateforme mouvante
      * @param counter compteur du nombre de plateformes crees afin de
-     *                positionner la plateforme au bon endroit
+     * positionner la plateforme au bon endroit
      */
     public void generateMouvante(int counter) {
         Plateforme plateformeMouvante = new Plateforme(counter);
@@ -198,7 +194,7 @@ public class Jeu {
     /**
      * Permet de generer une plateforme temporaire
      * @param counter compteur du nombre de plateformes crees afin de
-     *                positionner la plateforme au bon endroit
+     * positionner la plateforme au bon endroit
      */
     public void generateTemporaire(int counter) {
         Plateforme plateformeTemporaire = new Plateforme(counter);
@@ -211,8 +207,8 @@ public class Jeu {
 
     /**
      * Permet de generer une plateforme aléatoire qui est sensé
-     * pieger le joueur parce que toutes ces plateformes
-     * ont la même couleur
+     * piéger le joueur parce que toutes ces plateformes ont la
+     * même couleur
      * @param counter compteur du nombre de plateformes crees afin de
      * positionner la plateforme au bon endroit
      * @param prevSolide boolean si la plateforme precedente est solide
@@ -220,9 +216,9 @@ public class Jeu {
     public void generateSurprise(int counter, boolean prevSolide) {
         Plateforme plateformeSurprise = new Plateforme(counter);
         plateformeSurprise.setColor(Color.PURPLE);
+        Random random = new Random();
+        int numero;
 
-            Random random = new Random();
-            int numero;
         if(!prevSolide) {  // Si la plateforme precedente n'est pas
             // solide, on peut genererer n'importe quel plateforme
             numero = random.nextInt(6);
@@ -258,27 +254,27 @@ public class Jeu {
                 plateformes.add(plateformeSurprise);
                 break;
         }
-        }
+    }
 
     /**
      * Permet de generer une plateforme suivant les probabilites en
-     * parametres des differents types de plateformes
+     * paramètres des differents types de plateformes
      * @param counter compteur du nombre de plateformes crees afin de
-     *                positionner la plateforme au bon endroit
+     * positionner la plateforme au bon endroit
      * @param prevSolide  boolean si la plateforme precedente
-     *                   est solide
+     * est solide
      * @param pSolide nombre de fois moyen qu'une plateforme solide
-     *                apparait sur 100
+     * apparait sur 100
      * @param pSurprise nombre de fois moyen qu'une plateforme
-     *                  surprise apparait sur 100 - pSolide
+     * surprise apparait sur 100 - pSolide
      * @param pAcc nombre de fois moyen qu'une plateforme accélérante
-     *            apparait sur 100 - pSolide - pSurprise
+     * apparait sur 100 - pSolide - pSurprise
      * @param pReb nombre de fois moyen qu'une plateforme rebondissante
-     *            apparait sur 100  - pSolide - pSurprise - pAcc
+     * apparait sur 100  - pSolide - pSurprise - pAcc
      * @param pMouv nombre de fois moyen qu'une plateforme mouvante apparait
-     *             sur 100 - pSolide - pSurprise - pAcc - pReb
+     * sur 100 - pSolide - pSurprise - pAcc - pReb
      * @param pTemp nombre de fois moyen qu'une plateforme temporaire apparait
-     *              sur 100 - pSolide - pSurprise - pAcc - pReb - pMouv
+     * sur 100 - pSolide - pSurprise - pAcc - pReb - pMouv
      */
         public void generatePlateforme(int counter, boolean prevSolide,
                                        int pSolide, int pSurprise, int pAcc,
@@ -315,18 +311,14 @@ public class Jeu {
                 generateMouvante(counter);
 
 
-
             } else if(pourcent <= pTemp) {
                 generateTemporaire(counter);
-
-
 
 
             }  else if(pourcent <= 100) {
                 generateSimple(counter);
 
             }
-
 
         }
 
@@ -417,7 +409,7 @@ public class Jeu {
     }
 
     /**
-     * Si la meduse a touche pour la premiere fois la meduse
+     * Si la meduse a touche pour la premiere fois la tortue
      * @return un boolean
      */
     public boolean getFirstInterTortue() {
@@ -426,7 +418,7 @@ public class Jeu {
 
 
     /**
-     * Si la meduse a touche pour la derniere fois la meduse
+     * Si la meduse a touche pour la derniere fois la tortue
      * @return un boolean
      */
     public boolean getLastInterTortue() {
@@ -434,8 +426,8 @@ public class Jeu {
     }
 
     /**
-     * Getter du nombre de vies de la meduse
-     * @return
+     * Getter du nombre de vies de la méduse
+     * @return le nombre de vie restant
      */
     public int getNbVies() {
         return jellyfish.getNbVies();
@@ -449,10 +441,7 @@ public class Jeu {
         jellyfish.setNbVies(life);
     }
 
-    /**
-     * Savoir si une tortue est dans le jeu
-     * @return
-     */
+
      public boolean getTortue() {
         if (tortue == null) {
             return false;
@@ -467,10 +456,6 @@ public class Jeu {
      * @param dt Temps écoulé depuis le dernier update()
      */
     public void update(double dt) {
-    
-
-
-
 
         // Si la meduse tombe au fond de l'ocean ou qu'elle n'a plus de
         //vies alors Game Over
@@ -482,16 +467,6 @@ public class Jeu {
             highScore = Math.max(highScore, -(int) fenetreY + nbCrustaces * 500);
 
         }
-
-
-
-
-
-
-
-
-
-
         // Pour chaque groupe de bulle
         for (int i = 0; i < bulles.length; i++) {
             // Pour chaque bulles dans un groupe
@@ -502,10 +477,6 @@ public class Jeu {
             }
         }
 
-        /**
-         * À chaque tour, on recalcule si la meduse se trouve parterre ou
-         * non
-         */
 
         jellyfish.setParterre(false);
         jellyfish.setParterreAcc(false);
@@ -514,7 +485,6 @@ public class Jeu {
         if (plancher != null) {
             jellyfish.testCollision(plancher);
         }
-
 
         // Tant que la derniere plateforme est en dessous de l'origine de
         // l'ecran, generer une plateforme au dessus de l'ecran
@@ -595,7 +565,6 @@ public class Jeu {
             if (p.getId().equals("plateformeMouvante") && p.getPossedeTramp() ) {
                 trampoline.setVX(p.getVX());
             }
-
         }
 
         // Permet de pouvoir supprimer les plateformes temporaires apres
@@ -708,7 +677,6 @@ public class Jeu {
         }
 
 
-
         // mettre a jour la position de la meduse
         jellyfish.update(dt);
 
@@ -752,9 +720,6 @@ public class Jeu {
             levels[2] = false;
             levels[3] = true;
         }
-
-
-
     }
 
     /**
@@ -767,7 +732,6 @@ public class Jeu {
         // Background bleu du jeu
         context.setFill(Color.DARKBLUE);
         context.fillRect(0, 0, width, height);
-
 
 
         // Pour chaque groupe de bulle
