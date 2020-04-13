@@ -1,7 +1,10 @@
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
-
+ /****
+  * Classe qui represente une tortue dans l'océan qui est un ennemi de la meduse.
+    Si la meduse touche 3 fois la tortue, la meduse meurt.
+  */
 public class Tortue extends Entity {
 
     private  Image[] framesRight;
@@ -53,10 +56,10 @@ public class Tortue extends Entity {
     }
 
 
-
-
-
-
+     /**
+      * Met à jour la position de la meduse, sa vitesse et son image
+      * @param deltaTime Temps écoulé depuis le dernier update() en secondes
+      */
     @Override
     public void update(double deltaTime) {
 
@@ -74,7 +77,11 @@ public class Tortue extends Entity {
     }
 
 
-
+     /**
+      * Dessine la tortue
+      * @param context contexte graphique du canvas
+      * @param fenetreY position y par rapport au niveau du jeu
+      */
     @Override
     public void draw(GraphicsContext context, double fenetreY) {
         double yAffiche = y - fenetreY;

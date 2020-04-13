@@ -1,17 +1,32 @@
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
-
 import java.util.Random;
 
+
+/**
+ * Classe representant les plateformes dans le jeu
+ */
 public class Plateforme extends Entity {
 
+    // couleur de la plateforme
     private Color color;
+
+    // ID de la plateforme
     private String id;
+
+    // Si la plateforme possede un trampoline
     private boolean possedeTramp;
+
+    // Si on a sauté sur la plateforme
     private boolean plateformeSaute = false;
 
 
+    /**
+     * Constructeur de Plateforme
+     * @param counter  compteur du nombre de plateformes crees afin de positionner la plateforme au bon endroit
+     *                0 signifie la construction du plancher
+     */
     public Plateforme(int counter) {
         Random rand = new Random();
         this.largeur =  rand.nextInt((175 - 80) + 1) + 80;
@@ -22,6 +37,10 @@ public class Plateforme extends Entity {
 
     }
 
+    /**
+     * Accesseurs et mutateurs des attributs
+     *
+     */
     public Color getColor() {
         return this.color;
     }
@@ -34,7 +53,6 @@ public class Plateforme extends Entity {
     public boolean getPlateformeSaute() {
         return this.plateformeSaute;
     }
-
 
     public void setColor(Color color) {
         this.color = color;
@@ -49,7 +67,11 @@ public class Plateforme extends Entity {
         this.plateformeSaute = plateformeSaute;
     }
 
-
+    /**
+     * Methode qui dessine la plateforme
+     * @param context contexte graphique du canvas
+     * @param fenetreY position y par rapport au niveau du jeu
+     */
     @Override
     public void draw(GraphicsContext context, double fenetreY) {
         double yAffiche = y - fenetreY;

@@ -3,6 +3,9 @@ import javafx.scene.paint.Color;
 
 import java.util.Random;
 
+/**
+ * Represente une bulle dans l'océan
+ */
 public class Bulle extends Entity {
 
 
@@ -14,7 +17,14 @@ public class Bulle extends Entity {
     public static double maxRayon = 40;
     public static double minRayon = 10;
 
-    // Constructeur de Bulle
+    /**
+     * Constructeur de bulle
+     * @param x coordonné x de la bulle
+     * @param y coordonné y de la bulle
+     * @param rayon rayon de la bulle
+     * @param vx composante x de la vitesse
+     * @param vy composante y de la vitesse
+     */
     public Bulle(double x, double y, double rayon, double vx, double vy) {
         this.x = x;
         this.y = y;
@@ -24,22 +34,22 @@ public class Bulle extends Entity {
     }
 
 
-    // Getters & Setters
 
 
+    /**
+     * Accesseur de rayon
+     * @return rayon de la bulle
+     */
     public double getRayon() {
         return rayon;
     }
 
-    public void setRayon(double rayon) {
-        this.rayon = rayon;
-    }
+
 
 
 
     /**
-     * Met à jour la position Y de la balle
-     *
+     * Met à jour la position y de la bulle
      * @param dt Temps écoulé depuis le dernier update() en secondes
      */
     @Override
@@ -50,7 +60,6 @@ public class Bulle extends Entity {
 
     /**
      * Donne un effet plus réaliste à l'ecran en ajoutant un groupe de bulles
-     *
      * @param bulles groupe de bulles
      * @param widthScreen largeur de l'ecran
      * @param heightScreen hauteur de l'ecran
@@ -88,6 +97,7 @@ public class Bulle extends Entity {
     /**
      * Dessine la bulle
      * @param context contexte graphique du canvas
+     * @param fenetreY position y par rapport au niveau du jeu
      */
     @Override
     public void draw(GraphicsContext context, double fenetreY) {

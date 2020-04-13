@@ -2,13 +2,18 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 
+
+/**
+ * Classe qui represente un trampoline, un objet dans le jeu se situant sur une plateforme et permettant à la
+ * méduse de sauter plus haut
+ */
 public class Trampoline extends Entity {
 
 
     private Image image;
 
 
-    // Constructeur de Bulle
+    // Constructeur de Trampoline
     public Trampoline(double x, double y) {
         this.x = x;
         this.y = y;
@@ -30,7 +35,7 @@ public class Trampoline extends Entity {
 
 
     /**
-     * Met à jour la position Y de la balle
+     * Met à jour la position du trampoline
      *
      * @param dt Temps écoulé depuis le dernier update() en secondes
      */
@@ -43,13 +48,12 @@ public class Trampoline extends Entity {
 
 
     /**
-     * Dessine la bulle
+     * Dessine le trampoline
      * @param context contexte graphique du canvas
      */
     @Override
     public void draw(GraphicsContext context, double fenetreY) {
         double yAffiche = y - fenetreY;
-        context.setFill(Color.CORAL);
         context.drawImage(image, getX(), yAffiche, largeur, hauteur);
     }
 
