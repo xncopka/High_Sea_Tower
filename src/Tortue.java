@@ -1,7 +1,10 @@
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
+/**
+ * Represente une Tortue dans l'océan qui est un ennemi de la meduse
 
+ */
 public class Tortue extends Entity {
 
     private  Image[] framesRight;
