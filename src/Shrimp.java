@@ -62,7 +62,8 @@ public class Shrimp extends Entity {
     @Override
     public void draw(GraphicsContext context, double fenetreY) {
         double yAffiche = y - fenetreY;
-        context.drawImage(image, getX(), yAffiche, getRayon()*2, getRayon()*2);
+        context.drawImage(image, getX(), yAffiche, getRayon()*2,
+                getRayon()*2);
     }
 
 

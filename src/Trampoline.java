@@ -4,7 +4,8 @@ import javafx.scene.image.Image;
 
 
 /**
- * Classe qui represente un trampoline, un objet dans le jeu se situant sur une plateforme et permettant à la
+ * Classe qui represente un trampoline, un objet dans le jeu
+ * se situant sur une plateforme et permettant à la
  * méduse de sauter plus haut
  */
 public class Trampoline extends Entity {
@@ -56,11 +57,5 @@ public class Trampoline extends Entity {
         double yAffiche = y - fenetreY;
         context.drawImage(image, getX(), yAffiche, largeur, hauteur);
     }
-
-
-
-
-
-
 
 }

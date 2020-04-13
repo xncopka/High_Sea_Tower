@@ -24,7 +24,8 @@ public class Plateforme extends Entity {
 
     /**
      * Constructeur de Plateforme
-     * @param counter  compteur du nombre de plateformes crees afin de positionner la plateforme au bon endroit
+     * @param counter  compteur du nombre de plateformes crees afin
+     *                 de positionner la plateforme au bon endroit
      *                0 signifie la construction du plancher
      */
     public Plateforme(int counter) {

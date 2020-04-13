@@ -66,7 +66,8 @@ public class Controleur {
      */
     void debug() { jeu.debug();}
     /**
-     * Le contrôleur demande au modele de mettre à jour l'état du plancher de depart
+     * Le contrôleur demande au modele de mettre à jour l'état du
+     * plancher de depart
      *  Méthode pour supprimer le plancher
      */
     void removePlancher() {

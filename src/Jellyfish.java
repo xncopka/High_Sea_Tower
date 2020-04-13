@@ -179,18 +179,24 @@ public class Jellyfish extends Entity {
             this.parterre = true;
             isJumping = false;
 
-           // Dans le cas d'une plateforme rebondissante, la vitesse de la meduse est inversée et amplifiée
-           // Par soucis de jouabilité, la vitesse est forcée à être au moins de 300px/s vers le haut (au lieu
-           // de 100px/s de l'enoncé qui donnait dans de rares cas une succession de petits rebonds néfaste à
+           // Dans le cas d'une plateforme rebondissante, la vitesse
+            // de la meduse est inversée et amplifiée
+           // Par soucis de jouabilité, la vitesse est forcée à être
+            // au moins de 300px/s vers le haut (au lieu
+           // de 100px/s de l'enoncé qui donnait dans de rares cas une
+            // succession de petits rebonds néfaste à
             // l'expérience du joueur)
-            // De plus, la vitesse maximale est de 1000px/s vers le haut afin de limiter les bugs de tunneling
-            // lorsque la vitesse est trop eleve et ne reconnait plus les collisions.
+            // De plus, la vitesse maximale est de 1000px/s vers le
+            // haut afin de limiter les bugs de tunneling
+            // lorsque la vitesse est trop eleve et ne reconnait
+            // plus les collisions.
            if (other.getId().equals("plateformeRebon")) {
                 this.vy *= -1.5;
                 vy = Math.min(vy, -300);
                 vy = Math.max(vy,-1000);
 
-            } else {   // sinon la vitesse est nul quand la meduse atterit sur une plateforme
+            } else {   // sinon la vitesse est nul quand la meduse atterit
+               // sur une plateforme
                this.vy = 0;
            }
 
@@ -215,7 +221,8 @@ public class Jellyfish extends Entity {
          * et la meduse saute
          */
         if (other.getId().equals("plateformeSolide")) {
-            if (intersects(other) && Math.abs(  other.y + other.getHauteur() - this.y) < 10
+            if (intersects(other) && Math.abs(  other.y + other.getHauteur()
+                    - this.y) < 10
                     && vy < 0) {
                 this.vy *= -0.5;
 
@@ -349,7 +356,8 @@ public class Jellyfish extends Entity {
 
 
     /**
-     * Methode qui indique si la meduse intersecte une crevette qui est modelisé comme un cercle (voir classe Shrimp)
+     * Methode qui indique si la meduse intersecte une crevette qui est
+     * modelisé comme un cercle (voir classe Shrimp)
      * @param other crevette
      * @return un boolean
      */
@@ -413,7 +421,8 @@ public class Jellyfish extends Entity {
      * @param other Tortue
      */
     public void testCollision(Tortue other) {
-        if (intersects(other) && Math.abs(this.y + hauteur - other.y) < other.hauteur
+        if (intersects(other) && Math.abs(this.y + hauteur - other.y)
+                < other.hauteur
                 && vy > 0 ) {
             pushOut(other);
            

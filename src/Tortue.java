@@ -2,7 +2,8 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
  /****
-  * Classe qui represente une tortue dans l'océan qui est un ennemi de la meduse.
+  * Classe qui represente une tortue dans l'océan qui est un ennemi de la
+  * meduse.
     Si la meduse touche 3 fois la tortue, la meduse meurt.
   */
 public class Tortue extends Entity {

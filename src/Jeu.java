@@ -76,7 +76,8 @@ public class Jeu {
 
 
 
-        // Plancher servant a positionner sur l'axe des x la meduse ou on le souhaite au debut du jeu
+        // Plancher servant a positionner sur l'axe des x la meduse ou on
+        // le souhaite au debut du jeu
         plancher = new Plateforme(0);
         plancher.setX(0);
         plancher.setY(HighSeaTower.HEIGHT);
@@ -94,12 +95,14 @@ public class Jeu {
             if (plateformes.size()==0) {
                 prevSolide = false;
             } else {
-                prevSolide = plateformes.get(plateformes.size() - 1).getId().equals("plateformeSolide");
+                prevSolide = plateformes.get(plateformes.size() -
+                        1).getId().equals("plateformeSolide");
             }
 
 
 
-            generatePlateforme(counter, prevSolide, 5, 0, 15, 35, 0, 0);
+            generatePlateforme(counter, prevSolide, 5, 0,
+                    15, 35, 0, 0);
 
 
 
@@ -128,7 +131,8 @@ public class Jeu {
 
     /**
      * Permet de generer une plateforme simple
-     * @param counter compteur du nombre de plateformes crees afin de positionner la plateforme au bon endroit
+     * @param counter compteur du nombre de plateformes crees afin
+     *               de positionner la plateforme au bon endroit
      */
     public void generateSimple(int counter) {
         Plateforme plateformeSimple = new Plateforme(counter);
@@ -140,7 +144,8 @@ public class Jeu {
 
     /**
      * Permet de generer une plateforme accélérante
-     * @param counter compteur du nombre de plateformes crees afin de positionner la plateforme au bon endroit
+     * @param counter compteur du nombre de plateformes crees
+     *               afin de positionner la plateforme au bon endroit
      */
     public void generateAcc(int counter) {
         Plateforme plateformeAcc = new Plateforme(counter);
@@ -152,7 +157,8 @@ public class Jeu {
 
     /**
      * Permet de generer une plateforme rebondissante
-     * @param counter compteur du nombre de plateformes crees afin de positionner la plateforme au bon endroit
+     * @param counter compteur du nombre de plateformes crees afin de
+     *               positionner la plateforme au bon endroit
      */
     public void generateReb(int counter) {
         Plateforme plateformeRebon = new Plateforme(counter);
@@ -164,7 +170,8 @@ public class Jeu {
 
     /**
      * Permet de generer une plateforme solide
-     * @param counter compteur du nombre de plateformes crees afin de positionner la plateforme au bon endroit
+     * @param counter compteur du nombre de plateformes crees
+     *               afin de positionner la plateforme au bon endroit
      */
     public void generateSolide(int counter) {
         Plateforme plateformeSolide = new Plateforme(counter);
@@ -176,7 +183,8 @@ public class Jeu {
 
     /**
      * Permet de generer une plateforme mouvante
-     * @param counter compteur du nombre de plateformes crees afin de positionner la plateforme au bon endroit
+     * @param counter compteur du nombre de plateformes crees afin de
+     *                positionner la plateforme au bon endroit
      */
     public void generateMouvante(int counter) {
         Plateforme plateformeMouvante = new Plateforme(counter);
@@ -189,7 +197,8 @@ public class Jeu {
 
     /**
      * Permet de generer une plateforme temporaire
-     * @param counter compteur du nombre de plateformes crees afin de positionner la plateforme au bon endroit
+     * @param counter compteur du nombre de plateformes crees afin de
+     *                positionner la plateforme au bon endroit
      */
     public void generateTemporaire(int counter) {
         Plateforme plateformeTemporaire = new Plateforme(counter);
@@ -201,9 +210,11 @@ public class Jeu {
 
 
     /**
-     * Permet de generer une plateforme aléatoire qui est sensé pieger le joueur parce que toutes ces plateformes
+     * Permet de generer une plateforme aléatoire qui est sensé
+     * pieger le joueur parce que toutes ces plateformes
      * ont la même couleur
-     * @param counter compteur du nombre de plateformes crees afin de positionner la plateforme au bon endroit
+     * @param counter compteur du nombre de plateformes crees afin de
+     * positionner la plateforme au bon endroit
      * @param prevSolide boolean si la plateforme precedente est solide
      */
     public void generateSurprise(int counter, boolean prevSolide) {
@@ -212,7 +223,8 @@ public class Jeu {
 
             Random random = new Random();
             int numero;
-        if(!prevSolide) {  // Si la plateforme precedente n'est pas solide, on peut genererer n'importe quel plateforme
+        if(!prevSolide) {  // Si la plateforme precedente n'est pas
+            // solide, on peut genererer n'importe quel plateforme
             numero = random.nextInt(6);
         } else { // sinon toutes les plateformes sauf la solide
             numero = random.nextInt(5);
@@ -249,26 +261,39 @@ public class Jeu {
         }
 
     /**
-     * Permet de generer une plateforme suivant les probabilites en parametres des differents types de plateformes
-     * @param counter compteur du nombre de plateformes crees afin de positionner la plateforme au bon endroit
-     * @param prevSolide  boolean si la plateforme precedente est solide
-     * @param pSolide nombre de fois moyen qu'une plateforme solide apparait sur 100
-     * @param pSurprise nombre de fois moyen qu'une plateforme surprise apparait sur 100 - pSolide
-     * @param pAcc nombre de fois moyen qu'une plateforme accélérante apparait sur 100 - pSolide - pSurprise
-     * @param pReb nombre de fois moyen qu'une plateforme rebondissante apparait sur 100  - pSolide - pSurprise - pAcc
-     * @param pMouv nombre de fois moyen qu'une plateforme mouvante apparait sur 100 - pSolide - pSurprise - pAcc - pReb
-     * @param pTemp nombre de fois moyen qu'une plateforme temporaire apparait sur 100 - pSolide - pSurprise - pAcc - pReb - pMouv
+     * Permet de generer une plateforme suivant les probabilites en
+     * parametres des differents types de plateformes
+     * @param counter compteur du nombre de plateformes crees afin de
+     *                positionner la plateforme au bon endroit
+     * @param prevSolide  boolean si la plateforme precedente
+     *                   est solide
+     * @param pSolide nombre de fois moyen qu'une plateforme solide
+     *                apparait sur 100
+     * @param pSurprise nombre de fois moyen qu'une plateforme
+     *                  surprise apparait sur 100 - pSolide
+     * @param pAcc nombre de fois moyen qu'une plateforme accélérante
+     *            apparait sur 100 - pSolide - pSurprise
+     * @param pReb nombre de fois moyen qu'une plateforme rebondissante
+     *            apparait sur 100  - pSolide - pSurprise - pAcc
+     * @param pMouv nombre de fois moyen qu'une plateforme mouvante apparait
+     *             sur 100 - pSolide - pSurprise - pAcc - pReb
+     * @param pTemp nombre de fois moyen qu'une plateforme temporaire apparait
+     *              sur 100 - pSolide - pSurprise - pAcc - pReb - pMouv
      */
-        public void generatePlateforme(int counter, boolean prevSolide, int pSolide, int pSurprise, int pAcc, int pReb, int pMouv, int pTemp){
+        public void generatePlateforme(int counter, boolean prevSolide,
+                                       int pSolide, int pSurprise, int pAcc,
+                                       int pReb, int pMouv, int pTemp){
             Random random = new Random();
             int pourcent = random.nextInt(101);
             
             if(pourcent <= pSolide) {
-                if (!prevSolide) {  //si la plateforme precedente n'est pas solide, on genere une solide
+                if (!prevSolide) {  //si la plateforme precedente n'est pas
+                    // solide, on genere une solide
                     generateSolide(counter);
 
                 } else { // sinon reappeler la fonction recursivement
-                    generatePlateforme(counter, prevSolide, pSolide, pSurprise, pAcc,  pReb, pMouv, pTemp);
+                    generatePlateforme(counter, prevSolide, pSolide, pSurprise,
+                            pAcc,  pReb, pMouv, pTemp);
                 }
 
 
@@ -447,9 +472,11 @@ public class Jeu {
 
 
 
-        // Si la meduse tombe au fond de l'ocean ou qu'elle n'a plus de vies alors Game Over
+        // Si la meduse tombe au fond de l'ocean ou qu'elle n'a plus de
+        //vies alors Game Over
         // et actualiser le plus haut score
-        if ( (jellyfish.y > HighSeaTower.HEIGHT + fenetreY) || jellyfish.getNbVies() == 0 ) {
+        if ( (jellyfish.y > HighSeaTower.HEIGHT + fenetreY) ||
+                jellyfish.getNbVies() == 0 ) {
 
             gameOver = true;
             highScore = Math.max(highScore, -(int) fenetreY + nbCrustaces * 500);
@@ -489,25 +516,32 @@ public class Jeu {
         }
 
 
-        // Tant que la derniere plateforme est en dessous de l'origine de l'ecran, generer une plateforme au dessus de l'ecran
+        // Tant que la derniere plateforme est en dessous de l'origine de
+        // l'ecran, generer une plateforme au dessus de l'ecran
         while (plateformes.get(plateformes.size() - 1).getY() > fenetreY) {
 
             // savoir si la derniere plateforme est solide ou pas
-            boolean prevSolide = plateformes.get(plateformes.size() - 1).getId().equals("plateformeSolide");
+            boolean prevSolide = plateformes.get(plateformes.size() -
+                    1).getId().equals("plateformeSolide");
 
             // generer une plateforme suivant le niveau auquel on est dans le jeu
             // au niveau facile, on a les plateformes conformes aux probabilités de l'enoncé
             // au niveau normal, on a toutes les plateformes
-            // au niveau difficile, pareil avec une nuance des probabilites afin que ce soit plus diffile
+            // au niveau difficile, pareil avec une nuance des probabilites
+            // afin que ce soit plus diffile
             // au niveau hardcore, on a que des plateformes surprises
             if (levels[0]) {
-                generatePlateforme(counter, prevSolide, 5, 0, 15, 35, 0, 0);
+                generatePlateforme(counter, prevSolide, 5,
+                        0, 15, 35, 0, 0);
             } else if (levels[1]) {
-                generatePlateforme(counter, prevSolide, 5, 15, 30, 45, 60, 75);
+                generatePlateforme(counter, prevSolide, 5,
+                        15, 30, 45, 60, 75);
             } else if (levels[2]) {
-                generatePlateforme(counter, prevSolide, 10, 20, 35, 50, 65, 80);
+                generatePlateforme(counter, prevSolide, 10,
+                        20, 35, 50, 65, 80);
             } else if (levels[3]) {
-                generatePlateforme(counter, prevSolide, 0, 100, 0, 0, 0, 0);
+                generatePlateforme(counter, prevSolide, 0,
+                        100, 0, 0, 0, 0);
             }
 
             counter++;
@@ -515,11 +549,13 @@ public class Jeu {
 
         // A partir du niveau 2, la tortue apparait
         if (levels[2] && firstTortue) {
-            tortue = new Tortue(0, plateformes.get(plateformes.size()-1).getY()-70);
+            tortue = new Tortue(0,
+                    plateformes.get(plateformes.size()-1).getY()-70);
             firstTortue = false;
         }
 
-        // Tant que la premiere plateforme est en dessous de l'ecran, la supprimer par soucis de memoire
+        // Tant que la premiere plateforme est en dessous de l'ecran,
+        // la supprimer par soucis de memoire
         while (plateformes.get(0).getY() > HighSeaTower.HEIGHT + fenetreY) {
             plateformes.remove(0);
         }
@@ -534,7 +570,8 @@ public class Jeu {
             // teste la collision de la meduse avec les plateformes
             jellyfish.testCollision(p);
 
-            // Si la meduse vient de toucher une plateforme accelerante alors augmenter la vitesse de l'ecran
+            // Si la meduse vient de toucher une plateforme
+            // accelerante alors augmenter la vitesse de l'ecran
             if (jellyfish.getParterreAcc()) {
                 if (firstParterreAcc) {
                     firstParterreAcc = false;
@@ -542,7 +579,8 @@ public class Jeu {
                 }
             }
 
-            // quand la meduse a quitte la plateforme accelerante, remettre la vitesse de l'ecran comme avant
+            // quand la meduse a quitte la plateforme accelerante,
+            // remettre la vitesse de l'ecran comme avant
             if (!jellyfish.getParterreAcc()) {
                 if (!firstParterreAcc) {
                     firstParterreAcc = true;
@@ -550,24 +588,33 @@ public class Jeu {
                 }
             }
 
-            // Si une plateforme mouvante possede un trampoline alors donner une vitesse au trampoline de la meme vitesse
-            // que celle de la plateforme afin que le trampoline reste tout le long sur la plateforme
+            // Si une plateforme mouvante possede un trampoline alors
+            // donner une vitesse au trampoline de la meme vitesse
+            // que celle de la plateforme afin que le trampoline reste
+            // tout le long sur la plateforme
             if (p.getId().equals("plateformeMouvante") && p.getPossedeTramp() ) {
                 trampoline.setVX(p.getVX());
             }
 
         }
 
-        // Permet de pouvoir supprimer les plateformes temporaires apres que la meduse saute depuis ces plateformes
-        // On utilise un iterator afin d'eviter l'exception de type ConcurrentModificationException parce que on enleve
+        // Permet de pouvoir supprimer les plateformes temporaires apres
+        // que la meduse
+        // saute depuis ces plateformes
+        // On utilise un iterator afin d'eviter l'exception de
+        // type ConcurrentModificationException
+        // parce que on enleve
         // une plateforme avant que l'iteration de la loop se termine
-        for (Iterator<Plateforme> iterator = plateformes.iterator(); iterator.hasNext(); ) {
+        for (Iterator<Plateforme> iterator = plateformes.iterator();
+             iterator.hasNext(); ) {
             Plateforme plateforme = iterator.next();
             if (plateforme.getId().equals("plateformeTemporaire")) {
 
                 if (jellyfish.getIsJumping() && plateforme.getPlateformeSaute()) {
 
-                    // Si la plateforme temporaire possede aussi un trampoline dessus, il faut aussi supprimer le trampoline
+                    // Si la plateforme temporaire possede aussi un
+                    // trampoline dessus, il
+                    // faut aussi supprimer le trampoline
                     if(plateforme.getPossedeTramp()) {
                         trampoline = null;
                         trampInGame = false;
@@ -579,21 +626,26 @@ public class Jeu {
             }
         }
 
-        // Si la crevette se retrouve au dessous de l'ecran generer une nouvelle crevette se trouvant au dessus de l'ecran
+        // Si la crevette se retrouve au dessous de l'ecran generer
+        // une nouvelle crevette
+        // se trouvant au dessus de l'ecran
         if (shrimp.getY() > fenetreY + shrimp.getRayon() + HighSeaTower.HEIGHT) {
             Random rand = new Random();
             double newX = rand.nextInt(HighSeaTower.WIDTH - 30 + 1);
-            double newY = fenetreY - rand.nextInt(HighSeaTower.HEIGHT - 30 + 1) - 30;
+            double newY = fenetreY - rand.nextInt(HighSeaTower.HEIGHT - 30 + 1)
+                    - 30;
             shrimp = new Shrimp(newX, newY);
         }
 
         // tester la collision de la meduse avec la crevette
         jellyfish.testCollision(shrimp);
-        // Si la meduse a attrape la crevette, generer une nouvelle crevette au dessus de l'ecran
+        // Si la meduse a attrape la crevette, generer une nouvelle crevette
+        // au dessus de l'ecran
         if (jellyfish.aAttrape()) {
             Random rand = new Random();
             double newX = rand.nextInt(HighSeaTower.WIDTH - 30 + 1);
-            double newY = fenetreY - rand.nextInt(HighSeaTower.HEIGHT - 30 + 1) - 30;
+            double newY = fenetreY - rand.nextInt(HighSeaTower.HEIGHT -
+                    30 + 1) - 30;
             shrimp = new Shrimp(newX, newY);
             nbCrustaces++;
             jellyfish.setAAttrape(false);
@@ -602,11 +654,13 @@ public class Jeu {
         // met a jour la position de la crevette
         shrimp.update(dt);
 
-        // Si il y a une tortue dans le jeu, tester la collision de la meduse avec la tortue
+        // Si il y a une tortue dans le jeu, tester la collision
+        // de la meduse avec la tortue
         if(tortue != null) {
             jellyfish.testCollision(tortue);
 
-            // Si la tortue se retrouve sous l'ecran, generer une nouvelle tortue au dessus de l'ecran
+            // Si la tortue se retrouve sous l'ecran, generer
+            // une nouvelle tortue au dessus de l'ecran
             if (tortue.getY() > fenetreY + HighSeaTower.HEIGHT) {
                 Random rand = new Random();
                 double newX = rand.nextInt(HighSeaTower.WIDTH - 60 + 1);
@@ -623,22 +677,30 @@ public class Jeu {
         int probTrampoline = random.nextInt(201);
         if(probTrampoline == 0 && !trampInGame) {
             trampInGame = true;
-            // generer un trampoline sur la derniere plateforme (au dessus de l'ecran) avec une position tel que ce
+            // generer un trampoline sur la derniere plateforme
+            // (au dessus de l'ecran) avec une position tel que ce
             // trampoline soit toujours sur la plateforme
-            trampoline = new Trampoline((plateformes.get(plateformes.size()-1).getX()+ plateformes.get(plateformes.size()-1).getLargeur() - 20 - plateformes.get(plateformes.size()-1).getX())*random.nextDouble()
-                   + plateformes.get(plateformes.size()-1).getX(), plateformes.get(plateformes.size()-1).getY() - 30);
+            trampoline = new Trampoline((plateformes.get(
+                    plateformes.size()-1).getX()+
+                    plateformes.get(plateformes.size()-1).getLargeur() - 20 -
+                    plateformes.get(plateformes.size()-1).getX())*
+                    random.nextDouble()
+                   + plateformes.get(plateformes.size()-1).getX(),
+                    plateformes.get(plateformes.size()-1).getY() - 30);
             plateformes.get(plateformes.size()-1).setPossedeTramp(true);
         }
 
         
 
-        // Si il y a un trampoline dans le jeu, tester la collision de la meduse avec le trampoline et mettre a jour la
+        // Si il y a un trampoline dans le jeu, tester la collision
+        // de la meduse avec le trampoline et mettre a jour la
         // position du trampoline
         if(trampoline != null) {
             jellyfish.testCollision(trampoline);
             trampoline.update(dt);
 
-            // Si le trampoline se retrouve au dessous de l'ecran, mettre a jour les données
+            // Si le trampoline se retrouve au dessous de l'ecran,
+            // mettre a jour les données
             if(trampoline.getY() > fenetreY  + HighSeaTower.HEIGHT) {
                 trampInGame = false;
                 trampoline = null;
@@ -660,18 +722,23 @@ public class Jeu {
         }
 
 
-        // La meduse ne peut jamais aller au delas de 75% de la hauteur de l'ecran
+        // La meduse ne peut jamais aller au delas de 75%
+        // de la hauteur de l'ecran
         // Et fait monter l'ecran adequatement
         if (jellyfish.y < fenetreY + 0.25 * HighSeaTower.HEIGHT) {
-            fenetreY -= Math.abs(jellyfish.y - (fenetreY + 0.25 * HighSeaTower.HEIGHT));
+            fenetreY -= Math.abs(jellyfish.y - (fenetreY
+                    + 0.25 * HighSeaTower.HEIGHT));
         }
 
-        // Nombre de points gagnes qui est le nombre de pixels dont l'ecran a monte depuis le debut de partie
-        // additionnes des points supplementaires gagnes grace aux crevettes mangés
+        // Nombre de points gagnes qui est le nombre de
+        // pixels dont l'ecran a monte depuis le debut de partie
+        // additionnes des points supplementaires gagnes grace aux
+        // crevettes mangés
         int points = nbCrustaces * 500 - (int) fenetreY;
         score = points + "m";
 
-        // Au debut du jeu on est au niveau facile, puis apres un certain nombre de points, on est au niveau normal,
+        // Au debut du jeu on est au niveau facile, puis apres un
+        // certain nombre de points, on est au niveau normal,
         // puis difficile et enfin hardcore
         if (points < 2500) {
             levels[0] = true;
@@ -688,15 +755,11 @@ public class Jeu {
 
 
 
-
-
-
-
-
     }
 
     /**
-     * Dessine toutes les formes de l'animation dans le contexte graphique du canvas
+     * Dessine toutes les formes de l'animation dans le contexte
+     * graphique du canvas
      * @param context contexte graphique du canvas
      */
     public void draw(GraphicsContext context) {
@@ -740,8 +803,10 @@ public class Jeu {
 
             // Si on est en mode debug,
             if (modeDebug) {
-                // S'il y a une collision avec une plateforme alors rendre cette plateforme jaune le temps de la collision
-                if  (jellyfish.intersects(p) && Math.abs(jellyfish.y + jellyfish.hauteur - p.y) < 10
+                // S'il y a une collision avec une plateforme
+                // alors rendre cette plateforme jaune le temps de la collision
+                if  (jellyfish.intersects(p) && Math.abs(jellyfish.y +
+                        jellyfish.hauteur - p.y) < 10
                         && jellyfish.vy > 0) {
                     Color temp = p.getColor();
                     p.setColor(Color.YELLOW);
@@ -756,21 +821,28 @@ public class Jeu {
         if (modeDebug) {
             // dessiner un carre rouge dans la boite englobante de la meduse
             context.setFill(Color.rgb(255, 0, 0, 0.4));
-            context.fillRect(jellyfish.x, jellyfish.y - fenetreY, jellyfish.largeur, jellyfish.hauteur);
+            context.fillRect(jellyfish.x, jellyfish.y - fenetreY,
+                    jellyfish.largeur, jellyfish.hauteur);
 
             if (tortue != null) {
-                // dessiner un rectangle vert dans la boite englobante de la tortue
+                // dessiner un rectangle vert dans la boite
+                // englobante de la tortue
                 context.setFill(Color.rgb(0, 255, 0, 0.4));
-                context.fillRect(tortue.x, tortue.y - fenetreY, tortue.largeur, tortue.hauteur);
+                context.fillRect(tortue.x, tortue.y - fenetreY,
+                        tortue.largeur, tortue.hauteur);
             }
 
             // dessiner les informations de debuggages
             context.setFont(Font.font(12));
             context.setFill(Color.WHITE);
             context.setTextAlign(TextAlignment.LEFT);
-            context.fillText("Position = (" + (int)jellyfish.x + "," + Math.abs((int)jellyfish.y-HighSeaTower.HEIGHT) + ")\n"
-                    + "v = (" + (int)jellyfish.vx + "," + (int)jellyfish.vy + ")\n"
-                    + "a = (" + (int)jellyfish.ax + "," + (int)jellyfish.ay + ")\n"
+            context.fillText("Position = (" + (int)jellyfish.x + "," +
+                            Math.abs((int)jellyfish.y-HighSeaTower.HEIGHT) +
+                            ")\n"
+                    + "v = (" + (int)jellyfish.vx + "," + (int)jellyfish.vy +
+                            ")\n"
+                    + "a = (" + (int)jellyfish.ax + "," + (int)jellyfish.ay +
+                            ")\n"
                     + "Touche le sol : " + jellyfish.getParterreFr() + "\n"
                     + "Nombre de plateformes : " + plateformes.size() +"\n"
                     + "Mode debug :" + modeDebug  +"\n"
@@ -778,11 +850,9 @@ public class Jeu {
                             + "fenetreVY :" + (int)fenetreVY  +"\n"
                             + "highScore : " + highScore   +"\n"
                             + "isJumping :" + jellyfish.getIsJumping() +"\n"
-                            + "position Shrimp : (" + (int) shrimp.getX() + ", " + (int)shrimp.getY()  + ")" +"\n"
+                            + "position Shrimp : (" + (int) shrimp.getX() + ", "
+                            + (int)shrimp.getY()  + ")" +"\n"
                             + "nombre de crustacés: " + nbCrustaces +"\n"
-
-
-
 
                     , 10, 20);
 
@@ -796,16 +866,18 @@ public class Jeu {
         context.setFill(Color.WHITE);
         context.fillText(score, 175, 60);
 
-        // dessine des informations diverses comme le plus haut score, le niveau de difficulté et le nombre de vies restantes
+        // dessine des informations diverses comme le plus
+        // haut score, le niveau de difficulté et le nombre de vies restantes
         // de la meduse
         context.setTextAlign(TextAlignment.RIGHT);
         context.setFont(Font.font(12));
-        context.fillText("High Score : " + highScore, HighSeaTower.WIDTH - 10, 20);
-        context.fillText("Level : " + getLevel(), HighSeaTower.WIDTH-10,40 );
-        context.fillText("Vies restantes : " + jellyfish.getNbVies(), HighSeaTower.WIDTH-10,60 );
-
+        context.fillText("High Score : " + highScore,
+                HighSeaTower.WIDTH - 10, 20);
+        context.fillText("Level : " + getLevel(),
+                HighSeaTower.WIDTH-10,40 );
+        context.fillText("Vies restantes : " +
+                jellyfish.getNbVies(), HighSeaTower.WIDTH-10,60 );
 
     }
-
 
 }

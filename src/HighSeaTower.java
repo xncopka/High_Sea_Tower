@@ -42,11 +42,13 @@ public class HighSeaTower extends Application {
     // Texte pour recommencer
     private Text again;
 
-    // boolean qui indique si la fleche gauche ou droite est appuyée
+    // boolean qui indique si la fleche gauche ou
+    // droite est appuyée
     private boolean gauche;
     private boolean droite;
 
-    // Temps qui s’est écoulé depuis le dernier appel de la fonction handle
+    // Temps qui s’est écoulé depuis le dernier appel de
+    // la fonction handle
     private double deltaTime;
 
     // Texte du debut de partie
@@ -115,7 +117,8 @@ public class HighSeaTower extends Application {
             }
 
 
-            // Lancer le timer et faire bouger lateralement vers la gauche jellyfish si on appuie sur Left
+            // Lancer le timer et faire bouger lateralement vers la gauche
+            // jellyfish si on appuie sur Left
             if (event.getCode() == KeyCode.LEFT) {
                 root.getChildren().remove(begin);
                 root.getChildren().remove(over);
@@ -128,7 +131,8 @@ public class HighSeaTower extends Application {
 
             }
 
-            // Lancer le timer et faire bouger lateralement vers la droite jellyfish si on appuie sur Right
+            // Lancer le timer et faire bouger lateralement vers la droite
+            // jellyfish si on appuie sur Right
             if (event.getCode() == KeyCode.RIGHT) {
                 root.getChildren().remove(begin);
                 root.getChildren().remove(over);
@@ -144,7 +148,8 @@ public class HighSeaTower extends Application {
             // Lance le mode debug ou revient au mode normal
             if (event.getCode() == KeyCode.T) {
                 controleur.debug();
-                controleur.draw(context);  // permet d'utiliser le mode debug en debut de partie
+                controleur.draw(context);  // permet d'utiliser le
+                // mode debug en debut de partie
 
             }
 
@@ -172,7 +177,8 @@ public class HighSeaTower extends Application {
                 droite = false;
             }
 
-            //  Fait deplacer la meduse de maniere "smooth" en evitant que la meduse se bloque quand on appuie sur
+            //  Fait deplacer la meduse de maniere "smooth" en evitant
+            //  que la meduse se bloque quand on appuie sur
             // gauche puis droite ou l'inverse trop rapidement
             if(!gauche && droite) {
                 controleur.right();
@@ -238,7 +244,8 @@ public class HighSeaTower extends Application {
             private long lastTime = 0;
             private long firstTime = 0;
 
-            // Initialiser la premiere et derniere fois que la meduse touche la tortue
+            // Initialiser la premiere et derniere fois que la
+            // meduse touche la tortue
             private long firstInter = 0;
             private long lastInter = 0;
 
@@ -246,7 +253,8 @@ public class HighSeaTower extends Application {
             @Override
             public void handle(long now) {
 
-                // Si dernier temps = 0, faire apparaitre le groupe de bulles
+                // Si dernier temps = 0, faire apparaitre le
+                // groupe de bulles
                 if (lastTime == 0) {
                     lastTime = now;
                     firstTime = now;
@@ -331,7 +339,8 @@ public class HighSeaTower extends Application {
      *  Cree le texte du debut du jeu et l'ajoute à la racine
      */
     public void textDebut(){
-        begin = new Text ("Veillez appuyer sur une touche\n pour commencer la partie");
+        begin = new Text ("Veillez appuyer sur une touche\n" +
+                " pour commencer la partie");
         begin.setFill(Color.WHITE);
         begin.setFont(Font.font(15));
         begin.setTextAlignment(TextAlignment.CENTER);
