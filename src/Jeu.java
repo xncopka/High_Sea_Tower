@@ -480,7 +480,7 @@ public class Jeu {
             }
         }
 
-
+        // À chaque tour, on recalcule si la meduse se trouve parterre ou non
         jellyfish.setParterre(false);
         jellyfish.setParterreAcc(false);
 
@@ -632,7 +632,8 @@ public class Jeu {
             jellyfish.testCollision(tortue);
 
             // Si la tortue se retrouve sous l'ecran, generer
-            // une nouvelle tortue au dessus de l'ecran
+            // une nouvelle tortue au dessus de l'ecran et la positionner
+            // de maniere qu'elle soit entre les plateformes
             if (tortue.getY() > fenetreY + HighSeaTower.HEIGHT) {
                 Random rand = new Random();
                 double newX = rand.nextInt(HighSeaTower.WIDTH - 60 + 1);
@@ -644,7 +645,7 @@ public class Jeu {
             tortue.update(dt);
         }
 
-        // generer une trampoline de maniere aleatoire
+        // generer un trampoline de maniere aleatoire
         Random random = new Random();
         int probTrampoline = random.nextInt(201);
         if(probTrampoline == 0 && !trampInGame) {
