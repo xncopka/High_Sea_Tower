@@ -27,9 +27,6 @@ public class Jellyfish extends Entity {
     // Si la méduse n'a pas encore touché la tortue
     private boolean firstInter = true;
 
-    // Si la méduse a utilisé un trampoline
-    private boolean trampUsed = false;
-
     // nombre de vies de la méduse
     private int life = 3 ;
 
@@ -446,7 +443,6 @@ public class Jellyfish extends Entity {
             this.parterre = true;
             isJumping = false;
             this.vy=-750;
-            trampUsed = true;
         }
     }
 
