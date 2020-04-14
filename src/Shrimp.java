@@ -59,8 +59,8 @@ public class Shrimp extends Entity {
     @Override
     public void draw(GraphicsContext context, double fenetreY) {
         double yAffiche = y - fenetreY;
-        context.drawImage(image, getX(), yAffiche, getRayon()*2,
-                getRayon()*2);
+        context.drawImage(image, x, yAffiche, rayon*2,
+                rayon*2);
     }
 
 
@@ -77,11 +77,11 @@ public class Shrimp extends Entity {
     public boolean intersects(Jellyfish other) {
 
         double deltaX = x - Math.max(
-                other.getX() - other.getLargeur() / 2,
-                Math.min(x, other.getX() + other.getLargeur() / 2));
+                other.x - other.largeur / 2,
+                Math.min(x, other.x + other.largeur / 2));
         double deltaY = y - Math.max(
-                other.getY() - other.getHauteur() / 2,
-                Math.min(y, other.getY() + other.getLargeur() / 2));
+                other.y - other.hauteur / 2,
+                Math.min(y, other.y + other.largeur / 2));
 
         return deltaX * deltaX + deltaY * deltaY < rayon * rayon;
     }

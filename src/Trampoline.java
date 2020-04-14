@@ -47,7 +47,7 @@ public class Trampoline extends Entity {
     @Override
     public void draw(GraphicsContext context, double fenetreY) {
         double yAffiche = y - fenetreY;
-        context.drawImage(image, getX(), yAffiche, largeur, hauteur);
+        context.drawImage(image, x, yAffiche, largeur, hauteur);
     }
 
 }
