@@ -2,9 +2,8 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
  /**
-  * Classe qui représente une tortue dans l'océan qui est un
-  * ennemi de la méduse.Si la méduse touche 3 fois la tortue,
-  * la meduse meurt.
+  * Classe qui représente une tortue dans l'océan qui est un ennemi de la méduse.
+  * Si la méduse touche 3 fois la tortue, la meduse meurt.
   */
 public class Tortue extends Entity {
 
@@ -66,8 +65,7 @@ public class Tortue extends Entity {
 
      /**
       * Met à jour la position de la méduse, sa vitesse et son image
-      * @param deltaTime Temps écoulé depuis le dernier update() en
-      * secondes
+      * @param deltaTime Temps écoulé depuis le dernier update() en secondes
       */
     @Override
     public void update(double deltaTime) {

@@ -178,24 +178,20 @@ public class Jellyfish extends Entity {
             this.parterre = true;
             isJumping = false;
 
-           // Dans le cas d'une plateforme rebondissante, la vitesse
-            // de la meduse est inversée et amplifiée
-           // Par soucis de jouabilité, la vitesse est forcée à être
-            // au moins de 300px/s vers le haut (au lieu
-           // de 100px/s de l'enoncé qui donnait dans de rares cas une
-            // succession de petits rebonds néfaste à
-            // l'expérience du joueur)
-            // De plus, la vitesse maximale est de 1000px/s vers le
-            // haut afin de limiter les bugs de tunneling
-            // lorsque la vitesse est trop eleve et ne reconnait
-            // plus les collisions.
+           /**
+            * Dans le cas d'une plateforme rebondissante, la vitesse de la meduse est inversée et amplifiée
+            Par soucis de jouabilité, la vitesse est forcée à être au moins de 300px/s vers le haut (au lieu
+            de 100px/s de l'enoncé qui donnait dans de rares cas une succession de petits rebonds néfaste à
+             l'expérience du joueur)
+             De plus, la vitesse maximale est de 1000px/s vers le haut afin de limiter les bugs de tunneling
+             lorsque la vitesse est trop eleve et ne reconnait plus les collisions.
+            */
            if (other.getId().equals("plateformeRebon")) {
                 this.vy *= -1.5;
                 vy = Math.min(vy, -300);
                 vy = Math.max(vy,-1000);
 
-            } else {   // sinon la vitesse est nul quand la meduse atterit
-               // sur une plateforme
+            } else {   // sinon la vitesse est nul quand la meduse atterit sur une plateforme
                this.vy = 0;
            }
 
@@ -233,8 +229,7 @@ public class Jellyfish extends Entity {
 
     /**
      * Accesseur de parterreAcc
-     * @return un boolean vrai ou faux selon si la meduse touche
-     * une plateforme accelerante
+     * @return un boolean vrai ou faux selon si la meduse touche une plateforme accelerante
      */
     public boolean getParterreAcc(){
         return this.parterreAcc;
@@ -264,8 +259,7 @@ public class Jellyfish extends Entity {
 
 
     /**
-     * Methode qui renvoit un boolean selon si la meduse intersecte une
-     * autre entité ou non
+     * Methode qui renvoit un boolean selon si la meduse intersecte une autre entité ou non
      * @param other n'importe quel entité
      * @return un boolean selon si la meduse intersect avec l'object ou non
      */
@@ -355,8 +349,7 @@ public class Jellyfish extends Entity {
 
 
     /**
-     * Methode qui indique si la meduse intersecte une crevette qui est
-     * modelisé comme un cercle (voir classe Shrimp)
+     * Methode qui indique si la meduse intersecte une crevette qui est modelisé comme un cercle (voir classe Shrimp)
      * @param other crevette
      * @return un boolean
      */
@@ -415,8 +408,7 @@ public class Jellyfish extends Entity {
     /**
      * Test sil y a une collision avec la tortue.
      * Si le bas de la meduse touche la tortue, alors celle-ci peut rebondir
-     * Si le haut de la meduse touche la tortue, alors la meduse tombe vers
-     * le bas
+     * Si le haut de la meduse touche la tortue, alors la meduse tombe vers le bas
      * @param other Tortue
      */
     public void testCollision(Tortue other) {
@@ -424,10 +416,10 @@ public class Jellyfish extends Entity {
                 < other.hauteur
                 && vy > 0 ) {
             pushOut(other);
-           
+
             this.parterre = true;
             isJumping = false;
-            this.vy=0;                                               
+            this.vy=0;
         }
 
         if (intersects(other) && other.y <  this.y
@@ -456,8 +448,7 @@ public class Jellyfish extends Entity {
 
 
     /**
-     * Methode qui renvoit un boolean selon si cest la premiere fois que la tortue
-     * est touchee ou non
+     * Methode qui renvoit un boolean selon si cest la premiere fois que la tortue st touchee ou non
      * @param other tortue
      * @return un boolean vrai ou faux
      */
@@ -471,8 +462,7 @@ public class Jellyfish extends Entity {
     }
 
     /**
-     * Methode qui renvoit un boolean selon si cest la derniere fois que la tortue
-     * est touchee ou non
+     * Methode qui renvoit un boolean selon si cest la derniere fois que la tortue est touchee ou non
      * @param other tortue
      * @return un boolean vrai ou faux
      */
@@ -484,9 +474,6 @@ public class Jellyfish extends Entity {
             return false;
         }
     }
-
-
-
 
 
 

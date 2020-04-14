@@ -5,8 +5,7 @@ import javafx.scene.image.Image;
 
 /**
  * Classe representant une crevette dans l'océan, proie de la meduse.
- * Si la meduse attrape une crevette, le joueur gagne des points
- * supplémentaires
+ * Si la meduse attrape une crevette, le joueur gagne des points supplémentaires
  */
 public class Shrimp extends Entity {
 
@@ -59,8 +58,7 @@ public class Shrimp extends Entity {
     @Override
     public void draw(GraphicsContext context, double fenetreY) {
         double yAffiche = y - fenetreY;
-        context.drawImage(image, x, yAffiche, rayon*2,
-                rayon*2);
+        context.drawImage(image, x, yAffiche, rayon*2, rayon*2);
     }
 
 
@@ -69,19 +67,15 @@ public class Shrimp extends Entity {
 
     /**
      * Methode qui permet de verifier si la meduse intersecte la crevette
-     * Trouve le point (x, y) à l'intérieur du carré le plus proche du
-     * centre du cercle et vérifie s'il se trouve dans le rayon du cercle
+     * Trouve le point (x, y) à l'intérieur du carré le plus proche du centre du cercle
+     * et vérifie s'il se trouve dans le rayon du cercle
      * @param other la meduse
      * @return vrai ou faux, selon si la meduse intersecte le rayon du cercle
      */
     public boolean intersects(Jellyfish other) {
 
-        double deltaX = x - Math.max(
-                other.x - other.largeur / 2,
-                Math.min(x, other.x + other.largeur / 2));
-        double deltaY = y - Math.max(
-                other.y - other.hauteur / 2,
-                Math.min(y, other.y + other.largeur / 2));
+        double deltaX = x - Math.max(other.x - other.largeur / 2, Math.min(x, other.x + other.largeur / 2));
+        double deltaY = y - Math.max(other.y - other.hauteur / 2, Math.min(y, other.y + other.largeur / 2));
 
         return deltaX * deltaX + deltaY * deltaY < rayon * rayon;
     }

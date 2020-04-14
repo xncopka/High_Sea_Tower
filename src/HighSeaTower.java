@@ -18,19 +18,17 @@ import javafx.stage.Stage;
  * 13 avril 2020
  * @author Thomas Bui, 20055825
  * @author Vanda Gaonac'h-Lovejoy, 1018781
- * Jeu en interface graphique qui tente de remonter une meduse
- * le plus dans l’océan en sautant de plateforme en plateforme.
- * L’écran monte graduellement automatiquement, etle but est
- * de ne pas tomber au fond de l’océan. La classe HighSeaTower
- * est la main de notre programme.
+ * Jeu en interface graphique qui tente de remonter une meduse le plus dans l’océan
+ * en sautant de plateforme en plateforme.
+ * L’écran monte graduellement automatiquement, et le but est de ne pas tomber au fond de l’océan.
+ * La classe HighSeaTower est la main de notre programme.
  */
- 
+
+
 /**
  * Classe qui sert à définir ce qui doit être affiché (Vue)
  */
 public class HighSeaTower extends Application {
-
-
 
     // Largeur et hauteur de la fenêtre
     public static final int WIDTH = 350, HEIGHT = 480;
@@ -53,13 +51,11 @@ public class HighSeaTower extends Application {
     // Texte pour recommencer
     private Text again;
 
-    // boolean qui indique si la fleche gauche ou
-    // droite est appuyée
+    // boolean qui indique si la fleche gauche ou droite est appuyée
     private boolean gauche;
     private boolean droite;
 
-    // Temps qui s’est écoulé depuis le dernier appel de
-    // la fonction handle
+    // Temps qui s’est écoulé depuis le dernier appel de la fonction handle
     private double deltaTime;
 
     // Texte du debut de partie
@@ -116,8 +112,7 @@ public class HighSeaTower extends Application {
                 Platform.exit();
             }
 
-            // Lancer le timer et faire saute jellyfish si on appuie
-            // sur Espace ou Haut
+            // Lancer le timer et faire saute jellyfish si on appuie sur Espace ou Haut
             if (event.getCode() == KeyCode.SPACE || event.getCode() ==
                     KeyCode.UP) {
                 root.getChildren().remove(over);
@@ -130,8 +125,7 @@ public class HighSeaTower extends Application {
             }
 
 
-            // Lancer le timer et faire bouger lateralement vers la gauche
-            // jellyfish si on appuie sur Left
+            // Lancer le timer et faire bouger lateralement vers la gauche jellyfish si on appuie sur Left
             if (event.getCode() == KeyCode.LEFT) {
                 root.getChildren().remove(begin);
                 root.getChildren().remove(over);
@@ -144,8 +138,7 @@ public class HighSeaTower extends Application {
 
             }
 
-            // Lancer le timer et faire bouger lateralement vers la droite
-            // jellyfish si on appuie sur Right
+            // Lancer le timer et faire bouger lateralement vers la droite jellyfish si on appuie sur Right
             if (event.getCode() == KeyCode.RIGHT) {
                 root.getChildren().remove(begin);
                 root.getChildren().remove(over);
@@ -161,8 +154,7 @@ public class HighSeaTower extends Application {
             // Lance le mode debug ou revient au mode normal en appuyant sur T
             if (event.getCode() == KeyCode.T) {
                 controleur.debug();
-                controleur.draw(context);  // permet d'utiliser le
-                // mode debug en debut de partie
+                controleur.draw(context);  // permet d'utiliser le mode debug en debut de partie
 
             }
 
@@ -190,9 +182,9 @@ public class HighSeaTower extends Application {
                 droite = false;
             }
 
-            //  Fait deplacer la meduse de maniere "smooth" en evitant
-            //  que la meduse se bloque quand on appuie sur
-            // gauche puis droite ou l'inverse trop rapidement
+            //  Fait deplacer la meduse de maniere "smooth"
+            //  en evitant que la meduse se bloque quand on appuie sur Gauche puis droite
+            //  ou l'inverse trop rapidement
             if(!gauche && droite) {
                 controleur.right();
             }
@@ -222,6 +214,7 @@ public class HighSeaTower extends Application {
         primaryStage.show();
     }
 
+
     /**
      * Methode qui renvoit si la partie est terminée
      * @return un boolean
@@ -239,6 +232,7 @@ public class HighSeaTower extends Application {
         controleur.draw(context);
     }
 
+
     /**
      *  Cree un nouveau timer permettant de creer des animations
      */
@@ -251,8 +245,7 @@ public class HighSeaTower extends Application {
             private long lastTime = 0;
             private long firstTime = 0;
 
-            // Initialiser la premiere et derniere fois que la
-            // meduse touche la tortue
+            // Initialiser la premiere et derniere fois que la meduse touche la tortue
             private long firstInter = 0;
             private long lastInter = 0;
 
@@ -260,8 +253,7 @@ public class HighSeaTower extends Application {
             @Override
             public void handle(long now) {
 
-                // Si dernier temps = 0, faire apparaitre le
-                // groupe de bulles
+                // Si dernier temps = 0, faire apparaitre le groupe de bulles
                 if (lastTime == 0) {
                     lastTime = now;
                     firstTime = now;
@@ -282,8 +274,7 @@ public class HighSeaTower extends Application {
                         lastInter = now;
                     }
 
-                    // Si la meduse touche la tortue pendant un certain temps
-                    // enlever vie à la meduse
+                    // Si la meduse touche la tortue pendant un certain temps enlever une vie à la meduse
                     if (lastInter - firstInter >= (long) 1e+6) {
                         controleur.setNbVies(controleur.getNbVies() - 1);
                         firstInter = 0;
@@ -329,6 +320,7 @@ public class HighSeaTower extends Application {
         };
     }
 
+
     /**
      *  Permet de restart la partie
      */
@@ -341,12 +333,12 @@ public class HighSeaTower extends Application {
 
     }
 
+
     /**
      *  Cree le texte du debut du jeu et l'ajoute à la racine
      */
     public void textDebut(){
-        begin = new Text ("Veillez appuyer sur une touche\n" +
-                " pour commencer la partie");
+        begin = new Text ("Veillez appuyer sur une touche\n" + " pour commencer la partie");
         begin.setFill(Color.WHITE);
         begin.setFont(Font.font(15));
         begin.setTextAlignment(TextAlignment.CENTER);
@@ -354,6 +346,7 @@ public class HighSeaTower extends Application {
         begin.setY(200);
         root.getChildren().add(begin);
     }
+
 
     /**
      * Cree le texte du Game Over et l'ajoute à la racine
@@ -368,6 +361,7 @@ public class HighSeaTower extends Application {
         root.getChildren().add(over);
     }
 
+    
     /**
      * Cree le texte pour recommencer et l'ajoute à la racine
      */

@@ -1,8 +1,7 @@
 import javafx.scene.canvas.GraphicsContext;
 
 /**
- * Classe abstraite entité qui est commun à toutes les formes qu’on veut ajouter
- * à l’animation
+ * Classe abstraite entité qui est commun à toutes les formes qu’on veut ajouter à l’animation
  */
 public abstract class Entity {
 
@@ -48,9 +47,9 @@ public abstract class Entity {
 
 
     // Getters et Setters (pas obligatoire comme les attributs sont protected)
-    // Mais par question de style et pour respecter l'encapsulation, on a utilise un
-    // acces direct aux attributs dans les classes filles de Entity et des getters et
-    // setters dans la classe de la logique interne de l'application Jeu.
+    // Mais par question de style et pour respecter l'encapsulation,
+    // on a utilise un acces direct aux attributs dans les classes filles de Entity
+    // et des getters et setters dans la classe de la logique interne de l'application Jeu.
 
 
     /**

@@ -3,78 +3,92 @@ import javafx.scene.canvas.GraphicsContext;
 /**
  *  Classe qui relie la vue au modèle, HighSeaTower à Jeu
  */
-
-
 public class Controleur {
 
     Jeu jeu;
 
     /**
-     * Constructeur de contrôleur
+     * Constructeur de Controleur
      */
     public Controleur() {
         jeu = new Jeu();
     }
 
+
     /**
-     * Dessine le jeu selon le contexte graphique du canvas
+     * Demande au jeu de dessiner les formes du dessin
      * @param context contexte graphique du canvas
      */
     void draw(GraphicsContext context) {
         jeu.draw(context);
     }
 
+
     /**
-     * Met à jour les positions, vitesses des entites du jeu
+     * Demande au jeu de mettre à jour les données du jeu
      * @param deltaTime Temps écoulé depuis le dernier update() en secondes
      */
     void update(double deltaTime) {
         jeu.update(deltaTime);
     }
 
+
     /**
-     * Le contrôleur demande au modele de mettre à jour l'état de la meduse
+     * demande au modele de mettre à jour l'état de la meduse
      * Methode pour sauter
      */
     void jump() {
         jeu.jump();
     }
 
+
     /**
-     * Le contrôleur demande au modele de mettre à jour l'état de la meduse
+     * demande au modele de mettre à jour l'état de la meduse
      * Methode pour aller a droite
      */
     void right() { jeu.right();}
+
+
     /**
-     * Le contrôleur demande au modele de mettre à jour l'état de la meduse
+     * demande au modele de mettre à jour l'état de la meduse
      * Methode pour aller a gauche
      */
     void left() { jeu.left();}
+
+
     /**
-     * Le contrôleur demande au modele de mettre à jour l'état de la meduse
+     * demande au modele de mettre à jour l'état de la meduse
      * Methode La meduse arrete de se deplacer
      */
     void stop() { jeu.stop();}
+
+
     /**
-     * Le contrôleur demande au modele de mettre à jour l'état des bulles
+     * demande au modele de mettre à jour l'état des bulles
      * Methode pour grouper les bulles a l'arriere plan
      */
     void groupBulles() { jeu.groupBulles();}
 
+
     /**
+     *  Demande au modele de mettre à jour l'état du mode debug
      * Methode pour activer ou desactiver le mode debug du jeu
      */
     void debug() { jeu.debug();}
+
+
     /**
-     * Le contrôleur demande au modele de mettre à jour l'état du
+     * Demande au modele de mettre à jour l'état du
      * plancher de depart
      *  Méthode pour supprimer le plancher
      */
     void removePlancher() {
         jeu.removePlancher();
     }
+
+
     /**
-     * Le contrôleur demande au modele de mettre à jour l'état du jeu
+     * Demande au modele de mettre à jour l'état du jeu
      * Methode qui indique si la partie est terminee ou pas
      */
     boolean getGameOver() {
@@ -82,9 +96,8 @@ public class Controleur {
     }
 
 
-
     /**
-     *  Methode pour savoir si la meduse a touche la tortue
+     *  Demande au modele si la meduse a touche la tortue
      * @return un boolean
      */
     public boolean getFirstInterTortue() {
@@ -93,29 +106,34 @@ public class Controleur {
 
 
     /**
-     * Methode pour savoir si la meduse n'a plus touche la tortue
+     * Demande au modele si la meduse n'a plus touche la tortue
      * @return un boolean
      */
     public boolean getLastInterTortue() {
         return jeu.getLastInterTortue();
     }
+
+
     /**
-     * Le contrôleur met à jour l'état du jeu
-     * Methode pour indiquer le nombre de vies restantes
+     * Demande au jeu le nombre de vies restantes de la meduse
+     * @return le nombre de vies restantes de la meduse
      */
     public int getNbVies() {
         return jeu.getNbVies();
     }
+
+
     /**
-     * Le contrôleur met à jour l'état du jeu
+     * Demande au jeu de mettre à jour le nombre de vies de la meduse
      * Mutateur du nombre de vies restantes
      */
     public void setNbVies(int life) {
         jeu.setNbVies(life);
     }
 
+
     /**
-     * Methode pour savoir si une tortue est dans le jeu
+     * Demande au modele si une tortue est dans le jeu
      * @return  un boolean
      */
     public boolean getTortue() {
