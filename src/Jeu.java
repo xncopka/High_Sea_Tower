@@ -15,7 +15,7 @@ import javafx.scene.text.TextAlignment;
 public class Jeu {
 
     // Largeur, hauteur du niveau
-    private double width = 350, height = 480;
+    public static final int WIDTH = 350, HEIGHT = 480;
 
     // Origine de la fenêtre
     private double fenetreY = 0;
@@ -25,7 +25,7 @@ public class Jeu {
     // Entités dans le jeu
     private Jellyfish jellyfish;
     private Bulle[][] bulles;
-    ArrayList<Plateforme> plateformes= new ArrayList<Plateforme>();
+    private ArrayList<Plateforme> plateformes= new ArrayList<Plateforme>();
     private Plateforme plancher;
     private Shrimp shrimp;
     private Tortue tortue;
@@ -80,8 +80,8 @@ public class Jeu {
         // le souhaite au debut du jeu
         plancher = new Plateforme(0);
         plancher.setX(0);
-        plancher.setY(HighSeaTower.HEIGHT);
-        plancher.setLargeur(HighSeaTower.WIDTH);
+        plancher.setY(HEIGHT);
+        plancher.setLargeur(WIDTH);
         plancher.setId("plancher");
 
 
@@ -109,7 +109,7 @@ public class Jeu {
         }
 
         // initialiser la méduse
-        jellyfish = new Jellyfish(width/2 - 25, height);
+        jellyfish = new Jellyfish(WIDTH/2 - 25, HEIGHT);
         jellyfish.update(0);
 
         // pas de bulles au debut du jeu
@@ -117,7 +117,7 @@ public class Jeu {
 
         // initialiser la crevette
         Random rand = new Random();
-        shrimp = new Shrimp( rand.nextInt(HighSeaTower.WIDTH - 30 + 1),
+        shrimp = new Shrimp( rand.nextInt(WIDTH - 30 + 1),
                 rand.nextInt(90+1));
 
         // le jeu n'est pas terminée
@@ -359,7 +359,7 @@ public class Jeu {
      */
     public void groupBulles() {
         bulles = new Bulle[3][5];
-        Bulle.groupBulles(bulles, width, fenetreY + height);
+        Bulle.groupBulles(bulles, WIDTH, fenetreY + HEIGHT);
     }
 
     /**
@@ -466,7 +466,7 @@ public class Jeu {
         // Si la meduse tombe au fond de l'ocean ou qu'elle n'a plus de
         //vies alors Game Over
         // et actualiser le plus haut score
-        if ( (jellyfish.y > HighSeaTower.HEIGHT + fenetreY) ||
+        if ( (jellyfish.y > HEIGHT + fenetreY) ||
                 jellyfish.getNbVies() == 0 ) {
 
             gameOver = true;
@@ -532,7 +532,7 @@ public class Jeu {
 
         // Tant que la premiere plateforme est en dessous de l'ecran,
         // la supprimer par soucis de memoire
-        while (plateformes.get(0).getY() > HighSeaTower.HEIGHT + fenetreY) {
+        while (plateformes.get(0).getY() > HEIGHT + fenetreY) {
             plateformes.remove(0);
         }
 
@@ -604,10 +604,10 @@ public class Jeu {
         // Si la crevette se retrouve au dessous de l'ecran generer
         // une nouvelle crevette
         // se trouvant au dessus de l'ecran
-        if (shrimp.getY() > fenetreY + shrimp.getRayon() + HighSeaTower.HEIGHT) {
+        if (shrimp.getY() > fenetreY + shrimp.getRayon() + HEIGHT) {
             Random rand = new Random();
-            double newX = rand.nextInt(HighSeaTower.WIDTH - 30 + 1);
-            double newY = fenetreY - rand.nextInt(HighSeaTower.HEIGHT - 30 + 1)
+            double newX = rand.nextInt(WIDTH - 30 + 1);
+            double newY = fenetreY - rand.nextInt(HEIGHT - 30 + 1)
                     - 30;
             shrimp = new Shrimp(newX, newY);
         }
@@ -618,8 +618,8 @@ public class Jeu {
         // au dessus de l'ecran
         if (jellyfish.aAttrape()) {
             Random rand = new Random();
-            double newX = rand.nextInt(HighSeaTower.WIDTH - 30 + 1);
-            double newY = fenetreY - rand.nextInt(HighSeaTower.HEIGHT -
+            double newX = rand.nextInt(WIDTH - 30 + 1);
+            double newY = fenetreY - rand.nextInt(HEIGHT -
                     30 + 1) - 30;
             shrimp = new Shrimp(newX, newY);
             nbCrustaces++;
@@ -637,9 +637,9 @@ public class Jeu {
             // Si la tortue se retrouve sous l'ecran, generer
             // une nouvelle tortue au dessus de l'ecran et la positionner
             // de maniere qu'elle soit entre les plateformes
-            if (tortue.getY() > fenetreY + HighSeaTower.HEIGHT) {
+            if (tortue.getY() > fenetreY + HEIGHT) {
                 Random rand = new Random();
-                double newX = rand.nextInt(HighSeaTower.WIDTH - 60 + 1);
+                double newX = rand.nextInt(WIDTH - 60 + 1);
                 double newY = fenetreY - rand.nextInt(5)*110 -70;
                 tortue = new Tortue(newX, newY);
             }
@@ -677,7 +677,7 @@ public class Jeu {
 
             // Si le trampoline se retrouve au dessous de l'ecran,
             // mettre a jour les données
-            if(trampoline.getY() > fenetreY  + HighSeaTower.HEIGHT) {
+            if(trampoline.getY() > fenetreY  + HEIGHT) {
                 trampInGame = false;
                 trampoline = null;
             }
@@ -700,9 +700,9 @@ public class Jeu {
         // La meduse ne peut jamais aller au delas de 75%
         // de la hauteur de l'ecran
         // Et fait monter l'ecran adequatement
-        if (jellyfish.y < fenetreY + 0.25 * HighSeaTower.HEIGHT) {
+        if (jellyfish.y < fenetreY + 0.25 * HEIGHT) {
             fenetreY -= Math.abs(jellyfish.y - (fenetreY
-                    + 0.25 * HighSeaTower.HEIGHT));
+                    + 0.25 * HEIGHT));
         }
 
         // Nombre de points gagnes qui est le nombre de
@@ -738,7 +738,7 @@ public class Jeu {
 
         // Background bleu du jeu
         context.setFill(Color.DARKBLUE);
-        context.fillRect(0, 0, width, height);
+        context.fillRect(0, 0, WIDTH, HEIGHT);
 
 
         // Pour chaque groupe de bulle
@@ -808,7 +808,7 @@ public class Jeu {
             context.setFill(Color.WHITE);
             context.setTextAlign(TextAlignment.LEFT);
             context.fillText("Position = (" + (int)jellyfish.x + "," +
-                            Math.abs((int)jellyfish.y-HighSeaTower.HEIGHT) +
+                            Math.abs((int)jellyfish.y-HEIGHT) +
                             ")\n"
                     + "v = (" + (int)jellyfish.vx + "," + (int)jellyfish.vy +
                             ")\n"
@@ -841,11 +841,11 @@ public class Jeu {
         context.setTextAlign(TextAlignment.RIGHT);
         context.setFont(Font.font(12));
         context.fillText("High Score : " + highScore,
-                HighSeaTower.WIDTH - 10, 20);
+                WIDTH - 10, 20);
         context.fillText("Level : " + getLevel(),
-                HighSeaTower.WIDTH-10,40 );
+                WIDTH-10,40 );
         context.fillText("Vies restantes : " +
-                jellyfish.getNbVies(), HighSeaTower.WIDTH-10,60 );
+                jellyfish.getNbVies(), WIDTH-10,60 );
 
     }
 

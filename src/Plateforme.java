@@ -32,8 +32,8 @@ public class Plateforme extends Entity {
         Random rand = new Random();
         this.largeur =  rand.nextInt((175 - 80) + 1) + 80;
         this.hauteur = 10;
-        this.y = HighSeaTower.HEIGHT - (100+10)*counter ;
-        this.x = rand.nextInt(HighSeaTower.WIDTH + 1);
+        this.y = Jeu.HEIGHT - (100+10)*counter ;
+        this.x = rand.nextInt(Jeu.WIDTH + 1);
         this.possedeTramp = false;
 
     }
