@@ -820,7 +820,7 @@ public class Jeu {
                             + "fenetreVY :" + (int)fenetreVY  +"\n"
                             + "isJumping :" + jellyfish.getIsJumping() +"\n"
                             + "position Shrimp : (" + (int) shrimp.getX() + ", "
-                            + (int)shrimp.getY()  + ")" +"\n"
+                            + Math.abs((int)shrimp.getY()-HEIGHT)  + ")" +"\n"
                             + "nombre de crustacés: " + nbCrustaces +"\n"
 
                     , 10, 20);
