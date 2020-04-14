@@ -35,20 +35,6 @@ public class Bulle extends Entity {
     }
 
 
-
-
-    /**
-     * Accesseur de rayon
-     * @return rayon de la bulle
-     */
-    public double getRayon() {
-        return rayon;
-    }
-
-
-
-
-
     /**
      * Met à jour la position y de la bulle
      * @param dt Temps écoulé depuis le dernier update() en secondes

@@ -61,6 +61,9 @@ public class HighSeaTower extends Application {
     // Texte du debut de partie
     private Text begin;
 
+    // Si le texte du debut de partie est affiché
+    private boolean firstBegin;
+
     /** Méthode main de HighSeaTower
      * @param args the command line arguments
      */
@@ -117,6 +120,7 @@ public class HighSeaTower extends Application {
                 root.getChildren().remove(over);
                 root.getChildren().remove(again);
                 root.getChildren().remove(begin);
+                firstBegin = false;
                 timer.start();
                 controleur.jump();
                 controleur.removePlancher();
@@ -127,6 +131,7 @@ public class HighSeaTower extends Application {
             // Lancer le timer et faire bouger lateralement vers la gauche jellyfish si on appuie sur Left
             if (event.getCode() == KeyCode.LEFT) {
                 root.getChildren().remove(begin);
+                firstBegin = false;
                 root.getChildren().remove(over);
                 root.getChildren().remove(again);
                 timer.start();
@@ -140,6 +145,7 @@ public class HighSeaTower extends Application {
             // Lancer le timer et faire bouger lateralement vers la droite jellyfish si on appuie sur Right
             if (event.getCode() == KeyCode.RIGHT) {
                 root.getChildren().remove(begin);
+                firstBegin = false;
                 root.getChildren().remove(over);
                 root.getChildren().remove(again);
                 timer.start();
@@ -159,6 +165,11 @@ public class HighSeaTower extends Application {
 
             // Restart la partie en appuyant sur R
             if (event.getCode() == KeyCode.R) {
+                root.getChildren().remove(over);
+                root.getChildren().remove(again);
+                if(!firstBegin) {  // evite de creer plusieurs textes qui se superposent en spammant R
+                    textDebut();
+                }
                 restart();
 
             }
@@ -344,6 +355,7 @@ public class HighSeaTower extends Application {
         begin.setX(80);
         begin.setY(200);
         root.getChildren().add(begin);
+        firstBegin = true;
     }
 
 
