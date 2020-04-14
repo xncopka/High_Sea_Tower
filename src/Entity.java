@@ -10,14 +10,14 @@ public abstract class Entity {
     protected double x, y;
 
     protected double vx, vy;
-    protected double ax, ay;
+    protected double ax, ay = 1200; // gravite du jeu.
 
     /**
      * Met à jour la position et la vitesse de l'entité
      * @param dt Temps écoulé depuis le dernier update() en secondes
      */
     public void update(double dt) {
-
+        
         vx += dt * ax;
         vy += dt * ay;
         x += dt * vx;

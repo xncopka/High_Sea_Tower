@@ -21,6 +21,7 @@ public class Shrimp extends Entity {
      * @param y position y de shrimp
      */
     public Shrimp(double x, double y) {
+        this.ay = 0;
         this.x = x;
         this.y = y;
         this.rayon = 15;

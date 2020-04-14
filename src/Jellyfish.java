@@ -50,7 +50,6 @@ public class Jellyfish extends Entity {
         this.vx = 0;
         this.vy = 0;
         this.ax = 0;
-        this.ay = 1200;
         this.parterre = true;
 
 

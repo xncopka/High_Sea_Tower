@@ -16,6 +16,7 @@ public class Trampoline extends Entity {
 
     // Constructeur de Trampoline
     public Trampoline(double x, double y) {
+        this.ay = 0;
         this.x = x;
         this.y = y;
         this.largeur = 20;

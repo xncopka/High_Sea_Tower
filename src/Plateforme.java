@@ -35,6 +35,7 @@ public class Plateforme extends Entity {
         this.y = Jeu.HEIGHT - (100+10)*counter ;
         this.x = rand.nextInt(Jeu.WIDTH + 1);
         this.possedeTramp = false;
+        this.ay = 0;
 
     }
 
