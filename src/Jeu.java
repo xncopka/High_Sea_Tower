@@ -466,7 +466,7 @@ public class Jeu {
         // Si la meduse tombe au fond de l'ocean ou qu'elle n'a plus de
         //vies alors Game Over
         // et actualiser le plus haut score
-        if ( (jellyfish.y > HEIGHT + fenetreY) ||
+        if ( (jellyfish.getY() > HEIGHT + fenetreY) ||
                 jellyfish.getNbVies() == 0 ) {
 
             gameOver = true;
@@ -700,10 +700,12 @@ public class Jeu {
         // La meduse ne peut jamais aller au delas de 75%
         // de la hauteur de l'ecran
         // Et fait monter l'ecran adequatement
-        if (jellyfish.y < fenetreY + 0.25 * HEIGHT) {
-            fenetreY -= Math.abs(jellyfish.y - (fenetreY
+        if (jellyfish.getY() < fenetreY + 0.25 * HEIGHT) {
+            fenetreY -= Math.abs(jellyfish.getY() - (fenetreY
                     + 0.25 * HEIGHT));
         }
+
+        
 
         // Nombre de points gagnes qui est le nombre de
         // pixels dont l'ecran a monte depuis le debut de partie
@@ -776,9 +778,9 @@ public class Jeu {
             if (modeDebug) {
                 // S'il y a une collision avec une plateforme
                 // alors rendre cette plateforme jaune le temps de la collision
-                if  (jellyfish.intersects(p) && Math.abs(jellyfish.y +
-                        jellyfish.hauteur - p.y) < 10
-                        && jellyfish.vy > 0) {
+                if  (jellyfish.intersects(p) && Math.abs(jellyfish.getY() +
+                        jellyfish.getHauteur() - p.getY()) < 10
+                        && jellyfish.getVY() > 0) {
                     Color temp = p.getColor();
                     p.setColor(Color.YELLOW);
                     p.draw(context, fenetreY);
@@ -792,27 +794,27 @@ public class Jeu {
         if (modeDebug) {
             // dessiner un carre rouge dans la boite englobante de la meduse
             context.setFill(Color.rgb(255, 0, 0, 0.4));
-            context.fillRect(jellyfish.x, jellyfish.y - fenetreY,
-                    jellyfish.largeur, jellyfish.hauteur);
+            context.fillRect(jellyfish.getX(), jellyfish.getY() - fenetreY,
+                    jellyfish.getLargeur(), jellyfish.getHauteur());
 
             if (tortue != null) {
                 // dessiner un rectangle vert dans la boite
                 // englobante de la tortue
                 context.setFill(Color.rgb(0, 255, 0, 0.4));
-                context.fillRect(tortue.x, tortue.y - fenetreY,
-                        tortue.largeur, tortue.hauteur);
+                context.fillRect(tortue.getX(), tortue.getY() - fenetreY,
+                        tortue.getLargeur(), tortue.getHauteur());
             }
 
             // dessiner les informations de debuggages
             context.setFont(Font.font(12));
             context.setFill(Color.WHITE);
             context.setTextAlign(TextAlignment.LEFT);
-            context.fillText("Position = (" + (int)jellyfish.x + "," +
-                            Math.abs((int)jellyfish.y-HEIGHT) +
+            context.fillText("Position = (" + (int)jellyfish.getX() + "," +
+                            Math.abs((int)jellyfish.getY()-HEIGHT) +
                             ")\n"
-                    + "v = (" + (int)jellyfish.vx + "," + (int)jellyfish.vy +
+                    + "v = (" + (int)jellyfish.getVX() + "," + (int)jellyfish.getVY() +
                             ")\n"
-                    + "a = (" + (int)jellyfish.ax + "," + (int)jellyfish.ay +
+                    + "a = (" + (int)jellyfish.getAX() + "," + (int)jellyfish.getAY() +
                             ")\n"
                     + "Touche le sol : " + jellyfish.getParterreFr() + "\n"
                     + "Nombre de plateformes : " + plateformes.size() +"\n"

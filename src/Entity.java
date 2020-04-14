@@ -47,6 +47,9 @@ public abstract class Entity {
 
 
 
+    // Getters et Setters (pas obligatoire comme les attributs sont protected)
+    // Mais par question de style, on a utilise un acces direct aux attributs dans les classes filles de Entity
+    // Sinon on a utilise des getters et setters dans la classe Jeu.
 
 
     /**
@@ -86,6 +89,33 @@ public abstract class Entity {
     }
     
     /**
+     * Accesseur de la composante y de la vitesse du modèle
+     * @return  composante y de la vitesse
+     */
+
+    public double getVY() {
+        return this.vy;
+    }
+
+    /**
+     * Accesseur de l'accélération en x du modèle
+     * @return  composante x de l'accélération
+     */
+
+    public double getAX() {
+        return this.ax;
+    }
+
+    /**
+     * Accesseur de l'accélération en y du modèle
+     * @return composante y de l'accélération
+     */
+
+    public double getAY() {
+        return this.ay;
+    }
+
+    /**
      * Mutateur de la position x du modèle
      * @param x position x du modèle
      */
@@ -115,6 +145,7 @@ public abstract class Entity {
     public void setVX(double vx) {
         this.vx = vx;
     }
+
 
 
     /**
