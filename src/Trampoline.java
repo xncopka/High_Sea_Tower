@@ -41,6 +41,7 @@ public class Trampoline extends Entity {
     /**
      * Dessine le trampoline
      * @param context contexte graphique du canvas
+     * @param fenetreY origine de la fenêtre en Y
      */
     @Override
     public void draw(GraphicsContext context, double fenetreY) {

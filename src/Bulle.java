@@ -102,7 +102,7 @@ public class Bulle extends Entity {
     /**
      * Dessine la bulle
      * @param context contexte graphique du canvas
-     * @param fenetreY position y par rapport au niveau du jeu
+     * @param fenetreY origine de la fenêtre en Y
      */
     @Override
     public void draw(GraphicsContext context, double fenetreY) {
