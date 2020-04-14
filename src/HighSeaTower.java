@@ -113,8 +113,7 @@ public class HighSeaTower extends Application {
             }
 
             // Lancer le timer et faire saute jellyfish si on appuie sur Espace ou Haut
-            if (event.getCode() == KeyCode.SPACE || event.getCode() ==
-                    KeyCode.UP) {
+            if (event.getCode() == KeyCode.SPACE || event.getCode() == KeyCode.UP) {
                 root.getChildren().remove(over);
                 root.getChildren().remove(again);
                 root.getChildren().remove(begin);

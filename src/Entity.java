@@ -59,6 +59,8 @@ public abstract class Entity {
     public double getX() {
         return this.x;
     }
+
+
     /**
      * Accesseur de la position y du modèle
      * @return position y
@@ -66,6 +68,8 @@ public abstract class Entity {
     public double getY() {
         return this.y;
     }
+
+
     /**
      * Accesseur de la largeur du modèle
      * @return largeur du modèle
@@ -73,6 +77,8 @@ public abstract class Entity {
     public double getLargeur() {
         return this.largeur;
     }
+
+
     /**
      * Accesseur de la hauteur du modèle
      * @return hauteur du modèle
@@ -80,6 +86,8 @@ public abstract class Entity {
     public double getHauteur() {
         return this.hauteur;
     }
+
+
     /**
      * Accesseur de la composante x de la vitesse du modèle
      * @return composante x de la vitesse
@@ -87,33 +95,34 @@ public abstract class Entity {
     public double getVX() {
         return this.vx;
     }
+
     
     /**
      * Accesseur de la composante y de la vitesse du modèle
      * @return  composante y de la vitesse
      */
-
     public double getVY() {
         return this.vy;
     }
+
 
     /**
      * Accesseur de l'accélération en x du modèle
      * @return  composante x de l'accélération
      */
-
     public double getAX() {
         return this.ax;
     }
+
 
     /**
      * Accesseur de l'accélération en y du modèle
      * @return composante y de l'accélération
      */
-
     public double getAY() {
         return this.ay;
     }
+
 
     /**
      * Mutateur de la position x du modèle
@@ -122,6 +131,8 @@ public abstract class Entity {
     public void setX(double x) {
         this.x = x;
     }
+
+
     /**
      * Mutateur de la position y du modèle
      * @param y position y du modèle
@@ -129,6 +140,8 @@ public abstract class Entity {
     public void setY(double y) {
         this.y = y;
     }
+
+
     /**
      * Mutateur de la largeur du modèle
      * @param largeur du modèle
@@ -145,7 +158,6 @@ public abstract class Entity {
     public void setVX(double vx) {
         this.vx = vx;
     }
-
 
 
     /**

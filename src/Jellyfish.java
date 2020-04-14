@@ -157,8 +157,7 @@ public class Jellyfish extends Entity {
          * il y a une intersection entre le plancher et la meduse
          * et la collision a lieu entre le plancher et le *bas du personnage* seulement
          */
-        if (intersects(other) && Math.abs(this.y + hauteur - other.y) < 10
-                && other.getId().equals("plancher")) {
+        if (intersects(other) && Math.abs(this.y + hauteur - other.y) < 10 && other.getId().equals("plancher")) {
              pushOut(other);
              this.parterre = true;
              this.vy=0;
@@ -171,8 +170,7 @@ public class Jellyfish extends Entity {
          * la collision a lieu entre la plateforme et le *bas du personnage* seulement,
          * et la meduse tombe
          */
-        if (intersects(other) && Math.abs(this.y + hauteur - other.y) < 10
-                && vy > 0) {
+        if (intersects(other) && Math.abs(this.y + hauteur - other.y) < 10 && vy > 0) {
 
             pushOut(other);
             this.parterre = true;
@@ -216,9 +214,8 @@ public class Jellyfish extends Entity {
          * et la meduse saute
          */
         if (other.getId().equals("plateformeSolide")) {
-            if (intersects(other) && Math.abs(  other.y + other.getHauteur()
-                    - this.y) < 10
-                    && vy < 0) {
+            if (intersects(other) && Math.abs(  other.y + other.getHauteur() - this.y) < 10 && vy < 0) {
+
                 this.vy *= -0.5;
 
             }
@@ -254,10 +251,6 @@ public class Jellyfish extends Entity {
     }
 
 
-
-
-
-
     /**
      * Methode qui renvoit un boolean selon si la meduse intersecte une autre entité ou non
      * @param other n'importe quel entité
@@ -265,13 +258,10 @@ public class Jellyfish extends Entity {
      */
     public boolean intersects(Entity other) {
         return !( // Un des carrés est à gauche de l’autre
-                x + largeur < other.x
-                        || other.x + other.largeur < this.x
+                x + largeur < other.x || other.x + other.largeur < this.x
                         // Un des carrés est en haut de l’autre
-                        || y + hauteur < other.y
-                        || other.y + other.hauteur < this.y);
+                        || y + hauteur < other.y || other.y + other.hauteur < this.y);
     }
-
 
 
     /**
@@ -285,21 +275,13 @@ public class Jellyfish extends Entity {
     }
 
 
-
-
-
-
-
-
     /**
-     * La meduse ne peut que sauter s'il se trouve sur une
-     * plateforme
+     * La meduse ne peut que sauter s'il se trouve sur une plateforme
      */
     public void jump() {
         if (parterre) {
             vy = -600;
             isJumping = true;
-
         }
     }
 
@@ -307,30 +289,24 @@ public class Jellyfish extends Entity {
      * La meduse va à gauche
      */
     public void left() {
-
             setAX(-1200);
-
-
     }
 
     /**
      * La méduse va à droite
      */
     public void right() {
-
             setAX(1200);
-
-        
     }
 
     /**
      * La méduse arrete de se deplacer
-     *
      */
     public void stop() {
         setAX(0);
         setVX(0);
     }
+
 
     /**
      * Methode qui dessine la meduse
@@ -342,8 +318,6 @@ public class Jellyfish extends Entity {
         
         double yAffiche = y - fenetreY;
 
-
-        
         context.drawImage(image, x, yAffiche, largeur, hauteur);
     }
 
@@ -356,7 +330,6 @@ public class Jellyfish extends Entity {
     public boolean intersects(Shrimp other) {
 
             return other.intersects(this);
-
 
     }
 
@@ -390,7 +363,7 @@ public class Jellyfish extends Entity {
 
     /**
      * Accesseur du nombre de vie de la meduse
-     * @return
+     * @return nombre de vie
      */
     public int getNbVies(){
         return this.life;
@@ -412,9 +385,7 @@ public class Jellyfish extends Entity {
      * @param other Tortue
      */
     public void testCollision(Tortue other) {
-        if (intersects(other) && Math.abs(this.y + hauteur - other.y)
-                < other.hauteur
-                && vy > 0 ) {
+        if (intersects(other) && Math.abs(this.y + hauteur - other.y) < other.hauteur && vy > 0 ) {
             pushOut(other);
 
             this.parterre = true;
@@ -422,8 +393,7 @@ public class Jellyfish extends Entity {
             this.vy=0;
         }
 
-        if (intersects(other) && other.y <  this.y
-                && vy < 0) {
+        if (intersects(other) && other.y <  this.y && vy < 0) {
             this.vy *= -0.1;
         }
 
@@ -437,8 +407,7 @@ public class Jellyfish extends Entity {
      * @param other trampoline
      */
     public void testCollision(Trampoline other) {
-        if (intersects(other) && Math.abs(this.y + hauteur - other.y) < 20
-                && vy > 0) {
+        if (intersects(other) && Math.abs(this.y + hauteur - other.y) < 20 && vy > 0) {
             pushOut(other);
             this.parterre = true;
             isJumping = false;

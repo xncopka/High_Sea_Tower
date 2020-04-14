@@ -34,7 +34,7 @@ public class Controleur {
 
 
     /**
-     * demande au modele de mettre à jour l'état de la meduse
+     * Demande au modele de mettre à jour l'état de la meduse
      * Methode pour sauter
      */
     void jump() {
@@ -43,44 +43,43 @@ public class Controleur {
 
 
     /**
-     * demande au modele de mettre à jour l'état de la meduse
+     * Demande au modele de mettre à jour l'état de la meduse
      * Methode pour aller a droite
      */
     void right() { jeu.right();}
 
 
     /**
-     * demande au modele de mettre à jour l'état de la meduse
+     * Demande au modele de mettre à jour l'état de la meduse
      * Methode pour aller a gauche
      */
     void left() { jeu.left();}
 
 
     /**
-     * demande au modele de mettre à jour l'état de la meduse
+     * Demande au modele de mettre à jour l'état de la meduse
      * Methode La meduse arrete de se deplacer
      */
     void stop() { jeu.stop();}
 
 
     /**
-     * demande au modele de mettre à jour l'état des bulles
+     * Demande au modele de mettre à jour l'état des bulles
      * Methode pour grouper les bulles a l'arriere plan
      */
     void groupBulles() { jeu.groupBulles();}
 
 
     /**
-     *  Demande au modele de mettre à jour l'état du mode debug
+     * Demande au modele de mettre à jour l'état du mode debug
      * Methode pour activer ou desactiver le mode debug du jeu
      */
     void debug() { jeu.debug();}
 
 
     /**
-     * Demande au modele de mettre à jour l'état du
-     * plancher de depart
-     *  Méthode pour supprimer le plancher
+     * Demande au modele de mettre à jour l'état du plancher de depart
+     * Méthode pour supprimer le plancher
      */
     void removePlancher() {
         jeu.removePlancher();

@@ -65,8 +65,7 @@ public class Bulle extends Entity {
      * @param widthScreen largeur de l'ecran
      * @param heightScreen hauteur de l'ecran
      */
-    public static void groupBulles (Bulle[][] bulles, double widthScreen,
-                                    double heightScreen) {
+    public static void groupBulles (Bulle[][] bulles, double widthScreen, double heightScreen) {
         Random random= new Random();
         double[] baseX = new double[bulles.length];
         double borne = 20;
