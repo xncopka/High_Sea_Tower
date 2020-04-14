@@ -34,9 +34,6 @@ public class Jellyfish extends Entity {
 
 
 
-
-
-
     /**
      * Constructeur de Jellyfish
      * @param x position x de la méduse
@@ -88,10 +85,6 @@ public class Jellyfish extends Entity {
         return this.image;
 
     }
-
-
-
-
 
 
 
@@ -243,7 +236,7 @@ public class Jellyfish extends Entity {
 
 
     /**
-     * Accesseur de is jumping
+     * Accesseur de isJumping
      * @return un boolean vrai ou faux selon si la meduse saute ou non
      */
     public boolean getIsJumping(){
